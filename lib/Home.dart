@@ -16,15 +16,15 @@ class _HomeState extends State<Home> {
 
   int _indice = 0;
 
-  List<Widget> telas = [
-    Quem(),
-    Quizes(),
-    Ita(),
-    Configuracoes()
-  ];
-
   @override
   Widget build(BuildContext context) {
+    List<Widget> telas = [
+      Quem(),
+      Quizes(),
+      Ita(),
+      Configuracoes()
+    ];
+
     return Scaffold(
 
       appBar: AppBar(
