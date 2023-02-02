@@ -30,42 +30,8 @@ class _HomeState extends State<Home> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
 
-              Text('Texto'),
-              Text('Texto'),
-              Text('Texto'),
-              Text('Texto'),
-              Text('Texto'),
-              Text('Texto', style: TextStyle(fontSize: 50),),
-              Text('Texto', style: TextStyle(fontSize: 50),),
-              Text('Texto', style: TextStyle(fontSize: 50),),
-              Text('Texto', style: TextStyle(fontSize: 50),),
-              Text('Texto', style: TextStyle(fontSize: 50),),
-              Text('Texto', style: TextStyle(fontSize: 50),),
-              Text('Texto', style: TextStyle(fontSize: 50),),
-              Text('Texto', style: TextStyle(fontSize: 50),),
-              Text('Texto', style: TextStyle(fontSize: 50),),
-              Text('Texto', style: TextStyle(fontSize: 50),),
-              Text('Texto', style: TextStyle(fontSize: 50),),
-              Text('Texto', style: TextStyle(fontSize: 50),),
-
             ],
           ),
-        ),
-      ),
-
-      bottomNavigationBar: Container(
-        color: Colors.lightBlue,
-        padding: EdgeInsets.all(15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-            ElevatedButton(
-                onPressed: (){},
-                child: Text('Botão')
-            )
-
-          ],
         ),
       ),
 
