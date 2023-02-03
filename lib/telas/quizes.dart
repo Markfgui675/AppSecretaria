@@ -13,7 +13,13 @@ class _QuizesState extends State<Quizes> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Quizes'),
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              Text('Quizes')
+            ],
+          ),
+        ),
       ),
     );
   }

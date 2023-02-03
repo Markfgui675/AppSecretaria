@@ -58,11 +58,12 @@ class _HomeState extends State<Home> {
           });
         },
         type: BottomNavigationBarType.fixed,
-        fixedColor: Colors.red,
+        fixedColor: Colors.blue,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
+          BottomNavigationBarItem(icon: Icon(Icons.wallet), label: 'Wallet'),
+          BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: 'Account'),
+          BottomNavigationBarItem(icon: Icon(Icons.cabin), label: 'Cabin'),
         ],
       ),
 
