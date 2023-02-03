@@ -2,6 +2,7 @@ import 'package:app_secretaria_flutter/telas/configuracoes.dart';
 import 'package:app_secretaria_flutter/telas/ita.dart';
 import 'package:app_secretaria_flutter/telas/quem.dart';
 import 'package:app_secretaria_flutter/telas/quizes.dart';
+import 'package:app_secretaria_flutter/telas/inicio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,38 +15,27 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  int _indice = 0;
+  int _indice = 2;
 
   @override
   Widget build(BuildContext context) {
+
     List<Widget> telas = [
-      Quem(),
       Quizes(),
+      Quem(),
+      Inicio(),
       Ita(),
       Configuracoes()
     ];
 
     return Scaffold(
 
-      appBar: AppBar(
-
-        title: Text('Teste'),
-        centerTitle: true,
-
-      ),
 
 
-      body: SingleChildScrollView(
+      body: Center(
         child: Container(
-          width: double.infinity,
-          padding: EdgeInsets.all(50),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              telas[_indice]
-            ],
-          ),
+          padding: EdgeInsets.only(top: 50),
+          child: telas[_indice]
         ),
       ),
 
@@ -60,10 +50,11 @@ class _HomeState extends State<Home> {
         type: BottomNavigationBarType.fixed,
         fixedColor: Colors.blue,
         items: [
+          BottomNavigationBarItem(icon: Icon(Icons.account_balance), label: 'Quizes'),
+          BottomNavigationBarItem(icon: Icon(Icons.wallet), label: 'Quem'),
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
-          BottomNavigationBarItem(icon: Icon(Icons.wallet), label: 'Wallet'),
-          BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: 'Account'),
-          BottomNavigationBarItem(icon: Icon(Icons.cabin), label: 'Cabin'),
+          BottomNavigationBarItem(icon: Icon(Icons.cabin), label: 'Ita'),
+          BottomNavigationBarItem(icon: Icon(Icons.cabin), label: 'Configurções'),
         ],
       ),
 

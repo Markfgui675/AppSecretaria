@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'Home.dart';
 import 'Splash.dart';
 
-void main(){
-
+Future main() async{
   runApp(MaterialApp(
     home: Splash(),
   ));
