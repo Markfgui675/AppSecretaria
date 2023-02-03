@@ -12,9 +12,16 @@ class _ConfiguracoesState extends State<Configuracoes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
-        child: Text('Configuracoes'),
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              Text('Configurações')
+            ],
+          ),
+        ),
       ),
-    );;
+    );
   }
 }

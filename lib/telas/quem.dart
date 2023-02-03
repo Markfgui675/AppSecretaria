@@ -12,8 +12,15 @@ class _QuemState extends State<Quem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
-        child: Text('Quem'),
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              Text('Quem')
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -11,9 +11,16 @@ class Ita extends StatefulWidget {
 class _ItaState extends State<Ita> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
-        child: Text('ITA'),
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              Text('Ita')
+            ],
+          ),
+        ),
       ),
     );
   }

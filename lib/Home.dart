@@ -3,6 +3,7 @@ import 'package:app_secretaria_flutter/telas/ita.dart';
 import 'package:app_secretaria_flutter/telas/quem.dart';
 import 'package:app_secretaria_flutter/telas/quizes.dart';
 import 'package:app_secretaria_flutter/telas/inicio.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -30,6 +31,7 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
 
+      backgroundColor: Colors.white,
 
 
       body: Center(
@@ -40,22 +42,27 @@ class _HomeState extends State<Home> {
       ),
 
 
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _indice,
+
+
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.white,
+        buttonBackgroundColor: Colors.blue,
+        color: Colors.blue,
+        animationDuration: Duration(milliseconds: 300),
+        index: _indice,
         onTap: (indice){
           setState(() {
             _indice = indice;
           });
         },
-        type: BottomNavigationBarType.fixed,
-        fixedColor: Colors.blue,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.account_balance), label: 'Quizes'),
-          BottomNavigationBarItem(icon: Icon(Icons.wallet), label: 'Quem'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
-          BottomNavigationBarItem(icon: Icon(Icons.cabin), label: 'Ita'),
-          BottomNavigationBarItem(icon: Icon(Icons.cabin), label: 'Configurções'),
+          Icon(Icons.quiz, color: Colors.white, size: 32),
+          Icon(Icons.people, color: Colors.white, size: 32),
+          Icon(Icons.home, color: Colors.white, size: 32),
+          Icon(Icons.cabin, color: Colors.white, size: 32),
+          Icon(Icons.settings, color: Colors.white, size: 32)
         ],
+
       ),
 
     );
