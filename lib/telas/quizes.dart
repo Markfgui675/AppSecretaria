@@ -16,6 +16,8 @@ class _QuizesState extends State<Quizes> {
       body: Center(
         child: Container(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text('Quizes')
             ],

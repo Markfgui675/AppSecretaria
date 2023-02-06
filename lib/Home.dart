@@ -42,8 +42,6 @@ class _HomeState extends State<Home> {
       ),
 
 
-
-
       bottomNavigationBar: CurvedNavigationBar(
         height: 65.0,
         backgroundColor: Colors.white,

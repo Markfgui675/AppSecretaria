@@ -16,6 +16,8 @@ class _ConfiguracoesState extends State<Configuracoes> {
       body: Center(
         child: Container(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text('Configurações')
             ],

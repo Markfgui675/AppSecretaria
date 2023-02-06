@@ -16,6 +16,8 @@ class _ItaState extends State<Ita> {
       body: Center(
         child: Container(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text('Ita')
             ],
