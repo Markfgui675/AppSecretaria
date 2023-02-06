@@ -45,9 +45,10 @@ class _HomeState extends State<Home> {
 
 
       bottomNavigationBar: CurvedNavigationBar(
+        height: 65.0,
         backgroundColor: Colors.white,
-        buttonBackgroundColor: Colors.blue,
-        color: Colors.blue,
+        buttonBackgroundColor: Color(0xff0416fa),
+        color: Color(0xff0416fa),
         animationDuration: Duration(milliseconds: 300),
         index: _indice,
         onTap: (indice){
@@ -56,11 +57,11 @@ class _HomeState extends State<Home> {
           });
         },
         items: [
-          Icon(Icons.quiz, color: Colors.white, size: 32),
-          Icon(Icons.people, color: Colors.white, size: 32),
-          Icon(Icons.home, color: Colors.white, size: 32),
-          Icon(Icons.cabin, color: Colors.white, size: 32),
-          Icon(Icons.settings, color: Colors.white, size: 32)
+          Image.asset('icons/quiz.png', width: 32),
+          Image.asset('icons/customer.png', width: 32),
+          Image.asset('icons/home.png', width: 32),
+          Image.asset('icons/ita_icone.png', width: 32),
+          Image.asset('icons/setting.png', width: 32)
         ],
 
       ),
