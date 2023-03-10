@@ -37,6 +37,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   curved_navigation_bar: ^1.0.3
+  firebase_core: ^0.4.0+6 #recursos básicos
+  firebase_auth: ^0.11.1+7 #autenticação
+  firebase_storage: ^3.0.2 #armazenamento arquivos
+  cloud_firestore: ^0.12.5+2 #banco de dados
+  image_picker: ^0.6.0+10 #selecionar imagens
 
 dev_dependencies:
   flutter_test:

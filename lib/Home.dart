@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
         height: 65.0,
         backgroundColor: Colors.white,
         buttonBackgroundColor: Color(0xff2E6EA7),
-        color: Color(0xff0416fa),
+        color: Color(0xff2E6EA7),
         animationDuration: Duration(milliseconds: 300),
         index: _indice,
         onTap: (indice){

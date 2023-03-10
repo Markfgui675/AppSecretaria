@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "261701244511",
+    "project_id": "appsecretaria-25af2",
+    "storage_bucket": "appsecretaria-25af2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261701244511:android:3f8a92b17756103355adea",
+        "android_client_info": {
+          "package_name": "com.example.ditran.app_secretaria_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261701244511-gie0cb9hdcvie04nbcrptok1brc8kung.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADVsW94YBCLPIF_LWXVIY1TT35fTF3w-o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261701244511-gie0cb9hdcvie04nbcrptok1brc8kung.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
