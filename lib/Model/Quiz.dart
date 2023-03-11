@@ -24,7 +24,7 @@ class Quiz{
   }
 
 
-  bool get resposta => _resposta;
+  bool get resposta => _resposta!;
 
   set resposta(bool value) {
     _resposta = value;
