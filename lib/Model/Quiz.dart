@@ -5,6 +5,8 @@ class Quiz{
   String? _q2;
   String? _q3;
   String? _q4;
+  bool? _resposta;
+
 
   Quiz();
 
@@ -12,13 +14,20 @@ class Quiz{
     Map<String, dynamic> map = {
       'titulo':this.titulo,
       'pergunta':this.pergunta,
-      'q1':this.q1,
-      'q2':this.q2,
-      'q3':this.q3,
-      'q4':this.q4
+      'q1': {'q1':this.q1, 'resposta':this.resposta},
+      'q2': {'q1':this.q2, 'resposta':this.resposta},
+      'q3': {'q1':this.q3, 'resposta':this.resposta},
+      'q4': {'q1':this.q4, 'resposta':this.resposta}
     };
 
     return map;
+  }
+
+
+  bool get resposta => _resposta;
+
+  set resposta(bool value) {
+    _resposta = value;
   }
 
   String get q4 => _q4!;
