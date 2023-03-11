@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Ita extends StatefulWidget {
   const Ita({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class _ItaState extends State<Ita> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text('Ita')
+              Text('Inicio')
             ],
           ),
         ),

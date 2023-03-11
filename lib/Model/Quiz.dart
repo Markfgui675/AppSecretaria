@@ -14,10 +14,10 @@ class Quiz{
     Map<String, dynamic> map = {
       'titulo':this.titulo,
       'pergunta':this.pergunta,
-      'q1': {'q1':this.q1, 'resposta':this.resposta},
-      'q2': {'q1':this.q2, 'resposta':this.resposta},
-      'q3': {'q1':this.q3, 'resposta':this.resposta},
-      'q4': {'q1':this.q4, 'resposta':this.resposta}
+      'q1': {'q_1':this.q1, 'resposta1':this.resposta},
+      'q2': {'q_2':this.q2, 'resposta2':this.resposta},
+      'q3': {'q_3':this.q3, 'resposta3':this.resposta},
+      'q4': {'q_4':this.q4, 'resposta4':this.resposta}
     };
 
     return map;

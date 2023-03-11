@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Inicio extends StatefulWidget {
   const Inicio({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class _InicioState extends State<Inicio> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text('Inicio')
+              Text('Lorem ipsum', style: GoogleFonts.kanit().copyWith(fontSize: 50))
             ],
           ),
         ),

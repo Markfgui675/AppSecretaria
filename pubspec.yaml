@@ -42,6 +42,7 @@ dependencies:
   firebase_storage: ^3.0.2 #armazenamento arquivos
   cloud_firestore: ^0.12.5+2 #banco de dados
   image_picker: ^0.6.0+10 #selecionar imagens
+  google_fonts: ^4.0.3 #fontes do google fonts
 
 dev_dependencies:
   flutter_test:
