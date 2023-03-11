@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../Model/Quiz.dart';
 
 class Quizes extends StatefulWidget {
   const Quizes({Key? key}) : super(key: key);
@@ -18,6 +21,8 @@ class _QuizesState extends State<Quizes> {
   TextEditingController _q4QuizController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
+  Quiz quiz = Quiz();
+  bool ok = false;
 
 
 
@@ -87,7 +92,7 @@ class _QuizesState extends State<Quizes> {
                           ),
                           SizedBox(height: 15),
                           TextFormField(
-                            controller: _q1QuizController,
+                            controller: _q2QuizController,
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'Segunda opção'
@@ -103,7 +108,7 @@ class _QuizesState extends State<Quizes> {
                           ),
                           SizedBox(height: 15),
                           TextFormField(
-                            controller: _q1QuizController,
+                            controller: _q3QuizController,
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'Terceira opção'
@@ -119,7 +124,7 @@ class _QuizesState extends State<Quizes> {
                           ),
                           SizedBox(height: 15),
                           TextFormField(
-                            controller: _q1QuizController,
+                            controller: _q4QuizController,
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'Quarta opção'
@@ -145,8 +150,17 @@ class _QuizesState extends State<Quizes> {
                       children: <Widget>[
                         ElevatedButton(
                             onPressed: (){
-                              //Salvar Quiz
-                              Navigator.pop(context);
+
+                              if(formKey.currentState!.validate()){
+                                quiz.titulo = _tituloQuizController.text;
+                                quiz.pergunta = _perguntaQuizController.text;
+                                quiz.q1 = _q1QuizController.text;
+                                quiz.q2 = _q2QuizController.text;
+                                quiz.q3 = _q3QuizController.text;
+                                quiz.q4 = _q4QuizController.text;
+                                _salvarQuiz(quiz);
+                                Navigator.pop(context);
+                              }
                             },
                             child: Text('Salvar')
                         ),
@@ -166,7 +180,60 @@ class _QuizesState extends State<Quizes> {
     );
   }
 
-  _salvarQuiz(){
+  _salvarQuiz(Quiz quiz){
+
+    Firestore db = Firestore.instance;
+
+    db.collection('quizes')
+    .document(_tituloQuizController.text)
+    .setData(quiz.toMap()).
+    then((value){
+      ok = true;
+      _mensagemSnackBar(ok);
+    }).catchError((error){
+      ok = false;
+      print('erro:'+error.toString());
+      _mensagemSnackBar(ok);
+    });
+
+    _tituloQuizController.text = '';
+    _perguntaQuizController.text = '';
+    _q1QuizController.text = '';
+    _q2QuizController.text = '';
+    _q3QuizController.text = '';
+    _q4QuizController.text = '';
+
+  }
+
+  _mensagemSnackBar(bool ok){
+
+    if(ok){
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            elevation: 6.0,
+            content: Text('Quiz criado com sucesso!'),
+            backgroundColor: Colors.green,
+            duration: Duration(seconds: 4),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            padding: EdgeInsets.all(20),
+            margin: EdgeInsets.all(20),
+            behavior: SnackBarBehavior.floating,
+          )
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            elevation: 6.0,
+            content: Text('Não foi possível criar o Quiz'),
+            backgroundColor: Colors.red,
+            duration: Duration(seconds: 4),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            padding: EdgeInsets.all(20),
+            margin: EdgeInsets.all(20),
+            behavior: SnackBarBehavior.floating,
+          )
+      );
+    }
 
   }
 
