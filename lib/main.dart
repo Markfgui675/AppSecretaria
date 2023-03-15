@@ -6,6 +6,7 @@ import 'Splash.dart';
 Future main() async{
   runApp(MaterialApp(
     home: Home(),
+    debugShowCheckedModeBanner: false,
   ));
 
 }
