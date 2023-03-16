@@ -1,6 +1,11 @@
+import 'package:app_secretaria_flutter/telas/quem.dart';
+import 'package:app_secretaria_flutter/telas/quizes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'configuracoes.dart';
+import 'ita.dart';
 
 class Inicio extends StatefulWidget {
   const Inicio({Key? key}) : super(key: key);
@@ -10,7 +15,7 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> {
-  @override
+    @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
@@ -88,7 +93,9 @@ class _InicioState extends State<Inicio> {
                         children: <Widget>[
                           Padding(padding: EdgeInsets.symmetric(horizontal: 25),
                             child: ElevatedButton(
-                              onPressed: (){},
+                              onPressed: (){
+
+                              },
                               child: Text('Quizes'),
                               style: ElevatedButton.styleFrom(
                                   elevation: 2.0,
