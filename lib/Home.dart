@@ -16,7 +16,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  int _indice = 0;
+  int _indice = 2;
 
   @override
   Widget build(BuildContext context) {

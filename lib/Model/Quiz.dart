@@ -1,11 +1,20 @@
 class Quiz{
+  String? _idQuiz;
   String? _titulo;
   String? _pergunta;
   String? _q1;
   String? _q2;
   String? _q3;
   String? _q4;
-  bool? _resposta;
+
+
+  Quiz();
+
+  String get idQuiz => _idQuiz!;
+
+  set idQuiz(String value) {
+    _idQuiz = value;
+  }
 
   String get titulo => _titulo!;
 
@@ -14,12 +23,6 @@ class Quiz{
   }
 
   String get pergunta => _pergunta!;
-
-  bool get resposta => _resposta!;
-
-  set resposta(bool value) {
-    _resposta = value;
-  }
 
   String get q4 => _q4!;
 

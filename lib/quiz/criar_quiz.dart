@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CriarQuiz extends StatefulWidget {
-  const CriarQuiz({Key? key}) : super(key: key);
+
+  String tituloQuiz;
+  CriarQuiz(this.tituloQuiz);
+
 
   @override
   State<CriarQuiz> createState() => _CriarQuizState();
@@ -10,7 +13,6 @@ class CriarQuiz extends StatefulWidget {
 
 class _CriarQuizState extends State<CriarQuiz> {
 
-  TextEditingController _tituloQuizController = TextEditingController();
   TextEditingController _perguntaQuizController = TextEditingController();
   TextEditingController _q1QuizController = TextEditingController();
   TextEditingController _q2QuizController = TextEditingController();
@@ -18,6 +20,10 @@ class _CriarQuizState extends State<CriarQuiz> {
   TextEditingController _q4QuizController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
+
+  _captarDados(){
+
+  }
 
   _mensagemSnackBar(bool ok){
 
@@ -58,7 +64,6 @@ class _CriarQuizState extends State<CriarQuiz> {
         child: SingleChildScrollView(
           padding: EdgeInsets.all(16),
           child: Container(
-            height: MediaQuery.of(context).size.height,
             width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -69,7 +74,7 @@ class _CriarQuizState extends State<CriarQuiz> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Text('Criar Quiz',
+                      Text(widget.tituloQuiz,
                         style: GoogleFonts.kanit().copyWith(fontSize: 45, color: Colors.black)),
                     ],
                   ),
@@ -83,59 +88,111 @@ class _CriarQuizState extends State<CriarQuiz> {
                         key: formKey,
                         child: Column(
                           children: <Widget>[
-                            TextFormField(
-                              controller: _tituloQuizController,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: 'Titulo'
-                              ),
-                            ),
-                            SizedBox(height: 25,),
                             ConstrainedBox(
                               constraints: BoxConstraints(
                                 maxHeight: 150
                               ),
                               child: TextFormField(
+                                controller: _perguntaQuizController,
                                 maxLines: null,
                                 decoration: InputDecoration(
                                     border: OutlineInputBorder(),
                                     labelText: 'Pergunta'
                                 ),
+                                validator: (value){
+                                  if(value!.isNotEmpty){
+                                    return null;
+                                  } else {
+                                    return 'Digite a pergunta';
+                                  }
+                                },
                               ),
                             ),
                             SizedBox(height: 25,),
-                            TextFormField(
-                              controller: _q1QuizController,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: 'Opção 1'
+                            ConstrainedBox(
+                              constraints: BoxConstraints(
+                                  maxHeight: 75
+                              ),
+                              child: TextFormField(
+                                controller: _q1QuizController,
+                                maxLines: null,
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: 'Opção 1'
+                                ),
+                                validator: (value){
+                                  if(value!.isNotEmpty){
+                                    return null;
+                                  } else {
+                                    return 'Digite a opção 1';
+                                  }
+                                },
                               ),
                             ),
                             SizedBox(height: 25,),
 
-                            TextFormField(
-                              controller: _q2QuizController,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: 'Opção 2'
+                            ConstrainedBox(
+                              constraints: BoxConstraints(
+                                  maxHeight: 75
+                              ),
+                              child: TextFormField(
+                                controller: _q2QuizController,
+                                maxLines: null,
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: 'Opção 2'
+                                ),
+                                validator: (value){
+                                  if(value!.isNotEmpty){
+                                    return null;
+                                  } else {
+                                    return 'Digite a opção 2';
+                                  }
+                                },
                               ),
                             ),
                             SizedBox(height: 25,),
 
-                            TextFormField(
-                              controller: _q3QuizController,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: 'Opção 3'
+                            ConstrainedBox(
+                              constraints: BoxConstraints(
+                                  maxHeight: 75
+                              ),
+                              child: TextFormField(
+                                controller: _q3QuizController,
+                                maxLines: null,
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: 'Opção 3'
+                                ),
+                                validator: (value){
+                                  if(value!.isNotEmpty){
+                                    return null;
+                                  } else {
+                                    return 'Digite a opção 3';
+                                  }
+                                },
                               ),
                             ),
                             SizedBox(height: 25,),
 
-                            TextFormField(
-                              controller: _q4QuizController,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: 'Opção 4'
+                            ConstrainedBox(
+                              constraints: BoxConstraints(
+                                  maxHeight: 75
+                              ),
+                              child: TextFormField(
+                                controller: _q4QuizController,
+                                maxLines: null,
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: 'Opção 4'
+                                ),
+                                validator: (value){
+                                  if(value!.isNotEmpty){
+                                    return null;
+                                  } else {
+                                    return 'Digite a opção 4';
+                                  }
+                                },
                               ),
                             ),
                           ],
@@ -147,7 +204,11 @@ class _CriarQuizState extends State<CriarQuiz> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           ElevatedButton(
-                              onPressed: (){},
+                              onPressed: (){
+                                if(formKey.currentState!.validate()){
+                                  _captarDados();
+                                }
+                              },
                               child: Text('Salvar e Continuar')
                           ),
                         ],
