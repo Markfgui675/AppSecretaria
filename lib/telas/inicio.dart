@@ -1,5 +1,6 @@
 import 'package:app_secretaria_flutter/telas/quem.dart';
 import 'package:app_secretaria_flutter/telas/quizes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -63,7 +64,10 @@ class _InicioState extends State<Inicio> {
                       Text('O que é transparência da saúde?',
                         style: GoogleFonts.kanit().copyWith(fontSize: 18, color: Colors.black),),
                       SizedBox(height: 5,),
-                      Container(width: 60, height: 4, color: Color(0xfff2ab11),) //linha
+                      Container(width: 60, height: 4, color: Color(0xfff2ab11),),
+                      SizedBox(height: 10,),
+                      Text(FirebaseAuth.instance.currentUser!.toString())
+
                     ],
                   ),
                 )
