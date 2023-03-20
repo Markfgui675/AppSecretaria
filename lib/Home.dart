@@ -35,8 +35,8 @@ class _HomeState extends State<Home> {
 
       body: Center(
         child: Container(
-          padding: const EdgeInsets.only(top: 50),
-          child: telas[_indice]
+            padding: const EdgeInsets.only(top: 50),
+            child: telas[_indice]
         ),
       ),
 

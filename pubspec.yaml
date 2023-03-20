@@ -45,6 +45,7 @@ dependencies:
   google_fonts: ^4.0.3 #google fontes
   google_sign_in: ^6.0.2 #login com o google
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
