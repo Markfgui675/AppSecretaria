@@ -120,7 +120,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           validator: (value){
                             if(value!.isEmpty){
                               return 'Informe um email!';
-                            } else if(!value!.contains('@') || !value!.contains('.com')){
+                            } else if(!value.contains('@') || !value.contains('.com')){
                               return 'Informe um email válido!';
                             } else {
                               return null;

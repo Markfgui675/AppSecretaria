@@ -117,7 +117,7 @@ class _CadastroState extends State<Cadastro> {
                             labelText: 'Nome',
                           ),
                           validator: (value){
-                            if(value!.isEmpty || value!.length <= 1){
+                            if(value!.isEmpty || value.length <= 1){
                               return 'Informe um nome!';
                             } else {
                               return null;
@@ -140,7 +140,7 @@ class _CadastroState extends State<Cadastro> {
                           validator: (value){
                             if(value!.isEmpty){
                               return 'Informe um email!';
-                            } else if(!value!.contains('@') || !value!.contains('.com')){
+                            } else if(!value.contains('@') || !value.contains('.com')){
                               return 'Informe um email válido!';
                             } else {
                               return null;

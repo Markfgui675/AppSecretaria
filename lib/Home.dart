@@ -4,7 +4,6 @@ import 'package:app_secretaria_flutter/telas/quem.dart';
 import 'package:app_secretaria_flutter/telas/quizes.dart';
 import 'package:app_secretaria_flutter/telas/inicio.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -22,11 +21,11 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
 
     List<Widget> telas = [
-      Quizes(),
-      Quem(),
-      Inicio(),
-      Ita(),
-      Configuracoes()
+      const Quizes(),
+      const Quem(),
+      const Inicio(),
+      const Ita(),
+      const Configuracoes()
     ];
 
     return Scaffold(
@@ -36,7 +35,7 @@ class _HomeState extends State<Home> {
 
       body: Center(
         child: Container(
-          padding: EdgeInsets.only(top: 50),
+          padding: const EdgeInsets.only(top: 50),
           child: telas[_indice]
         ),
       ),
@@ -45,9 +44,9 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: CurvedNavigationBar(
         height: 65.0,
         backgroundColor: Colors.white,
-        buttonBackgroundColor: Color(0xff2E6EA7),
-        color: Color(0xff2E6EA7),
-        animationDuration: Duration(milliseconds: 300),
+        buttonBackgroundColor: const Color(0xff2E6EA7),
+        color: const Color(0xff2E6EA7),
+        animationDuration: const Duration(milliseconds: 300),
         index: _indice,
         onTap: (indice){
           setState(() {
