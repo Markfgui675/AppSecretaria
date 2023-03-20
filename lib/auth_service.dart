@@ -1,7 +1,8 @@
 import 'package:app_secretaria_flutter/telas/inicio.dart';
-import 'package:app_secretaria_flutter/telas/login.dart';
+import 'package:app_secretaria_flutter/telas/entrada.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import 'Home.dart';
@@ -15,6 +16,16 @@ class AuthService{
 
   //Respectivamente---------------------------------------
 
+  bool google = false;
+
+  setGoogle(bool google){
+    google = google;
+  }
+
+  googleTf(){
+    return google;
+  }
+
   handleAuthState(){
     return StreamBuilder(
       stream: FirebaseAuth.instance.onAuthStateChanged,
@@ -22,7 +33,7 @@ class AuthService{
         if(snapshot.hasData){
           return Home();
         } else {
-          return LoginPage();
+          return Entrada();
         }
       },
     );
