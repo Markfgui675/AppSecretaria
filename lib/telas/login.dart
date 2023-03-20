@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../Home.dart';
 import '../auth_service.dart';
@@ -19,6 +20,7 @@ class _LoginState extends State<Login> {
   TextEditingController _senhaController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   _mensagemSnackBar(bool ok) {
     if (ok) {
@@ -50,10 +52,17 @@ class _LoginState extends State<Login> {
             behavior: SnackBarBehavior.floating,
           )
       );
+      setState(() {
+        loading = false;
+      });
     }
   }
 
   singInWithEmailAndPassword(String email, String senha) async {
+    setState(() {
+      loading = true;
+    });
+    AuthService().setGoogle(false);
     FirebaseAuth auth = FirebaseAuth.instance;
 
     auth.signInWithEmailAndPassword(
@@ -72,75 +81,196 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-          body: SingleChildScrollView(
-              padding: EdgeInsets.all(16),
-              child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: double.infinity,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 25),
-                      child: TextField(
-                        keyboardType: TextInputType.emailAddress,
-                        controller: _emailController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Email',
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Entrar',
+            style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white
+            )),
+        centerTitle: true,
+        backgroundColor: Color(0xff2E6EA7),
+        elevation: 0,
+      ),
+
+
+
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+        child: Container(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height*0.85,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Form(
+                key: formKey,
+                child: Container(
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 25),
+                        child: TextFormField(
+                          keyboardType: TextInputType.emailAddress,
+                          controller: _emailController,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.email),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            labelText: 'Email',
+                          ),
+                          validator: (value){
+                            if(value!.isEmpty){
+                              return 'Informe um email!';
+                            } else if(!value!.contains('@') || !value!.contains('.com')){
+                              return 'Informe um email válido!';
+                            } else {
+                              return null;
+                            }
+                          },
                         ),
                       ),
-                    ),
-                    SizedBox(height: 15,),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 25),
-                      child: TextField(
-                        keyboardType: TextInputType.text,
-                        controller: _senhaController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Senha',
+                      SizedBox(height: 15,),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 25),
+                        child: TextFormField(
+                          obscureText: true,
+                          keyboardType: TextInputType.text,
+                          controller: _senhaController,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.lock),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            labelText: 'Senha',
+                          ),
+                          validator: (value){
+                            if(value!.length < 6){
+                              return 'Digite uma senha com pelo menos 6 caracteres';
+                            } else {
+                              return null;
+                            }
+                          },
                         ),
                       ),
-                    ),
-                    SizedBox(height: 15,),
-                    ElevatedButton(
-                        onPressed: (){
-                          singInWithEmailAndPassword(_emailController.text, _senhaController.text);
-                          AuthService().setGoogle(false);
-                        },
-                        child: Text('Entrar')
-                    ),
-                    SizedBox(height: 15,),
-                    ElevatedButton(
-                        onPressed: (){
-                          AuthService().signInWithGoogle();
-                          AuthService().setGoogle(true);
-                        },
-                        child: Text('Entrar com o google')
-                    ),
-                    SizedBox(height: 15,),
-                    GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotPassword()));
-                      },
-                      child: Text('Esqueceu a senha?'),
-                    ),
-                    SizedBox(height: 15,),
-                    GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Cadastro()));
-                      },
-                      child: Text('Criar conta'),
-                    ),
-                  ],
+                      SizedBox(height: 5,),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 25),
+                        child: Container(
+                          width: double.infinity,
+                          height: 20,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgotPassword()));
+                                },
+                                child: Text('Esqueceu a senha?',
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 14, color: Colors.blue
+                                    )),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 30,),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 25),
+                        child: ElevatedButton(
+                          autofocus: true,
+                          onPressed: (){
+                            if(formKey.currentState!.validate()){
+                              singInWithEmailAndPassword(_emailController.text, _senhaController.text);
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xfff2ab11),
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: (loading)?[
+                              Padding(
+                                padding: EdgeInsets.all(16),
+                                child: SizedBox(
+                                  width: 24,
+                                  height: 24,
+                                  child: CircularProgressIndicator(color: Colors.white,),
+                                ),
+                              )
+                            ] : [
+                              Container(
+                                height: 60,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text('Entrar',
+                                      style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xff2E6EA7)),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+              ),
+              SizedBox(height: 50,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Container(
+                    height: 2,
+                    width: 45,
+                    color: Colors.grey[400],
+                  ),
+                  Text('Ou entre com o Google',
+                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 14, color: Colors.grey[600]),
+                  ),
+                  Container(
+                    height: 2,
+                    width: 45,
+                    color: Colors.grey[400],
+                  ),
+                ],
+              ),
+              SizedBox(height: 50,),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25),
+                  child: GestureDetector(
+                    onTap: (){
+                      AuthService().setGoogle(true);
+                      AuthService().signInWithGoogle();
+                    },
+                    child: Container(
+                      height: 60,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.grey[300],
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Image.asset('imagens/google.png', width: 35, height: 35,),
+                          SizedBox(width: 12,),
+                          Text('Entrar com o Google',
+                            style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 14, color: Colors.black),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
               )
+            ],
           ),
-        )
+        ),
+      ),
     );
   }
 }

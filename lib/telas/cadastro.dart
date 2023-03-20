@@ -1,5 +1,7 @@
+import 'package:app_secretaria_flutter/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../Home.dart';
 
@@ -15,6 +17,9 @@ class _CadastroState extends State<Cadastro> {
   TextEditingController _nomeController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _senhaController = TextEditingController();
+
+  final formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   _mensagemSnackBar(bool ok) {
     if (ok) {
@@ -50,6 +55,10 @@ class _CadastroState extends State<Cadastro> {
   }
 
   createWithEmailAndPassword(String email, String senha){
+    setState(() {
+      loading = true;
+    });
+    AuthService().setGoogle(false);
     FirebaseAuth auth = FirebaseAuth.instance;
 
     auth.createUserWithEmailAndPassword(
@@ -72,7 +81,9 @@ class _CadastroState extends State<Cadastro> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Criar conta'),
+        title: Text('Cadastrar',
+          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white
+        )),
         centerTitle: true,
         backgroundColor: Color(0xff2E6EA7),
         elevation: 0,
@@ -84,51 +95,175 @@ class _CadastroState extends State<Cadastro> {
         padding: EdgeInsets.all(16),
         child: Container(
           width: double.infinity,
+          height: MediaQuery.of(context).size.height*0.85,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25),
-                child: TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: _nomeController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Nome',
+              Form(
+                key: formKey,
+                child: Container(
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 25),
+                        child: TextFormField(
+                          keyboardType: TextInputType.text,
+                          controller: _nomeController,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.person),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            labelText: 'Nome',
+                          ),
+                          validator: (value){
+                            if(value!.isEmpty || value!.length <= 1){
+                              return 'Informe um nome!';
+                            } else {
+                              return null;
+                            }
+                          },
+                        ),
+                      ),
+                      SizedBox(height: 15,),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 25),
+                        child: TextFormField(
+                          keyboardType: TextInputType.emailAddress,
+                          controller: _emailController,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.email),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            labelText: 'Email',
+                          ),
+                          validator: (value){
+                            if(value!.isEmpty){
+                              return 'Informe um email!';
+                            } else if(!value!.contains('@') || !value!.contains('.com')){
+                              return 'Informe um email válido!';
+                            } else {
+                              return null;
+                            }
+                          },
+                        ),
+                      ),
+                      SizedBox(height: 15,),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 25),
+                        child: TextFormField(
+                          obscureText: true,
+                          keyboardType: TextInputType.text,
+                          controller: _senhaController,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.lock),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            labelText: 'Senha',
+                          ),
+                          validator: (value){
+                            if(value!.length < 6){
+                              return 'Digite uma senha com pelo menos 6 caracteres';
+                            } else {
+                              return null;
+                            }
+                          },
+                        ),
+                      ),
+                      SizedBox(height: 30,),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 25),
+                        child: ElevatedButton(
+                            autofocus: true,
+                            onPressed: (){
+                              if(formKey.currentState!.validate()){
+                                createWithEmailAndPassword(_emailController.text, _senhaController.text);
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xfff2ab11),
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: (loading)?[
+                                Padding(
+                                  padding: EdgeInsets.all(16),
+                                  child: SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child: CircularProgressIndicator(color: Colors.white,),
+                                  ),
+                                )
+                              ] : [
+                                Container(
+                                  height: 60,
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text('Criar conta',
+                                        style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xff2E6EA7)),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                    ],
                   ),
                 ),
               ),
-              SizedBox(height: 15,),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25),
-                child: TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Email',
+              SizedBox(height: 50,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Container(
+                    height: 2,
+                    width: 45,
+                    color: Colors.grey[400],
                   ),
-                ),
-              ),
-              SizedBox(height: 15,),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25),
-                child: TextField(
-                  obscureText: true,
-                  keyboardType: TextInputType.text,
-                  controller: _senhaController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Senha',
+                  Text('Ou entre com o Google',
+                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 14, color: Colors.grey[600]),
                   ),
-                ),
+                  Container(
+                    height: 2,
+                    width: 45,
+                    color: Colors.grey[400],
+                  ),
+                ],
               ),
-              SizedBox(height: 15,),
-              ElevatedButton(
-                  onPressed: (){
-                    createWithEmailAndPassword(_emailController.text, _senhaController.text);
+              SizedBox(height: 50,),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25),
+                child: GestureDetector(
+                  onTap: (){
+                    AuthService().setGoogle(true);
+                    AuthService().signInWithGoogle();
                   },
-                  child: Text('Entrar')
-              ),
+                  child: Container(
+                    height: 60,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.grey[300],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset('imagens/google.png', width: 35, height: 35,),
+                        SizedBox(width: 12,),
+                        Text('Entrar com o Google',
+                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 14, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              )
             ],
           ),
         ),
