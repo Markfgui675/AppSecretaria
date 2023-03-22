@@ -79,6 +79,7 @@ flutter:
     - icons/setting.png
     - icons/home.png
     - icons/customer.png
+    - icons/logout.png
     - imagens/hospital.jpg
     - imagens/google.png
   #   - images/a_dot_ham.jpeg

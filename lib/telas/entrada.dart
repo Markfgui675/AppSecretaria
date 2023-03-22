@@ -106,6 +106,30 @@ class _EntradaState extends State<Entrada> {
                             ),
                           ),
                         ),
+                        SizedBox(height: 10,),
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Home()));
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              border: Border(),
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Text('Entrar como convidado',
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xff2E6EA7)),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   )

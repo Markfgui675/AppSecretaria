@@ -25,7 +25,7 @@ class _InicioState extends State<Inicio> {
             children: <Widget>[
               //Boas vindas
               Container(
-                height: 100,
+                height: 50,
                 padding: EdgeInsets.only(left: 20, right: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

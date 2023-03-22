@@ -242,6 +242,10 @@ class _CadastroState extends State<Cadastro> {
                   onTap: (){
                     AuthService().setGoogle(true);
                     AuthService().signInWithGoogle();
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context)=>Home()), (route) => false
+                    );
                   },
                   child: Container(
                     height: 60,

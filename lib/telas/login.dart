@@ -245,6 +245,7 @@ class _LoginState extends State<Login> {
                     onTap: (){
                       AuthService().setGoogle(true);
                       AuthService().signInWithGoogle();
+                      _mensagemSnackBar(true);
                     },
                     child: Container(
                       height: 60,

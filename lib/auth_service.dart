@@ -18,25 +18,24 @@ class AuthService{
 
   bool google = false;
 
-  setGoogle(bool google){
-    google = google;
+  setGoogle(bool googlee){
+    google = googlee;
   }
-
   googleTf(){
     return google;
   }
 
   handleAuthState(){
-    return StreamBuilder(
-      stream: FirebaseAuth.instance.onAuthStateChanged,
-      builder: (BuildContext context, snapshot){
-        if(snapshot.hasData){
-          return Home();
-        } else {
-          return Entrada();
-        }
-      },
-    );
+      return StreamBuilder(
+        stream: FirebaseAuth.instance.onAuthStateChanged,
+        builder: (BuildContext context, snapshot){
+          if(snapshot.hasData){
+            return Home();
+          } else {
+            return Entrada();
+          }
+        },
+      );
   }
 
   signInWithGoogle() async {

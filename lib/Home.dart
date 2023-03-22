@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
           Image.asset('icons/customer.png', width: 32),
           Image.asset('icons/home.png', width: 32),
           Image.asset('icons/ita_icone.png', width: 32),
-          Image.asset('icons/setting.png', width: 32)
+          Icon(Icons.account_circle, size: 34, color: Colors.white,)
         ],
 
       ),
