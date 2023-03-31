@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
 
     List<Widget> telas = [
-      const Quizes(),
+      Quizes(),
       const Quem(),
       const Inicio(),
       const Ita(),
