@@ -57,7 +57,7 @@ class _CadastroState extends State<Cadastro> {
     }
   }
 
-  createWithEmailAndPassword(String email, String senha){
+  createWithEmailAndPassword(Usuario usuario){
     setState(() {
       loading = true;
     });
@@ -65,12 +65,14 @@ class _CadastroState extends State<Cadastro> {
     FirebaseFirestore dbUsers= FirebaseFirestore.instance;
 
     auth.createUserWithEmailAndPassword(
-        email: email,
-        password: senha
+        email: usuario.email,
+        password: usuario.senha
     ).then((firebaseUser){
       _mensagemSnackBar(true);
 
-      dbUsers.collection('usuarios').doc().set(usuario.toMap());
+      User? user = firebaseUser.user;
+
+      dbUsers.collection('usuarios').doc(user!.uid).set(usuario.toMap());
 
       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()), (_) => false);
       _nomeController.text = '';
@@ -183,7 +185,10 @@ class _CadastroState extends State<Cadastro> {
                             autofocus: true,
                             onPressed: (){
                               if(formKey.currentState!.validate()){
-                                createWithEmailAndPassword(_emailController.text, _senhaController.text);
+                                usuario.nome = _nomeController.text;
+                                usuario.email = _emailController.text;
+                                usuario.senha = _senhaController.text;
+                                createWithEmailAndPassword(usuario);
                               }
                             },
                             style: ElevatedButton.styleFrom(

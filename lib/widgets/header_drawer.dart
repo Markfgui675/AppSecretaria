@@ -15,7 +15,9 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
 
   Usuario usuario = Usuario();
   String? _idUsuarioLogado;
+  List info = [];
   dynamic _nomeUsuarioLogado = 'NomeUsuario';
+  dynamic _emailUsuarioLogado = 'Email@usuario';
 
   _recuperarDados() async {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -29,8 +31,14 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
         (DocumentSnapshot doc){
           final dados = doc.data() as Map<String, dynamic>;
           print(dados);
-          _nomeUsuarioLogado = dados['nome'];
-          return _nomeUsuarioLogado;
+          setState(() {
+            _nomeUsuarioLogado = dados['nome'];
+            _emailUsuarioLogado = dados['email'];
+            info.add(_nomeUsuarioLogado);
+            info.add(_emailUsuarioLogado);
+          });
+          print(info);
+          return info;
         },
       onError: (e) => print('Error getting document: ${e}')
     );
@@ -57,10 +65,10 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(_nomeUsuarioLogado,
+              Text(info[0].toString(),
                 style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 26, color: Colors.white),
               ),
-              Text('Email@usario',
+              Text(info[1].toString(),
                 style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 14, color: Colors.grey[200]),
               )
             ],
