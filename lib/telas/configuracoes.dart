@@ -13,16 +13,60 @@ class Configuracoes extends StatefulWidget {
 
 class _ConfiguracoesState extends State<Configuracoes> {
 
+  bool loading = false;
+
   sair() async {
-
-      FirebaseAuth auth = FirebaseAuth.instance;
-      await auth.signOut();
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Entrada()));
-
+    FirebaseAuth auth = FirebaseAuth.instance;
+    await auth.signOut();
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Entrada()));
   }
 
   final formKey = GlobalKey<FormState>();
   TextEditingController _nameController = TextEditingController();
+
+  _mensagemSnackBar(bool ok){
+
+    if (ok) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            elevation: 6.0,
+            content: const Text('Mudanças Salvas'),
+            backgroundColor: Colors.green,
+            duration: Duration(seconds: 3),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20)),
+            padding: EdgeInsets.all(20),
+            margin: EdgeInsets.all(20),
+            behavior: SnackBarBehavior.floating,
+          )
+      );
+      setState(() {
+        loading = false;
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            elevation: 6.0,
+            content: const Text(
+                'Não foi possível fazer as mudanças.'),
+            backgroundColor: Colors.red,
+            duration: Duration(seconds: 6),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20)),
+            padding: EdgeInsets.all(20),
+            margin: EdgeInsets.all(20),
+            behavior: SnackBarBehavior.floating,
+          )
+      );
+      setState(() {
+        loading = false;
+      });
+    }
+  }
+
+  _salvarMudancas(){
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +128,48 @@ class _ConfiguracoesState extends State<Configuracoes> {
                   ],
                 ),
               )
-            )
+            ),
+            Spacer(),
+            GestureDetector(
+              onTap: (){
+                _salvarMudancas();
+              },
+              child: Container(
+                width: double.infinity,
+                height: 60,
+                decoration: BoxDecoration(
+                  border: Border(),
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color(0xfff2ab11),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: (loading)?[
+                    Padding(
+                      padding: EdgeInsets.all(16),
+                      child: SizedBox(
+                        width: 24,
+                        height: 24,
+                        child: CircularProgressIndicator(color: Colors.white,),
+                      ),
+                    )
+                  ] : [
+                    Container(
+                      height: 60,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('Entrar',
+                            style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xff2E6EA7)),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       )

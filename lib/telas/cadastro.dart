@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../Home.dart';
+import '../Model/Usuario.dart';
 
 class Cadastro extends StatefulWidget {
   const Cadastro({Key? key}) : super(key: key);
@@ -16,6 +18,8 @@ class _CadastroState extends State<Cadastro> {
   TextEditingController _nomeController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _senhaController = TextEditingController();
+
+  Usuario usuario = Usuario();
 
   final formKey = GlobalKey<FormState>();
   bool loading = false;
@@ -58,12 +62,16 @@ class _CadastroState extends State<Cadastro> {
       loading = true;
     });
     FirebaseAuth auth = FirebaseAuth.instance;
+    FirebaseFirestore dbUsers= FirebaseFirestore.instance;
 
     auth.createUserWithEmailAndPassword(
         email: email,
         password: senha
     ).then((firebaseUser){
       _mensagemSnackBar(true);
+
+      dbUsers.collection('usuarios').doc().set(usuario.toMap());
+
       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()), (_) => false);
       _nomeController.text = '';
       _emailController.text = '';
