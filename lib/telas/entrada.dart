@@ -1,4 +1,3 @@
-import 'package:app_secretaria_flutter/auth_service.dart';
 import 'package:app_secretaria_flutter/telas/forgot_password.dart';
 import 'package:app_secretaria_flutter/telas/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';

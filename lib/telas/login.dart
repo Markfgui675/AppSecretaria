@@ -1,10 +1,11 @@
+import 'package:app_secretaria_flutter/controller/auth_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../Home.dart';
-import '../auth_service.dart';
-import 'cadastro.dart';
 import 'forgot_password.dart';
 
 class Login extends StatefulWidget {
@@ -15,6 +16,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+
+  AuthController authController = Get.put(AuthController());
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _senhaController = TextEditingController();
@@ -62,7 +65,6 @@ class _LoginState extends State<Login> {
     setState(() {
       loading = true;
     });
-    AuthService().setGoogle(false);
     FirebaseAuth auth = FirebaseAuth.instance;
 
     auth.signInWithEmailAndPassword(
@@ -243,9 +245,7 @@ class _LoginState extends State<Login> {
                   padding: EdgeInsets.symmetric(horizontal: 25),
                   child: GestureDetector(
                     onTap: (){
-                      AuthService().setGoogle(true);
-                      AuthService().signInWithGoogle();
-                      _mensagemSnackBar(true);
+                      authController.login();
                     },
                     child: Container(
                       height: 60,

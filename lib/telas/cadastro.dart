@@ -1,4 +1,3 @@
-import 'package:app_secretaria_flutter/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -58,7 +57,6 @@ class _CadastroState extends State<Cadastro> {
     setState(() {
       loading = true;
     });
-    AuthService().setGoogle(false);
     FirebaseAuth auth = FirebaseAuth.instance;
 
     auth.createUserWithEmailAndPassword(
@@ -240,8 +238,6 @@ class _CadastroState extends State<Cadastro> {
                   padding: EdgeInsets.symmetric(horizontal: 25),
                 child: GestureDetector(
                   onTap: (){
-                    AuthService().setGoogle(true);
-                    AuthService().signInWithGoogle();
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(builder: (context)=>Home()), (route) => false

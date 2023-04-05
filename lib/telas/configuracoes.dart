@@ -1,4 +1,3 @@
-import 'package:app_secretaria_flutter/auth_service.dart';
 import 'package:app_secretaria_flutter/telas/entrada.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,13 +14,11 @@ class Configuracoes extends StatefulWidget {
 class _ConfiguracoesState extends State<Configuracoes> {
 
   sair() async {
-    if(AuthService().googleTf()){
-      AuthService().signOut();
-    } else {
+
       FirebaseAuth auth = FirebaseAuth.instance;
       await auth.signOut();
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Entrada()));
-    }
+
   }
 
   final formKey = GlobalKey<FormState>();
