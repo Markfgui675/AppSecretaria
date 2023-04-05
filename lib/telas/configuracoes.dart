@@ -39,20 +39,6 @@ class _ConfiguracoesState extends State<Configuracoes> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Container(
-              height: 50,
-              padding: EdgeInsets.only(left: 20, right: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'Ajustes',
-                    style: GoogleFonts.kanit().copyWith(fontSize: 25, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
             SizedBox(height: 25,),
             CircleAvatar(
               maxRadius: 75,

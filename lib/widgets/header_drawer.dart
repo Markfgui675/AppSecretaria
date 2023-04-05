@@ -13,7 +13,7 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 50, right: 12, left: 12),
-      color: Colors.white,
+      color: Color(0xff2E6EA7),
       width: double.infinity,
       height: 150,
       child: Row(
@@ -24,10 +24,10 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('NomeUsario',
-                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
+                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 26, color: Colors.white),
               ),
               Text('Email@usario',
-                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 14, color: Colors.grey[900]),
+                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 14, color: Colors.grey[200]),
               )
             ],
           ),
