@@ -20,7 +20,7 @@ class Usuario {
   }
 
 
-  String get profilepic => _profilepic!;
+  String get profilepic => _profilepic;
 
   set profilepic(String value) {
     _profilepic = value;
