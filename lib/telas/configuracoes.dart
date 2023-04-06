@@ -135,6 +135,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
         _emailUsuarioLogado = info[1];
         _nameController.text = _nomeUsuarioLogado;
         _profilepic = info[2];
+        print(_profilepic);
       });
       print(info);
       return info;
@@ -185,8 +186,8 @@ class _ConfiguracoesState extends State<Configuracoes> {
                     backgroundColor: Colors.grey,
                     backgroundImage:
                     _profilepic != ''
-                        ?  NetworkImage(_profilepic)
-                        :  null
+                        ?  null
+                        :  NetworkImage(_profilepic)
                 ),
                 SizedBox(
                   height: 25,

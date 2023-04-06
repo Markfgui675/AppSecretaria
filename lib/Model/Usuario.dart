@@ -3,7 +3,7 @@ class Usuario {
   String? _nome;
   String? _email;
   String? _senha;
-  String? _profilepic;
+  String _profilepic = '';
 
   Usuario();
 

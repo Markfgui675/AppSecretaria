@@ -88,8 +88,8 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
                   backgroundColor: Colors.grey,
                   backgroundImage:
                   _profilepic != ''
-                      ?  NetworkImage(_profilepic)
-                      :  null
+                      ?  null
+                      :  NetworkImage(_profilepic)
               ),
             ],
           )
