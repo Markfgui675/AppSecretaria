@@ -72,7 +72,14 @@ class _CadastroState extends State<Cadastro> {
 
       User? user = firebaseUser.user;
 
-      dbUsers.collection('usuarios').doc(user!.uid).set(usuario.toMap());
+      dbUsers.collection('usuarios').doc(user!.uid).set(
+        {
+          'id':user.uid,
+          'nome':usuario.nome,
+          'email':usuario.email,
+          'profilepic':null
+        }
+      );
 
       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()), (_) => false);
       _nomeController.text = '';

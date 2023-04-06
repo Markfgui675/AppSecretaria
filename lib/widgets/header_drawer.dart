@@ -18,6 +18,7 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
   List info = [];
   dynamic _nomeUsuarioLogado = '';
   dynamic _emailUsuarioLogado = '';
+  String _profilepic = '';
 
   _recuperarDados() async {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -34,8 +35,11 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
           setState(() {
             info.add(dados['nome']);
             info.add(dados['email']);
+            info.add(dados['profilepic']);
             _nomeUsuarioLogado = info[0];
             _emailUsuarioLogado = info[1];
+            _profilepic = info[2];
+            
           });
           print(info);
           return info;
@@ -70,8 +74,8 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
               ) : Text(_nomeUsuarioLogado,
                 style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 26, color: Colors.white),
               ),
-              _emailUsuarioLogado.length > 10 ? Text(_emailUsuarioLogado,
-                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.white),
+              _emailUsuarioLogado.length > 20 ? Text(_emailUsuarioLogado,
+                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.white),
               ) : Text(_emailUsuarioLogado,
                 style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.white),
               ),
@@ -79,17 +83,14 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
           ),
           Column(
             children: [
-              Container(
-                height: 70,
-                width: 70,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: AssetImage('imagens/secretaria_teste.jpg'),
-                    fit: BoxFit.cover
-                  )
-                ),
-              )
+              CircleAvatar(
+                  radius: 40,
+                  backgroundColor: Colors.grey,
+                  backgroundImage:
+                  _profilepic != ''
+                      ?  NetworkImage(_profilepic)
+                      :  null
+              ),
             ],
           )
         ],

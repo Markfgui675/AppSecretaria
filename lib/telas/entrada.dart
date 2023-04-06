@@ -1,6 +1,5 @@
-import 'package:app_secretaria_flutter/telas/forgot_password.dart';
+import 'package:app_secretaria_flutter/Model/Usuario.dart';
 import 'package:app_secretaria_flutter/telas/login.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,6 +14,9 @@ class Entrada extends StatefulWidget {
 }
 
 class _EntradaState extends State<Entrada> {
+
+  Usuario usuario = Usuario();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
