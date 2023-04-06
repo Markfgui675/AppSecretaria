@@ -16,8 +16,8 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
   Usuario usuario = Usuario();
   String? _idUsuarioLogado;
   List info = [];
-  dynamic _nomeUsuarioLogado = 'NomeUsuario';
-  dynamic _emailUsuarioLogado = 'Email@usuario';
+  dynamic _nomeUsuarioLogado = '';
+  dynamic _emailUsuarioLogado = '';
 
   _recuperarDados() async {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -32,10 +32,10 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
           final dados = doc.data() as Map<String, dynamic>;
           print(dados);
           setState(() {
-            _nomeUsuarioLogado = dados['nome'];
-            _emailUsuarioLogado = dados['email'];
-            info.add(_nomeUsuarioLogado);
-            info.add(_emailUsuarioLogado);
+            info.add(dados['nome']);
+            info.add(dados['email']);
+            _nomeUsuarioLogado = info[0];
+            _emailUsuarioLogado = info[1];
           });
           print(info);
           return info;
@@ -65,12 +65,16 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(info[0].toString(),
+              _nomeUsuarioLogado.length > 15 ? Text(_nomeUsuarioLogado,
+                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
+              ) : Text(_nomeUsuarioLogado,
                 style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 26, color: Colors.white),
               ),
-              Text(info[1].toString(),
-                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 14, color: Colors.grey[200]),
-              )
+              _emailUsuarioLogado.length > 10 ? Text(_emailUsuarioLogado,
+                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.white),
+              ) : Text(_emailUsuarioLogado,
+                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.white),
+              ),
             ],
           ),
           Column(
