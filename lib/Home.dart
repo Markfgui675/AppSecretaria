@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
     }
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff2E6EA7),
+        backgroundColor: const Color(0xff2E6EA7),
         elevation: 0,
         centerTitle: true,
         title: Text(atualPage,
