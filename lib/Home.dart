@@ -1,8 +1,9 @@
 import 'package:app_secretaria_flutter/telas/configuracoes.dart';
-import 'package:app_secretaria_flutter/telas/ita.dart';
+import 'package:app_secretaria_flutter/telas/prestacao_contas.dart';
 import 'package:app_secretaria_flutter/telas/quem.dart';
 import 'package:app_secretaria_flutter/telas/quizes.dart';
 import 'package:app_secretaria_flutter/telas/inicio.dart';
+import 'package:app_secretaria_flutter/telas/transparencia.dart';
 import 'package:app_secretaria_flutter/widgets/header_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,9 +29,12 @@ class _HomeState extends State<Home> {
     } else if (currentPage == DrawerSections.quem) {
       container = Quem();
       atualPage = 'Quem é quem';
-    } else if (currentPage == DrawerSections.ita) {
-      container = Ita();
-      atualPage = 'Ita';
+    } else if (currentPage == DrawerSections.prestacao_de_contas) {
+      container = Prestacao();
+      atualPage = 'Prestação de Contas';
+    } else if (currentPage == DrawerSections.transparencia) {
+      container = Transparencia();
+      atualPage = 'Transparência';
     } else if (currentPage == DrawerSections.quizes) {
       container = Quizes();
       atualPage = 'Quizes';
@@ -75,22 +79,24 @@ class _HomeState extends State<Home> {
         // shows the list of menu drawer
         children: [
           menuItem(1, "Início", 'icons/home.png',
-              currentPage == DrawerSections.inicio ? true : false, false),
+              currentPage == DrawerSections.inicio ? true : false),
           menuItem(2, "Quem é quem", 'icons/customer.png',
-              currentPage == DrawerSections.quem ? true : false, false),
-          menuItem(3, "Ita", 'icons/ita_icone.png',
-              currentPage == DrawerSections.ita ? true : false, true),
-          menuItem(4, "Quizes", 'icons/quiz.png',
-              currentPage == DrawerSections.quizes ? true : false, false),
-          SizedBox(height: 330),
-          menuItem(5, "Configurações", 'icons/setting.png',
-              currentPage == DrawerSections.configuracoes ? true : false, false),
+              currentPage == DrawerSections.quem ? true : false),
+          menuItem(3, "Prestação de contas", 'icons/ita_icone.png',
+              currentPage == DrawerSections.prestacao_de_contas ? true : false),
+          menuItem(4, "Transparência", 'icons/logout.png',
+              currentPage == DrawerSections.transparencia ? true : false),
+          menuItem(5, "Quizes", 'icons/quiz.png',
+              currentPage == DrawerSections.quizes ? true : false),
+          SizedBox(height: 280),
+          menuItem(6, "Configurações", 'icons/setting.png',
+              currentPage == DrawerSections.configuracoes ? true : false),
         ],
       ),
     );
   }
 
-  Widget menuItem(int id, String title, String urlIcon, bool selected, bool ita) {
+  Widget menuItem(int id, String title, String urlIcon, bool selected) {
     return Padding(
         padding: const EdgeInsets.only(right: 12, left: 12),
       child: Material(
@@ -105,10 +111,12 @@ class _HomeState extends State<Home> {
               } else if (id == 2) {
                 currentPage = DrawerSections.quem;
               } else if (id == 3) {
-                currentPage = DrawerSections.ita;
-              } else if (id == 4) {
-                currentPage = DrawerSections.quizes;
+                currentPage = DrawerSections.prestacao_de_contas;
+              } else if (id == 4){
+                currentPage == DrawerSections.transparencia;
               } else if (id == 5) {
+                currentPage = DrawerSections.quizes;
+              } else if (id == 6) {
                 currentPage = DrawerSections.configuracoes;
               }
             });
@@ -118,9 +126,7 @@ class _HomeState extends State<Home> {
             child: Row(
               children: [
                 Expanded(
-                    child: ita ?
-                      Image.asset(urlIcon, width: 30, height: 30,) :
-                      Image.asset(urlIcon, width: 30, height: 30, color: Colors.white,)
+                    child: Image.asset(urlIcon, width: 30, height: 30, color: Colors.white,)
                 ),
                 Expanded(
                   flex: 3,
@@ -142,7 +148,8 @@ class _HomeState extends State<Home> {
 enum DrawerSections {
   inicio,
   quem,
-  ita,
+  prestacao_de_contas,
+  transparencia,
   quizes,
   configuracoes
 }

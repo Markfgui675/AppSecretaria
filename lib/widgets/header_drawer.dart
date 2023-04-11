@@ -68,6 +68,7 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _nomeUsuarioLogado.length > 15 ? Text(_nomeUsuarioLogado,
                 style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'configuracoes.dart';
-import 'ita.dart';
 
 class Inicio extends StatefulWidget {
   const Inicio({Key? key}) : super(key: key);
@@ -23,7 +22,7 @@ class _InicioState extends State<Inicio> {
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-
+              Text('Início')
             ],
           ),
         ));
