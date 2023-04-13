@@ -100,7 +100,7 @@ class _HomeState extends State<Home> {
     return Padding(
         padding: const EdgeInsets.only(right: 12, left: 12),
       child: Material(
-        color: selected ? Color.fromRGBO(0, 10, 100, 0.3) : Colors.transparent,
+        color: selected ? const Color.fromRGBO(0, 10, 100, 0.3) : Colors.transparent,
         borderRadius: BorderRadius.circular(20),
         child: InkWell(
           onTap: () {
