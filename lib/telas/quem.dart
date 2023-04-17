@@ -1,5 +1,5 @@
-import 'dart:io';
-
+import 'package:app_secretaria_flutter/widgets/pesquisa_quem.dart';
+import 'package:app_secretaria_flutter/widgets/quem_quem.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -13,6 +13,8 @@ class Quem extends StatefulWidget {
 
 class _QuemState extends State<Quem> {
 
+  Future<void>? _launched;
+
   Future<void> _launchInBrowser(Uri url) async {
 
     if(!await launchUrl(url, mode: LaunchMode.externalApplication)){
@@ -20,6 +22,12 @@ class _QuemState extends State<Quem> {
     }
 
   }
+
+  bool telaCorpo = true;
+  //pesquisa_quem = false
+  //quem_quem = true
+
+  _pesquisar(){}
 
 
   @override
@@ -45,7 +53,7 @@ class _QuemState extends State<Quem> {
                 width: double.infinity,
                 height: 90,
                 color: Colors.red,
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 child:
                     ListView(
                       scrollDirection: Axis.horizontal,
@@ -72,7 +80,11 @@ class _QuemState extends State<Quem> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     ElevatedButton(
-                        onPressed: (){},
+                        onPressed: (){
+                          setState(() {
+                            telaCorpo = false;
+                          });
+                        },
                         style: ElevatedButton.styleFrom(
                             backgroundColor:  Color(0xff2E6EA7),
                             elevation: 0,
@@ -96,21 +108,60 @@ class _QuemState extends State<Quem> {
                             ),
                           ],
                         )
+                    ),
+                    SizedBox(width: 15,),
+                    ElevatedButton(
+                        onPressed: (){
+                          setState(() {
+                            telaCorpo = true;
+                          });
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor:  Color(0xfff2ab11),
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: 50,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.cancel_outlined, color: Color(0xff2E6EA7),),
+                                  SizedBox(width: 5,),
+                                  Text('Remover filtros',
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 16, color: Color(0xff2E6EA7)),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        )
                     )
                   ],
                 ),
+              ),
+
+
+              //corpo do quem é quem
+              Container(
+                width: double.infinity,
+                child: Column(
+                  children: telaCorpo == false ? [
+                    PesquisaQuem()
+                  ] : [
+                    QuemQuem()
+                  ],
+                ),
               )
-
-
-
 
 
             ],
           ),
         ),
       ),
-
-
 
 
       bottomNavigationBar: Container(
