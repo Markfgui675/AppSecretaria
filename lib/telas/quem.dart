@@ -13,8 +13,6 @@ class Quem extends StatefulWidget {
 
 class _QuemState extends State<Quem> {
 
-  Future<void>? _launched;
-
   Future<void> _launchInBrowser(Uri url) async {
 
     if(!await launchUrl(url, mode: LaunchMode.externalApplication)){

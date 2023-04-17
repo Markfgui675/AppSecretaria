@@ -247,8 +247,7 @@ class _LoginState extends State<Login> {
                   child: GestureDetector(
                     onTap: (){
                       authController.login();
-                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()), (_) => false);
-                      _mensagemSnackBar(true);
+
                     },
                     child: Container(
                       height: 60,

@@ -26,6 +26,9 @@ class AuthController extends GetxController {
       UserCredential userCredential = await auth.signInWithCredential(credential);
       User? user = userCredential.user!;
 
+      print(userCredential.toString());
+      print(user.toString());
+
       userCollection.doc(user.uid).set({
         'id': user.uid,
         'nome': user.displayName,
