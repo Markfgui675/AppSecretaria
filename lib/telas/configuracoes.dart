@@ -173,12 +173,12 @@ class _ConfiguracoesState extends State<Configuracoes> {
           child: Container(
             width: double.infinity,
             height: MediaQuery.of(context).size.height * 0.89,
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 CircleAvatar(
@@ -189,19 +189,19 @@ class _ConfiguracoesState extends State<Configuracoes> {
                         ?  null
                         :  NetworkImage(_profilepic)
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Form(
                   key: formKey,
                   child: Padding(
-                    padding: EdgeInsets.only(top: 0),
+                    padding: const EdgeInsets.only(top: 0),
                     child: TextFormField(
                       obscureText: false,
                       keyboardType: TextInputType.text,
                       controller: _nameController,
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.person),
+                          prefixIcon: const Icon(Icons.person),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20)),
                           labelText: 'Nome do Usuário'),
@@ -215,7 +215,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Container(
@@ -230,8 +230,8 @@ class _ConfiguracoesState extends State<Configuracoes> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Icon(Icons.alternate_email),
-                      SizedBox(
+                      const Icon(Icons.alternate_email),
+                      const SizedBox(
                         width: 12,
                       ),
                       Text(
@@ -244,7 +244,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 GestureDetector(

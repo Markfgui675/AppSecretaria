@@ -3,6 +3,7 @@ import 'package:app_secretaria_flutter/widgets/quem_quem.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:app_secretaria_flutter/widgets/filtros_quem.dart';
 
 class Quem extends StatefulWidget {
   const Quem({Key? key}) : super(key: key);
@@ -52,30 +53,22 @@ class _QuemState extends State<Quem> {
               Container(
                 width: double.infinity,
                 height: 90,
-                color: Colors.red,
                 padding: const EdgeInsets.all(12),
                 child:
                     ListView(
                       scrollDirection: Axis.horizontal,
                       children: [
-                        Container(
-                          child: Text('Filtro', style: TextStyle(fontSize: 48),),
-                        ),
-                        Container(
-                          child: Text('Filtro', style: TextStyle(fontSize: 48),),
-                        ),
-                        Container(
-                          child: Text('Filtro', style: TextStyle(fontSize: 48),),
-                        ),
-                        Container(
-                          child: Text('Filtro', style: TextStyle(fontSize: 48),),
-                        ),
+                        filtroSetor(),
+                        const SizedBox(width: 5,),
+                        filtroTelefone(),
+                        const SizedBox(width: 5,),
+                        filtroEndereco(),
                       ],
                 )
               ),
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.only(left: 12),
+                padding: EdgeInsets.only(top: 12,left: 12),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -109,15 +102,18 @@ class _QuemState extends State<Quem> {
                           ],
                         )
                     ),
-                    SizedBox(width: 15,),
+                    const SizedBox(width: 15,),
                     ElevatedButton(
                         onPressed: (){
                           setState(() {
                             telaCorpo = true;
                           });
+                          dropValueSetor.value = '';
+                          dropValueTelefone.value = '';
+                          dropValueEndereco.value = '';
                         },
                         style: ElevatedButton.styleFrom(
-                            backgroundColor:  Color(0xfff2ab11),
+                            backgroundColor: const Color(0xfff2ab11),
                             elevation: 0,
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
                         ),
@@ -129,10 +125,10 @@ class _QuemState extends State<Quem> {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.cancel_outlined, color: Color(0xff2E6EA7),),
-                                  SizedBox(width: 5,),
+                                  const Icon(Icons.cancel_outlined, color: Color(0xff2E6EA7),),
+                                  const SizedBox(width: 5,),
                                   Text('Remover filtros',
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 16, color: Color(0xff2E6EA7)),
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 16, color: const Color(0xff2E6EA7)),
                                   )
                                 ],
                               ),
@@ -147,17 +143,17 @@ class _QuemState extends State<Quem> {
 
               //corpo do quem é quem
               Container(
-                width: double.infinity,
-                child: Column(
-                  children: telaCorpo == false ? [
-                    PesquisaQuem()
-                  ] : [
-                    QuemQuem()
-                  ],
-                ),
-              )
-
-
+                  width: double.infinity,
+                  padding: const EdgeInsets.only(top: 24, left: 16, right: 16, bottom: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: telaCorpo == false ? [
+                      PesquisaQuem()
+                    ] : [
+                      QuemQuem()
+                    ],
+                  ),
+              ),
             ],
           ),
         ),
