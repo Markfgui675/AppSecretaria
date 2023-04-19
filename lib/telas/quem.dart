@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:app_secretaria_flutter/widgets/filtros_quem.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Quem extends StatefulWidget {
   const Quem({Key? key}) : super(key: key);
@@ -24,6 +25,7 @@ class _QuemState extends State<Quem> {
 
   }
 
+  bool _status = true;
   bool telaCorpo = true;
   //pesquisa_quem = false
   //quem_quem = true
@@ -160,43 +162,18 @@ class _QuemState extends State<Quem> {
       ),
 
 
-      bottomNavigationBar: Container(
-        width: double.infinity,
-        height: 60,
-        margin: EdgeInsets.only(bottom: 12, left: 12, right: 12),
-        decoration: BoxDecoration(
-          border: Border(),
-          borderRadius: BorderRadius.circular(20),
-          color: Color(0xfff2ab11),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey,
-              offset: Offset(10,10),
-              blurRadius: 15
-            )
-          ]
-        ),
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              InkWell(
-                  onTap: (){
-                    setState(() {
-                      _launched = _launchInBrowser(toLaunch);
-                    });
-                  },
-                  child: Text(
-                    'Saiba Mais',
-                    style: GoogleFonts.kanit().copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Color(0xff2E6EA7)),
-                  )
-              )
-            ],
-                ),
-        ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color(0xfff2ab11),
+        foregroundColor: Colors.white,
+        elevation: 6,
+        child: const FaIcon(FontAwesomeIcons.arrowUpRightFromSquare, color: Color(0xff2E6EA7), size: 15,),
+        onPressed: (){
+          _launched = _launchInBrowser(toLaunch);
+        },
+      ),
+
+
       );
   }
 }

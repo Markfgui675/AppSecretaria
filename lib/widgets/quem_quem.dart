@@ -1,8 +1,45 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class QuemQuem extends StatelessWidget {
+class QuemQuem extends StatefulWidget {
   const QuemQuem({Key? key}) : super(key: key);
+
+  @override
+  State<QuemQuem> createState() => _QuemQuemState();
+}
+
+class _QuemQuemState extends State<QuemQuem> {
+
+  List servidores = [];
+  _recuperarServidores() async {
+
+    List servidores1 = [];
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    QuerySnapshot querySnapshot = await db.collection('quem').get().then(
+            (querySnapshot){
+          print("Successfully completed");
+          for (var docSnapshot in querySnapshot.docs){
+            print('${docSnapshot.data()}');
+            servidores1.add(docSnapshot.data());
+          }
+          print(servidores1);
+          setState(() {
+            servidores = servidores1;
+          });
+          return querySnapshot;
+        },
+        onError: (e) => print("Error completing: $e")
+    );
+
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _recuperarServidores();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +73,14 @@ class QuemQuem extends StatelessWidget {
                             BoxShadow(
                                 color: Colors.grey.withOpacity(0.2),
                                 blurRadius: 12,
-                                offset: Offset(0, 0)
+                                offset: const Offset(0, 0)
                             )
                           ]
+                      ),
+                      child: Column(
+                        children: [
+
+                        ],
                       ),
                     );
                   },
@@ -357,7 +399,7 @@ class QuemQuem extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 50,),
+        const SizedBox(height: 50,),
 
 
         Container(
@@ -367,7 +409,7 @@ class QuemQuem extends StatelessWidget {
               Text('Órgãos Vinculados',
                 style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
               ),
-              SizedBox(height: 5,),
+              const SizedBox(height: 5,),
               Container(
                 height: 180,
                 child: ListView.builder(
@@ -401,3 +443,4 @@ class QuemQuem extends StatelessWidget {
     );
   }
 }
+
