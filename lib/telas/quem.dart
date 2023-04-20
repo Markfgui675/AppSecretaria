@@ -25,12 +25,9 @@ class _QuemState extends State<Quem> {
 
   }
 
-  bool _status = true;
   bool telaCorpo = true;
   //pesquisa_quem = false
   //quem_quem = true
-
-  _pesquisar(){}
 
 
   @override
@@ -60,9 +57,9 @@ class _QuemState extends State<Quem> {
                     ListView(
                       scrollDirection: Axis.horizontal,
                       children: [
-                        filtroSetor(),
+                        filtroNome(),
                         const SizedBox(width: 5,),
-                        filtroTelefone(),
+                        filtroSetor(),
                         const SizedBox(width: 5,),
                         filtroEndereco(),
                       ],
@@ -70,12 +67,15 @@ class _QuemState extends State<Quem> {
               ),
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.only(top: 12,left: 12),
+                padding: const EdgeInsets.only(top: 12,left: 12),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     ElevatedButton(
                         onPressed: (){
+                          print(dropValueNome.toString());
+                          print(dropValueEndereco.toString());
+                          print(dropValueSetor.toString());
                           setState(() {
                             telaCorpo = false;
                           });
@@ -110,8 +110,8 @@ class _QuemState extends State<Quem> {
                           setState(() {
                             telaCorpo = true;
                           });
+                          dropValueNome.value = '';
                           dropValueSetor.value = '';
-                          dropValueTelefone.value = '';
                           dropValueEndereco.value = '';
                         },
                         style: ElevatedButton.styleFrom(
@@ -150,7 +150,7 @@ class _QuemState extends State<Quem> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: telaCorpo == false ? [
-                      PesquisaQuem()
+                      PesquisaQuem(dropValueNome.toString(), dropValueSetor.toString(), dropValueEndereco.toString())
                     ] : [
                       QuemQuem()
                     ],

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class QuemQuem extends StatefulWidget {
@@ -269,6 +270,9 @@ class _QuemQuemState extends State<QuemQuem> {
 
   }
 
+  double width_containers = 280;
+  double height_containers = 210;
+
   @override
   void initState() {
     super.initState();
@@ -289,18 +293,18 @@ class _QuemQuemState extends State<QuemQuem> {
               Text('Secretária de Saúde',
                 style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
               ),
-              SizedBox(height: 5,),
-              Container(
-                height: 180,
+              const SizedBox(height: 5,),
+              SizedBox(
+                height: height_containers,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: secretaria.length,
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
-                      padding: EdgeInsets.all(10),
-                      margin: EdgeInsets.only(right: 20),
-                      width: 280,
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.only(right: 20),
+                      width: width_containers,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
@@ -314,9 +318,33 @@ class _QuemQuemState extends State<QuemQuem> {
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(secretaria[index]['nome'],
-                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 16, color: Colors.black))
+                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                          const SizedBox(height: 8,),
+                          Container(width: 180, height: 5, color: Colors.orange,),
+                          const SizedBox(height: 8,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(secretaria[index]['telefone'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          ),
+                          const SizedBox(height: 5,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(secretaria[index]['endereco'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          )
+
                         ],
                       ),
                     );
@@ -326,7 +354,7 @@ class _QuemQuemState extends State<QuemQuem> {
             ],
           ),
         ),
-        SizedBox(height: 50,),
+        const SizedBox(height: 50,),
 
         Container(
           child: Column(
@@ -335,17 +363,18 @@ class _QuemQuemState extends State<QuemQuem> {
               Text('Gabinete',
                 style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
               ),
-              SizedBox(height: 5,),
+              const SizedBox(height: 5,),
               Container(
-                height: 180,
+                height: height_containers,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: gabinete.length,
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
-                      margin: EdgeInsets.only(right: 20),
-                      width: 280,
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.only(right: 20),
+                      width: width_containers,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
@@ -358,8 +387,38 @@ class _QuemQuemState extends State<QuemQuem> {
                           ]
                       ),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(gabinete[index]['nome'])
+                          Text(gabinete[index]['nome'],
+                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                          const SizedBox(height: 8,),
+                          Container(width: 180, height: 5, color: Colors.orange,),
+                          const SizedBox(height: 8,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Wrap(
+                                children: [
+                                  Text(gabinete[index]['telefone'],
+                                      style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                                ],
+                              )
+                            ],
+                          ),
+                          const SizedBox(height: 5,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(gabinete[index]['endereco'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          )
+
                         ],
                       ),
                     );
@@ -369,7 +428,7 @@ class _QuemQuemState extends State<QuemQuem> {
             ],
           ),
         ),
-        SizedBox(height: 50,),
+        const SizedBox(height: 50,),
 
         Container(
           child: Column(
@@ -378,17 +437,18 @@ class _QuemQuemState extends State<QuemQuem> {
               Text('Secretarias Adjuntas',
                 style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
               ),
-              SizedBox(height: 5,),
+              const SizedBox(height: 5,),
               Container(
-                height: 180,
+                height: height_containers,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: secretarias_adjuntas.length,
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
-                      margin: EdgeInsets.only(right: 20),
-                      width: 280,
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.only(right: 20),
+                      width: width_containers,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
@@ -401,8 +461,34 @@ class _QuemQuemState extends State<QuemQuem> {
                           ]
                       ),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(secretarias_adjuntas[index]['nome'])
+                          Text(secretarias_adjuntas[index]['nome'],
+                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                          const SizedBox(height: 8,),
+                          Container(width: 180, height: 5, color: Colors.orange,),
+                          const SizedBox(height: 8,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(secretarias_adjuntas[index]['telefone'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          ),
+                          const SizedBox(height: 5,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(secretarias_adjuntas[index]['endereco'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          )
+
                         ],
                       ),
                     );
@@ -412,7 +498,7 @@ class _QuemQuemState extends State<QuemQuem> {
             ],
           ),
         ),
-        SizedBox(height: 50,),
+        const SizedBox(height: 50,),
 
 
         Container(
@@ -422,17 +508,18 @@ class _QuemQuemState extends State<QuemQuem> {
               Text('Assessoria Jurídico-Legislativa',
                 style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
               ),
-              SizedBox(height: 5,),
+              const SizedBox(height: 5,),
               Container(
-                height: 180,
+                height: height_containers,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: assessoria_juridico_lesgislativa.length,
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
+                      padding: const EdgeInsets.all(10),
                       margin: EdgeInsets.only(right: 20),
-                      width: 280,
+                      width: width_containers,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
@@ -445,8 +532,34 @@ class _QuemQuemState extends State<QuemQuem> {
                           ]
                       ),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(assessoria_juridico_lesgislativa[index]['nome'])
+                          Text(assessoria_juridico_lesgislativa[index]['nome'],
+                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                          const SizedBox(height: 8,),
+                          Container(width: 180, height: 5, color: Colors.orange,),
+                          const SizedBox(height: 8,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(assessoria_juridico_lesgislativa[index]['telefone'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          ),
+                          const SizedBox(height: 5,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(assessoria_juridico_lesgislativa[index]['endereco'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          )
+
                         ],
                       ),
                     );
@@ -456,7 +569,7 @@ class _QuemQuemState extends State<QuemQuem> {
             ],
           ),
         ),
-        SizedBox(height: 50,),
+        const SizedBox(height: 50,),
 
 
         Container(
@@ -466,16 +579,17 @@ class _QuemQuemState extends State<QuemQuem> {
               Text('Diretoria Executiva do Fundo de Saúde do Distrito Federal',
                 style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
               ),
-              SizedBox(height: 5,),
+              const SizedBox(height: 5,),
               Container(
-                height: 180,
+                height: height_containers,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: diretoria_executiva.length,
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
-                      margin: EdgeInsets.only(right: 20),
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.only(right: 20),
                       width: 280,
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -489,8 +603,34 @@ class _QuemQuemState extends State<QuemQuem> {
                           ]
                       ),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(diretoria_executiva[index]['nome'])
+                          Text(diretoria_executiva[index]['nome'],
+                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                          const SizedBox(height: 8,),
+                          Container(width: 180, height: 5, color: Colors.orange,),
+                          const SizedBox(height: 8,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(diretoria_executiva[index]['telefone'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          ),
+                          const SizedBox(height: 5,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(diretoria_executiva[index]['endereco'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          )
+
                         ],
                       ),
                     );
@@ -500,7 +640,7 @@ class _QuemQuemState extends State<QuemQuem> {
             ],
           ),
         ),
-        SizedBox(height: 50,),
+        const SizedBox(height: 50,),
 
 
         Container(
@@ -510,16 +650,17 @@ class _QuemQuemState extends State<QuemQuem> {
               Text('Controladoria Setorial da Saúde',
                 style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
               ),
-              SizedBox(height: 5,),
+              const SizedBox(height: 5,),
               Container(
-                height: 180,
+                height: height_containers,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: controladoria_setorial.length,
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
-                      margin: EdgeInsets.only(right: 20),
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.only(right: 20),
                       width: 280,
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -533,8 +674,34 @@ class _QuemQuemState extends State<QuemQuem> {
                           ]
                       ),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(controladoria_setorial[index]['nome'])
+                          Text(controladoria_setorial[index]['nome'],
+                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                          const SizedBox(height: 8,),
+                          Container(width: 180, height: 5, color: Colors.orange,),
+                          const SizedBox(height: 8,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(controladoria_setorial[index]['telefone'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          ),
+                          const SizedBox(height: 5,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(controladoria_setorial[index]['endereco'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          )
+
                         ],
                       ),
                     );
@@ -544,7 +711,7 @@ class _QuemQuemState extends State<QuemQuem> {
             ],
           ),
         ),
-        SizedBox(height: 50,),
+        const SizedBox(height: 50,),
 
 
         Container(
@@ -554,16 +721,17 @@ class _QuemQuemState extends State<QuemQuem> {
               Text('Subsecretarias',
                 style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
               ),
-              SizedBox(height: 5,),
+              const SizedBox(height: 5,),
               Container(
-                height: 180,
+                height: height_containers,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: subsecretarias.length,
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
-                      margin: EdgeInsets.only(right: 20),
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.only(right: 20),
                       width: 280,
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -577,8 +745,34 @@ class _QuemQuemState extends State<QuemQuem> {
                           ]
                       ),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(subsecretarias[index]['nome'])
+                          Text(subsecretarias[index]['nome'],
+                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                          const SizedBox(height: 8,),
+                          Container(width: 180, height: 5, color: Colors.orange,),
+                          const SizedBox(height: 8,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(subsecretarias[index]['telefone'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          ),
+                          const SizedBox(height: 5,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(subsecretarias[index]['endereco'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          )
+
                         ],
                       ),
                     );
@@ -588,7 +782,7 @@ class _QuemQuemState extends State<QuemQuem> {
             ],
           ),
         ),
-        SizedBox(height: 50,),
+        const SizedBox(height: 50,),
 
 
         Container(
@@ -598,16 +792,17 @@ class _QuemQuemState extends State<QuemQuem> {
               Text('Superintendências',
                 style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
               ),
-              SizedBox(height: 5,),
+              const SizedBox(height: 5,),
               Container(
-                height: 180,
+                height: height_containers,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: superintendencias.length,
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
-                      margin: EdgeInsets.only(right: 20),
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.only(right: 20),
                       width: 280,
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -621,8 +816,34 @@ class _QuemQuemState extends State<QuemQuem> {
                           ]
                       ),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(superintendencias[index]['nome'])
+                          Text(superintendencias[index]['nome'],
+                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                          const SizedBox(height: 8,),
+                          Container(width: 180, height: 5, color: Colors.orange,),
+                          const SizedBox(height: 8,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(superintendencias[index]['telefone'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          ),
+                          const SizedBox(height: 5,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(superintendencias[index]['endereco'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          )
+
                         ],
                       ),
                     );
@@ -632,7 +853,7 @@ class _QuemQuemState extends State<QuemQuem> {
             ],
           ),
         ),
-        SizedBox(height: 50,),
+        const SizedBox(height: 50,),
 
 
         Container(
@@ -642,16 +863,17 @@ class _QuemQuemState extends State<QuemQuem> {
               Text('Unidades de Referência Distrital ',
                 style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
               ),
-              SizedBox(height: 5,),
+              const SizedBox(height: 5,),
               Container(
-                height: 180,
+                height: height_containers,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: unidades_referencia.length,
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
-                      margin: EdgeInsets.only(right: 20),
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.only(right: 20),
                       width: 280,
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -665,8 +887,34 @@ class _QuemQuemState extends State<QuemQuem> {
                           ]
                       ),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(unidades_referencia[index]['nome'])
+                          Text(unidades_referencia[index]['nome'],
+                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                          const SizedBox(height: 8,),
+                          Container(width: 180, height: 5, color: Colors.orange,),
+                          const SizedBox(height: 8,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(unidades_referencia[index]['telefone'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          ),
+                          const SizedBox(height: 5,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(unidades_referencia[index]['endereco'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          )
+
                         ],
                       ),
                     );
@@ -688,14 +936,15 @@ class _QuemQuemState extends State<QuemQuem> {
               ),
               const SizedBox(height: 5,),
               Container(
-                height: 180,
+                height: height_containers,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: orgaos_vinculados.length,
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
-                      margin: EdgeInsets.only(right: 20),
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.only(right: 20),
                       width: 280,
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -709,8 +958,34 @@ class _QuemQuemState extends State<QuemQuem> {
                           ]
                       ),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(orgaos_vinculados[index]['nome'])
+                          Text(orgaos_vinculados[index]['nome'],
+                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                          const SizedBox(height: 8,),
+                          Container(width: 180, height: 5, color: Colors.orange,),
+                          const SizedBox(height: 8,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(orgaos_vinculados[index]['telefone'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          ),
+                          const SizedBox(height: 5,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                              const SizedBox(width: 5,),
+                              Text(orgaos_vinculados[index]['endereco'],
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                            ],
+                          )
+
                         ],
                       ),
                     );
