@@ -16,7 +16,7 @@ class _PesquisaQuemState extends State<PesquisaQuem> {
 
     List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
-    QuerySnapshot querySnapshot = await db.collection('quem').get().then(
+    QuerySnapshot querySnapshot = await db.collection('qq_pesquisa').get().then(
             (querySnapshot){
           print("Successfully completed");
           for (var docSnapshot in querySnapshot.docs){

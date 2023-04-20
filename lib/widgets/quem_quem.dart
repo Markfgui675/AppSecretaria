@@ -12,26 +12,260 @@ class QuemQuem extends StatefulWidget {
 
 class _QuemQuemState extends State<QuemQuem> {
 
-  List servidores = [];
-  _recuperarServidores() async {
+  List secretaria = [];
+  List gabinete = [];
+  List secretarias_adjuntas = [];
+  List assessoria_juridico_lesgislativa = [];
+  List diretoria_executiva = [];
+  List controladoria_setorial = [];
+  List subsecretarias = [];
+  List superintendencias = [];
+  List unidades_referencia = [];
+  List orgaos_vinculados = [];
+
+  _recuperaSecretaria() async {
 
     List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
-    QuerySnapshot querySnapshot = await db.collection('quem').get().then(
+    QuerySnapshot querySnapshot =
+        await db.collection('qq_motra').doc('secretaria').collection('servidores').get().then(
             (querySnapshot){
           print("Successfully completed");
           for (var docSnapshot in querySnapshot.docs){
             print('${docSnapshot.data()}');
             servidores1.add(docSnapshot.data());
           }
-          print(servidores1);
+          //print(servidores1);
           setState(() {
-            servidores = servidores1;
+            secretaria = servidores1;
           });
+          print(secretaria);
           return querySnapshot;
         },
         onError: (e) => print("Error completing: $e")
     );
+
+  }
+  _recuperaGabinete() async {
+
+    List servidores1 = [];
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    QuerySnapshot querySnapshot =
+        await db.collection('qq_motra').doc('gabinete').collection('servidores').get().then(
+            (querySnapshot){
+          print("Successfully completed");
+          for (var docSnapshot in querySnapshot.docs){
+            print('${docSnapshot.data()}');
+            servidores1.add(docSnapshot.data());
+          }
+          //print(servidores1);
+          setState(() {
+            gabinete = servidores1;
+          });
+          print(gabinete);
+          return querySnapshot;
+        },
+        onError: (e) => print("Error completing: $e")
+    );
+
+  }
+  _recuperaSecretariaAdjuntas() async {
+
+    List servidores1 = [];
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    QuerySnapshot querySnapshot =
+        await db.collection('qq_motra').doc('secretarias_adjuntas').collection('servidores').get().then(
+            (querySnapshot){
+          print("Successfully completed");
+          for (var docSnapshot in querySnapshot.docs){
+            print('${docSnapshot.data()}');
+            servidores1.add(docSnapshot.data());
+          }
+          //print(servidores1);
+          setState(() {
+            secretarias_adjuntas = servidores1;
+          });
+          print(secretarias_adjuntas);
+          return querySnapshot;
+        },
+        onError: (e) => print("Error completing: $e")
+    );
+
+  }
+  _recuperaAssesorias() async {
+
+    List servidores1 = [];
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    QuerySnapshot querySnapshot =
+    await db.collection('qq_motra').doc('assessoria_juridico_lesgislativa').collection('servidores').get().then(
+            (querySnapshot){
+          print("Successfully completed");
+          for (var docSnapshot in querySnapshot.docs){
+            print('${docSnapshot.data()}');
+            servidores1.add(docSnapshot.data());
+          }
+          //print(servidores1);
+          setState(() {
+            assessoria_juridico_lesgislativa = servidores1;
+          });
+          print(assessoria_juridico_lesgislativa);
+          return querySnapshot;
+        },
+        onError: (e) => print("Error completing: $e")
+    );
+
+  }
+  _recuperaDiretoriaExecutiva() async {
+
+    List servidores1 = [];
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    QuerySnapshot querySnapshot =
+    await db.collection('qq_motra').doc('diretoria_executiva').collection('servidores').get().then(
+            (querySnapshot){
+          print("Successfully completed");
+          for (var docSnapshot in querySnapshot.docs){
+            print('${docSnapshot.data()}');
+            servidores1.add(docSnapshot.data());
+          }
+          //print(servidores1);
+          setState(() {
+            diretoria_executiva = servidores1;
+          });
+          print(diretoria_executiva);
+          return querySnapshot;
+        },
+        onError: (e) => print("Error completing: $e")
+    );
+
+  }
+  _recuperaControladoria() async {
+
+    List servidores1 = [];
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    QuerySnapshot querySnapshot =
+    await db.collection('qq_motra').doc('controladoria_setorial').collection('servidores').get().then(
+            (querySnapshot){
+          print("Successfully completed");
+          for (var docSnapshot in querySnapshot.docs){
+            print('${docSnapshot.data()}');
+            servidores1.add(docSnapshot.data());
+          }
+          //print(servidores1);
+          setState(() {
+            controladoria_setorial = servidores1;
+          });
+          print(controladoria_setorial);
+          return querySnapshot;
+        },
+        onError: (e) => print("Error completing: $e")
+    );
+
+  }
+  _recuperaSubsecretarias() async {
+
+    List servidores1 = [];
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    QuerySnapshot querySnapshot =
+    await db.collection('qq_motra').doc('subsecretarias').collection('servidores').get().then(
+            (querySnapshot){
+          print("Successfully completed");
+          for (var docSnapshot in querySnapshot.docs){
+            print('${docSnapshot.data()}');
+            servidores1.add(docSnapshot.data());
+          }
+          //print(servidores1);
+          setState(() {
+            subsecretarias = servidores1;
+          });
+          print(subsecretarias);
+          return querySnapshot;
+        },
+        onError: (e) => print("Error completing: $e")
+    );
+
+  }
+  _recuperaSuperintendencias() async {
+
+    List servidores1 = [];
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    QuerySnapshot querySnapshot =
+        await db.collection('qq_motra').doc('superintendencias').collection('servidores').get().then(
+            (querySnapshot){
+          print("Successfully completed");
+          for (var docSnapshot in querySnapshot.docs){
+            print('${docSnapshot.data()}');
+            servidores1.add(docSnapshot.data());
+          }
+          //print(servidores1);
+          setState(() {
+            superintendencias = servidores1;
+          });
+          print(superintendencias);
+          return querySnapshot;
+        },
+        onError: (e) => print("Error completing: $e")
+    );
+
+  }
+  _recuperaUnidadesReferenciais() async {
+
+    List servidores1 = [];
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    QuerySnapshot querySnapshot =
+    await db.collection('qq_motra').doc('unidades_referencia').collection('servidores').get().then(
+            (querySnapshot){
+          print("Successfully completed");
+          for (var docSnapshot in querySnapshot.docs){
+            print('${docSnapshot.data()}');
+            servidores1.add(docSnapshot.data());
+          }
+          //print(servidores1);
+          setState(() {
+            unidades_referencia = servidores1;
+          });
+          print(unidades_referencia);
+          return querySnapshot;
+        },
+        onError: (e) => print("Error completing: $e")
+    );
+
+  }
+  _recuperaOrgaosVinculados() async {
+
+    List servidores1 = [];
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    QuerySnapshot querySnapshot =
+    await db.collection('qq_motra').doc('orgaos_vinculados').collection('servidores').get().then(
+            (querySnapshot){
+          print("Successfully completed");
+          for (var docSnapshot in querySnapshot.docs){
+            print('${docSnapshot.data()}');
+            servidores1.add(docSnapshot.data());
+          }
+          //print(servidores1);
+          setState(() {
+            orgaos_vinculados = servidores1;
+          });
+          print(orgaos_vinculados);
+          return querySnapshot;
+        },
+        onError: (e) => print("Error completing: $e")
+    );
+
+  }
+
+  _recuperarServidores(){
+
+    _recuperaSecretaria();
+    _recuperaGabinete();
+    _recuperaSecretariaAdjuntas();
+    _recuperaAssesorias();
+    _recuperaDiretoriaExecutiva();
+    _recuperaControladoria();
+    _recuperaSubsecretarias();
+    _recuperaSuperintendencias();
+    _recuperaUnidadesReferenciais();
+    _recuperaOrgaosVinculados();
 
   }
 
@@ -60,10 +294,11 @@ class _QuemQuemState extends State<QuemQuem> {
                 height: 180,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 1,
+                  itemCount: secretaria.length,
                   padding: EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
+                      padding: EdgeInsets.all(10),
                       margin: EdgeInsets.only(right: 20),
                       width: 280,
                       decoration: BoxDecoration(
@@ -78,8 +313,10 @@ class _QuemQuemState extends State<QuemQuem> {
                           ]
                       ),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-
+                          Text(secretaria[index]['nome'],
+                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 16, color: Colors.black))
                         ],
                       ),
                     );
@@ -103,7 +340,7 @@ class _QuemQuemState extends State<QuemQuem> {
                 height: 180,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 8,
+                  itemCount: gabinete.length,
                   padding: EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
@@ -119,6 +356,11 @@ class _QuemQuemState extends State<QuemQuem> {
                                 offset: Offset(0, 0)
                             )
                           ]
+                      ),
+                      child: Column(
+                        children: [
+                          Text(gabinete[index]['nome'])
+                        ],
                       ),
                     );
                   },
@@ -141,7 +383,7 @@ class _QuemQuemState extends State<QuemQuem> {
                 height: 180,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 3,
+                  itemCount: secretarias_adjuntas.length,
                   padding: EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
@@ -157,6 +399,11 @@ class _QuemQuemState extends State<QuemQuem> {
                                 offset: Offset(0, 0)
                             )
                           ]
+                      ),
+                      child: Column(
+                        children: [
+                          Text(secretarias_adjuntas[index]['nome'])
+                        ],
                       ),
                     );
                   },
@@ -180,7 +427,7 @@ class _QuemQuemState extends State<QuemQuem> {
                 height: 180,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 1,
+                  itemCount: assessoria_juridico_lesgislativa.length,
                   padding: EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
@@ -196,6 +443,11 @@ class _QuemQuemState extends State<QuemQuem> {
                                 offset: Offset(0, 0)
                             )
                           ]
+                      ),
+                      child: Column(
+                        children: [
+                          Text(assessoria_juridico_lesgislativa[index]['nome'])
+                        ],
                       ),
                     );
                   },
@@ -219,7 +471,7 @@ class _QuemQuemState extends State<QuemQuem> {
                 height: 180,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 1,
+                  itemCount: diretoria_executiva.length,
                   padding: EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
@@ -235,6 +487,11 @@ class _QuemQuemState extends State<QuemQuem> {
                                 offset: Offset(0, 0)
                             )
                           ]
+                      ),
+                      child: Column(
+                        children: [
+                          Text(diretoria_executiva[index]['nome'])
+                        ],
                       ),
                     );
                   },
@@ -258,7 +515,7 @@ class _QuemQuemState extends State<QuemQuem> {
                 height: 180,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 1,
+                  itemCount: controladoria_setorial.length,
                   padding: EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
@@ -274,6 +531,11 @@ class _QuemQuemState extends State<QuemQuem> {
                                 offset: Offset(0, 0)
                             )
                           ]
+                      ),
+                      child: Column(
+                        children: [
+                          Text(controladoria_setorial[index]['nome'])
+                        ],
                       ),
                     );
                   },
@@ -297,7 +559,7 @@ class _QuemQuemState extends State<QuemQuem> {
                 height: 180,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 7,
+                  itemCount: subsecretarias.length,
                   padding: EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
@@ -313,6 +575,11 @@ class _QuemQuemState extends State<QuemQuem> {
                                 offset: Offset(0, 0)
                             )
                           ]
+                      ),
+                      child: Column(
+                        children: [
+                          Text(subsecretarias[index]['nome'])
+                        ],
                       ),
                     );
                   },
@@ -336,7 +603,7 @@ class _QuemQuemState extends State<QuemQuem> {
                 height: 180,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 7,
+                  itemCount: superintendencias.length,
                   padding: EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
@@ -352,6 +619,11 @@ class _QuemQuemState extends State<QuemQuem> {
                                 offset: Offset(0, 0)
                             )
                           ]
+                      ),
+                      child: Column(
+                        children: [
+                          Text(superintendencias[index]['nome'])
+                        ],
                       ),
                     );
                   },
@@ -375,7 +647,7 @@ class _QuemQuemState extends State<QuemQuem> {
                 height: 180,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 6,
+                  itemCount: unidades_referencia.length,
                   padding: EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
@@ -391,6 +663,11 @@ class _QuemQuemState extends State<QuemQuem> {
                                 offset: Offset(0, 0)
                             )
                           ]
+                      ),
+                      child: Column(
+                        children: [
+                          Text(unidades_referencia[index]['nome'])
+                        ],
                       ),
                     );
                   },
@@ -414,7 +691,7 @@ class _QuemQuemState extends State<QuemQuem> {
                 height: 180,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 3,
+                  itemCount: orgaos_vinculados.length,
                   padding: EdgeInsets.all(10),
                   itemBuilder: (_, index){
                     return Container(
@@ -430,6 +707,11 @@ class _QuemQuemState extends State<QuemQuem> {
                                 offset: Offset(0, 0)
                             )
                           ]
+                      ),
+                      child: Column(
+                        children: [
+                          Text(orgaos_vinculados[index]['nome'])
+                        ],
                       ),
                     );
                   },
