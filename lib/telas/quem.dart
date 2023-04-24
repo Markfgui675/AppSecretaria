@@ -1,9 +1,9 @@
 import 'package:app_secretaria_flutter/widgets/pesquisa_quem.dart';
 import 'package:app_secretaria_flutter/widgets/quem_quem.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:app_secretaria_flutter/widgets/filtros_quem.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Quem extends StatefulWidget {
@@ -14,6 +14,162 @@ class Quem extends StatefulWidget {
 }
 
 class _QuemState extends State<Quem> {
+
+  final dropValueNome = ValueNotifier('');
+  final dropOpcoesNome = [''];
+
+  final dropValueSetor = ValueNotifier('');
+  final dropOpcoesSetor = [''];
+
+  final dropValueEndereco = ValueNotifier('');
+  final dropOpcoesEndereco = [''];
+
+  recuperaDados() async {
+    FirebaseFirestore db = FirebaseFirestore.instance;
+
+    dropOpcoesNome.clear();
+    dropOpcoesSetor.clear();
+    dropOpcoesEndereco.clear();
+    int c = 0;
+    await db.collection('qq_pesquisa').get().then(
+            (querySnapshot){
+          for (var docSnapshot in querySnapshot.docs){
+            print('${docSnapshot.data()}');
+            setState(() {
+                dropOpcoesNome.add(docSnapshot.data()['nome']);
+            });
+            setState(() {
+                dropOpcoesSetor.add(docSnapshot.data()['setor']);
+            });
+            setState(() {
+                dropOpcoesEndereco.add(docSnapshot.data()['endereco']);
+            });
+            c++;
+          }
+          return querySnapshot;
+        },
+        onError: (e) => print("Error completing: $e")
+    );
+
+  }
+
+
+  Widget filtroNome() {
+    return SizedBox(
+        width: 150,
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: const Color(0xfff2ab11),
+          ),
+          child: ValueListenableBuilder(
+              valueListenable: dropValueNome,
+              builder: (BuildContext context, String value, _) {
+                return DropdownButtonFormField<String>(
+                    borderRadius: BorderRadius.circular(20),
+                    elevation: 3,
+                    dropdownColor: Colors.white,
+                    isExpanded: true,
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                    ),
+                    hint: const Text("Nome"),
+                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 15, color: const Color(0xff2E6EA7)),
+                    value: (value.isEmpty) ? null : value,
+                    items: dropOpcoesNome
+                        .map((opcao) => DropdownMenuItem(
+                      value: opcao,
+                      child: Text(opcao),
+                    ))
+                        .toList(),
+                    onChanged: (escolha) {
+                      dropValueNome.value = escolha.toString();
+                      print(dropValueNome.value);
+                    });
+              }),
+        ));
+  }
+
+  Widget filtroSetor() {
+    return SizedBox(
+        width: 150,
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: const Color(0xfff2ab11),
+          ),
+          child: ValueListenableBuilder(
+              valueListenable: dropValueSetor,
+              builder: (BuildContext context, String value, _) {
+                return DropdownButtonFormField<String>(
+                    borderRadius: BorderRadius.circular(20),
+                    elevation: 3,
+                    dropdownColor: Colors.white,
+                    isExpanded: true,
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                    ),
+                    hint: const Text("Setor"),
+                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 15, color: const Color(0xff2E6EA7)),
+                    value: (value.isEmpty) ? null : value,
+                    items: dropOpcoesSetor
+                        .map((opcao) => DropdownMenuItem(
+                      value: opcao,
+                      child: Text(opcao),
+                    ))
+                        .toList(),
+                    onChanged: (escolha) {
+                      dropValueSetor.value = escolha.toString();
+                      print(dropValueSetor.value);
+                    });
+              }),
+        ));
+  }
+
+  Widget filtroEndereco() {
+    return SizedBox(
+        width: 150,
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: const Color(0xfff2ab11),
+          ),
+          child: ValueListenableBuilder(
+              valueListenable: dropValueEndereco,
+              builder: (BuildContext context, String value, _) {
+                return DropdownButtonFormField<String>(
+                    borderRadius: BorderRadius.circular(20),
+                    elevation: 3,
+                    dropdownColor: Colors.white,
+                    isExpanded: true,
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                    ),
+                    hint: const Text("Endereço"),
+                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 15, color: const Color(0xff2E6EA7)),
+                    value: (value.isEmpty) ? null : value,
+                    items: dropOpcoesEndereco
+                        .map((opcao) => DropdownMenuItem(
+                      value: opcao,
+                      child: Text(opcao),
+                    ))
+                        .toList(),
+                    onChanged: (escolha) {
+                      dropValueEndereco.value = escolha.toString();
+                      print(dropValueEndereco.value);
+                    });
+              }),
+        ));
+  }
+
+
+
+
+
+
 
   Future<void>? _launched;
 
@@ -29,6 +185,11 @@ class _QuemState extends State<Quem> {
   //pesquisa_quem = false
   //quem_quem = true
 
+  @override
+  void initState() {
+    recuperaDados();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,12 +234,13 @@ class _QuemState extends State<Quem> {
                   children: [
                     ElevatedButton(
                         onPressed: (){
-                          print(dropValueNome.toString());
-                          print(dropValueEndereco.toString());
-                          print(dropValueSetor.toString());
+                          print(dropValueNome.value.toString());
+                          print(dropValueEndereco.value.toString());
+                          print(dropValueSetor.value.toString());
                           setState(() {
                             telaCorpo = false;
                           });
+                          recuperaDados();
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor:  Color(0xff2E6EA7),
@@ -150,7 +312,7 @@ class _QuemState extends State<Quem> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: telaCorpo == false ? [
-                      PesquisaQuem(dropValueNome.toString(), dropValueSetor.toString(), dropValueEndereco.toString())
+                      PesquisaQuem(dropValueNome.value.toString(), dropValueSetor.value.toString(), dropValueEndereco.value.toString())
                     ] : [
                       QuemQuem()
                     ],

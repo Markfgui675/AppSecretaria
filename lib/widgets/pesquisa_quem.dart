@@ -1,4 +1,3 @@
-import 'package:app_secretaria_flutter/widgets/filtros_quem.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,28 +6,33 @@ import '../Model/Servidor.dart';
 import '../telas/servidor.dart';
 
 class PesquisaQuem extends StatefulWidget {
-  String dropValueName;
-  String dropValueSetor;
-  String dropValueEndereco;
+  String ValueName;
+  String ValueSetor;
+  String ValueEndereco;
 
-  PesquisaQuem(this.dropValueName, this.dropValueSetor, this.dropValueEndereco);
+  PesquisaQuem(this.ValueName, this.ValueSetor, this.ValueEndereco);
 
   @override
-  State<PesquisaQuem> createState() => _PesquisaQuemState();
+  State<StatefulWidget> createState() => _PesquisaQuemState();
+
 }
 
 class _PesquisaQuemState extends State<PesquisaQuem> {
 
+  QuerySnapshot? snapshot;
   List<Servidor> servidores = [];
 
-  _recuperarServidorFiltrados() async {
+  recuperarServidorFiltrados() async {
 
     FirebaseFirestore db = FirebaseFirestore.instance;
 
-    if(dropValueNome != ''){
-      QuerySnapshot querySnapshot = await db.collection('qq_pesquisa').where('nome', isEqualTo: dropValueNome).get().then(
+    if(widget.ValueName != '' && widget.ValueSetor != '' && widget.ValueEndereco != ''){
+      print('Recuperação com filtragem');
+      QuerySnapshot querySnapshott = await db.collection('qq_pesquisa')
+          .where('nome', isEqualTo: widget.ValueName)
+          .where('setor', isEqualTo: widget.ValueSetor)
+          .where('endereco', isEqualTo: widget.ValueEndereco).get().then(
               (querySnapshot){
-            print("Successfully completed");
             for (var docSnapshot in querySnapshot.docs){
               print('${docSnapshot.data()}');
               //servidores1.add(docSnapshot.data());
@@ -38,85 +42,24 @@ class _PesquisaQuemState extends State<PesquisaQuem> {
               servidor.setor = docSnapshot.data()['setor'];
               servidor.telefone = docSnapshot.data()['telefone'];
               servidor.endereco = docSnapshot.data()['endereco'];
-              servidores.add(servidor);
-            }
-            print('Lista adicionada pelo dropValueNome');
-            print(servidores);
-            return querySnapshot;
-          },
-          onError: (e) => print("Error completing: $e")
-      );
-    }
-    if(dropValueSetor != ''){
-      QuerySnapshot querySnapshot = await db.collection('qq_pesquisa').where('setor', isEqualTo: dropValueSetor).get().then(
-              (querySnapshot){
-            print("Successfully completed");
-            for (var docSnapshot in querySnapshot.docs){
-              print('${docSnapshot.data()}');
-              //servidores1.add(docSnapshot.data());
-              Servidor servidor = Servidor();
-              servidor.id = docSnapshot.data()['id'];
-              servidor.nome = docSnapshot.data()['nome'];
-              servidor.setor = docSnapshot.data()['setor'];
-              servidor.telefone = docSnapshot.data()['telefone'];
-              servidor.endereco = docSnapshot.data()['endereco'];
-              servidores.add(servidor);
-            }
-            print('Lista adicionada pelo dropValueSetor');
-            print(servidores);
-            return querySnapshot;
-          },
-          onError: (e) => print("Error completing: $e")
-      );
-    }
-    if(dropValueEndereco != ''){
-      QuerySnapshot querySnapshot = await db.collection('qq_pesquisa').where('endereco', isEqualTo: dropValueEndereco).get().then(
-              (querySnapshot){
-            print("Successfully completed");
-            for (var docSnapshot in querySnapshot.docs){
-              print('${docSnapshot.data()}');
-              //servidores1.add(docSnapshot.data());
-              Servidor servidor = Servidor();
-              servidor.id = docSnapshot.data()['id'];
-              servidor.nome = docSnapshot.data()['nome'];
-              servidor.setor = docSnapshot.data()['setor'];
-              servidor.telefone = docSnapshot.data()['telefone'];
-              servidor.endereco = docSnapshot.data()['endereco'];
-              servidores.add(servidor);
-            }
-            print('Lista adicionada pelo dropValueEndereco');
-            print(servidores);
-            return querySnapshot;
-          },
-          onError: (e) => print("Error completing: $e")
-      );
-      if(dropValueNome == '' && dropValueSetor == '' && dropValueEndereco == ''){
-        QuerySnapshot querySnapshot = await db.collection('qq_pesquisa').get().then(
-                (querySnapshot){
-              print("Successfully completed");
-              for (var docSnapshot in querySnapshot.docs){
-                print('${docSnapshot.data()}');
-                //servidores1.add(docSnapshot.data());
-                Servidor servidor = Servidor();
-                servidor.id = docSnapshot.data()['id'];
-                servidor.nome = docSnapshot.data()['nome'];
-                servidor.setor = docSnapshot.data()['setor'];
-                servidor.telefone = docSnapshot.data()['telefone'];
-                servidor.endereco = docSnapshot.data()['endereco'];
+              setState(() {
                 servidores.add(servidor);
-              }
-              print(servidores);
-              return querySnapshot;
-            },
-            onError: (e) => print("Error completing: $e")
-        );
-      }
+              });
+            }
+            print(servidores);
+            snapshot = querySnapshot;
+            return querySnapshot;
+          },
+          onError: (e) => print("Error completing: $e")
+      );
+    } else {
+      _recuperarServidores();
     }
-
   }
 
   _recuperarServidores() async {
 
+    print('Recuperação sem filtragem');
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot = await db.collection('qq_pesquisa').get().then(
             (querySnapshot){
@@ -130,9 +73,12 @@ class _PesquisaQuemState extends State<PesquisaQuem> {
             servidor.setor = docSnapshot.data()['setor'];
             servidor.telefone = docSnapshot.data()['telefone'];
             servidor.endereco = docSnapshot.data()['endereco'];
-            servidores.add(servidor);
+            setState(() {
+              servidores.add(servidor);
+            });
           }
           print(servidores);
+          snapshot = querySnapshot;
           return querySnapshot;
         },
         onError: (e) => print("Error completing: $e")
@@ -142,8 +88,8 @@ class _PesquisaQuemState extends State<PesquisaQuem> {
 
   @override
   void initState() {
+    recuperarServidorFiltrados();
     super.initState();
-    _recuperarServidorFiltrados();
   }
 
   @override
@@ -156,11 +102,11 @@ class _PesquisaQuemState extends State<PesquisaQuem> {
             height: 180,
             child: ListView.builder(
               itemCount: servidores.length,
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               itemBuilder: (_, index){
 
-                List<Servidor> listaServidores = servidores;
-                Servidor servidor = listaServidores[index];
+                Servidor servidor = servidores[index];
+                print('$servidor no index $index');
 
                 return InkWell(
                   onTap: (){

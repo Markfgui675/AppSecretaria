@@ -13,6 +13,8 @@ class QuemQuem extends StatefulWidget {
 
 class _QuemQuemState extends State<QuemQuem> {
 
+  bool loading = false;
+
   List secretaria = [];
   List gabinete = [];
   List secretarias_adjuntas = [];
@@ -26,6 +28,9 @@ class _QuemQuemState extends State<QuemQuem> {
 
   _recuperaSecretaria() async {
 
+    setState(() {
+      loading = true;
+    });
     List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
@@ -45,10 +50,16 @@ class _QuemQuemState extends State<QuemQuem> {
         },
         onError: (e) => print("Error completing: $e")
     );
+    setState(() {
+      loading = false;
+    });
 
   }
   _recuperaGabinete() async {
 
+    setState(() {
+      loading = true;
+    });
     List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
@@ -68,10 +79,16 @@ class _QuemQuemState extends State<QuemQuem> {
         },
         onError: (e) => print("Error completing: $e")
     );
+    setState(() {
+      loading = true;
+    });
 
   }
   _recuperaSecretariaAdjuntas() async {
 
+    setState(() {
+      loading = true;
+    });
     List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
@@ -91,10 +108,16 @@ class _QuemQuemState extends State<QuemQuem> {
         },
         onError: (e) => print("Error completing: $e")
     );
+    setState(() {
+      loading = true;
+    });
 
   }
   _recuperaAssesorias() async {
 
+    setState(() {
+      loading = true;
+    });
     List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
@@ -114,10 +137,16 @@ class _QuemQuemState extends State<QuemQuem> {
         },
         onError: (e) => print("Error completing: $e")
     );
+    setState(() {
+      loading = true;
+    });
 
   }
   _recuperaDiretoriaExecutiva() async {
 
+    setState(() {
+      loading = true;
+    });
     List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
@@ -137,10 +166,16 @@ class _QuemQuemState extends State<QuemQuem> {
         },
         onError: (e) => print("Error completing: $e")
     );
+    setState(() {
+      loading = true;
+    });
 
   }
   _recuperaControladoria() async {
 
+    setState(() {
+      loading = true;
+    });
     List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
@@ -160,10 +195,16 @@ class _QuemQuemState extends State<QuemQuem> {
         },
         onError: (e) => print("Error completing: $e")
     );
+    setState(() {
+      loading = true;
+    });
 
   }
   _recuperaSubsecretarias() async {
 
+    setState(() {
+      loading = true;
+    });
     List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
@@ -183,10 +224,16 @@ class _QuemQuemState extends State<QuemQuem> {
         },
         onError: (e) => print("Error completing: $e")
     );
+    setState(() {
+      loading = true;
+    });
 
   }
   _recuperaSuperintendencias() async {
 
+    setState(() {
+      loading = true;
+    });
     List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
@@ -206,10 +253,16 @@ class _QuemQuemState extends State<QuemQuem> {
         },
         onError: (e) => print("Error completing: $e")
     );
+    setState(() {
+      loading = true;
+    });
 
   }
   _recuperaUnidadesReferenciais() async {
 
+    setState(() {
+      loading = true;
+    });
     List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
@@ -229,10 +282,16 @@ class _QuemQuemState extends State<QuemQuem> {
         },
         onError: (e) => print("Error completing: $e")
     );
+    setState(() {
+      loading = true;
+    });
 
   }
   _recuperaOrgaosVinculados() async {
 
+    setState(() {
+      loading = true;
+    });
     List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
@@ -252,6 +311,9 @@ class _QuemQuemState extends State<QuemQuem> {
         },
         onError: (e) => print("Error completing: $e")
     );
+    setState(() {
+      loading = true;
+    });
 
   }
 
