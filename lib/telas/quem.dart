@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'dart:math';
 
 class Quem extends StatefulWidget {
   const Quem({Key? key}) : super(key: key);
@@ -23,6 +24,39 @@ class _QuemState extends State<Quem> {
 
   final dropValueEndereco = ValueNotifier('');
   final dropOpcoesEndereco = [''];
+  
+  listaT(String endereco){
+    
+    int i = 0;
+    int c = 0;
+    dynamic x;
+    
+    while (true){
+      
+      if (c==0){
+        x = endereco;
+        dropOpcoesEndereco.add(x);
+      } else {
+        x = endereco;
+        for(int l = 0; l < dropOpcoesNome.length; l++){
+          if(x != dropOpcoesEndereco[l]){
+            i++;
+          }
+          if(i == dropOpcoesEndereco.length){
+            dropOpcoesEndereco.add(x);
+          }
+        }
+      }
+
+      if(dropOpcoesEndereco.length == 1){
+        break;
+      }
+      c++;
+      i = 0;
+      
+    }
+    
+  }
 
   recuperaDados() async {
     FirebaseFirestore db = FirebaseFirestore.instance;
@@ -41,9 +75,12 @@ class _QuemState extends State<Quem> {
             setState(() {
                 dropOpcoesSetor.add(docSnapshot.data()['setor']);
             });
-            setState(() {
+            /*setState(() {
                 dropOpcoesEndereco.add(docSnapshot.data()['endereco']);
             });
+            
+             */
+            listaT(docSnapshot.data()['endereco']);
             c++;
           }
           return querySnapshot;
