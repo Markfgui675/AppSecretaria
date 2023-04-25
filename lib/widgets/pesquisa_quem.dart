@@ -28,9 +28,170 @@ class _PesquisaQuemState extends State<PesquisaQuem> {
 
     if(widget.ValueName != '' && widget.ValueSetor != '' && widget.ValueEndereco != ''){
       print('Recuperação com filtragem');
+      print('todos os filtros');
       QuerySnapshot querySnapshott = await db.collection('qq_pesquisa')
           .where('nome', isEqualTo: widget.ValueName)
           .where('setor', isEqualTo: widget.ValueSetor)
+          .where('endereco', isEqualTo: widget.ValueEndereco).get().then(
+              (querySnapshot){
+            for (var docSnapshot in querySnapshot.docs){
+              print('${docSnapshot.data()}');
+              //servidores1.add(docSnapshot.data());
+              Servidor servidor = Servidor();
+              servidor.id = docSnapshot.data()['id'];
+              servidor.nome = docSnapshot.data()['nome'];
+              servidor.setor = docSnapshot.data()['setor'];
+              servidor.telefone = docSnapshot.data()['telefone'];
+              servidor.endereco = docSnapshot.data()['endereco'];
+              setState(() {
+                servidores.add(servidor);
+              });
+            }
+            print(servidores);
+            snapshot = querySnapshot;
+            return querySnapshot;
+          },
+          onError: (e) => print("Error completing: $e")
+      );
+    } else if(widget.ValueName == '' && widget.ValueSetor != '' && widget.ValueEndereco != ''){
+      //Pesquisa com setor e endereço - SE
+      print('Recuperação com filtragem');
+      print('setor e endereço');
+      QuerySnapshot querySnapshott = await db.collection('qq_pesquisa')
+          .where('setor', isEqualTo: widget.ValueSetor)
+          .where('endereco', isEqualTo: widget.ValueEndereco).get().then(
+              (querySnapshot){
+            for (var docSnapshot in querySnapshot.docs){
+              print('${docSnapshot.data()}');
+              //servidores1.add(docSnapshot.data());
+              Servidor servidor = Servidor();
+              servidor.id = docSnapshot.data()['id'];
+              servidor.nome = docSnapshot.data()['nome'];
+              servidor.setor = docSnapshot.data()['setor'];
+              servidor.telefone = docSnapshot.data()['telefone'];
+              servidor.endereco = docSnapshot.data()['endereco'];
+              setState(() {
+                servidores.add(servidor);
+              });
+            }
+            print(servidores);
+            snapshot = querySnapshot;
+            return querySnapshot;
+          },
+          onError: (e) => print("Error completing: $e")
+      );
+    } else if(widget.ValueName != '' && widget.ValueSetor == '' && widget.ValueEndereco != ''){
+      //pesquisa com nome e endereço - NE
+      print('Recuperação com filtragem');
+      print('nome e endereço');
+      QuerySnapshot querySnapshott = await db.collection('qq_pesquisa')
+          .where('nome', isEqualTo: widget.ValueName)
+          .where('endereco', isEqualTo: widget.ValueEndereco).get().then(
+              (querySnapshot){
+            for (var docSnapshot in querySnapshot.docs){
+              print('${docSnapshot.data()}');
+              //servidores1.add(docSnapshot.data());
+              Servidor servidor = Servidor();
+              servidor.id = docSnapshot.data()['id'];
+              servidor.nome = docSnapshot.data()['nome'];
+              servidor.setor = docSnapshot.data()['setor'];
+              servidor.telefone = docSnapshot.data()['telefone'];
+              servidor.endereco = docSnapshot.data()['endereco'];
+              setState(() {
+                servidores.add(servidor);
+              });
+            }
+            print(servidores);
+            snapshot = querySnapshot;
+            return querySnapshot;
+          },
+          onError: (e) => print("Error completing: $e")
+      );
+    } else if(widget.ValueName != '' && widget.ValueSetor != '' && widget.ValueEndereco == ''){
+      //pesquisa com nome e setor - NS
+      print('Recuperação com filtragem');
+      print('nome e setor');
+      QuerySnapshot querySnapshott = await db.collection('qq_pesquisa')
+          .where('nome', isEqualTo: widget.ValueName)
+          .where('setor', isEqualTo: widget.ValueSetor).get().then(
+              (querySnapshot){
+            for (var docSnapshot in querySnapshot.docs){
+              print('${docSnapshot.data()}');
+              //servidores1.add(docSnapshot.data());
+              Servidor servidor = Servidor();
+              servidor.id = docSnapshot.data()['id'];
+              servidor.nome = docSnapshot.data()['nome'];
+              servidor.setor = docSnapshot.data()['setor'];
+              servidor.telefone = docSnapshot.data()['telefone'];
+              servidor.endereco = docSnapshot.data()['endereco'];
+              setState(() {
+                servidores.add(servidor);
+              });
+            }
+            print(servidores);
+            snapshot = querySnapshot;
+            return querySnapshot;
+          },
+          onError: (e) => print("Error completing: $e")
+      );
+    } else if(widget.ValueName != '' && widget.ValueSetor == '' && widget.ValueEndereco == ''){
+      //pesquisa apenas nome - N
+      print('Recuperação com filtragem');
+      print('nome');
+      print(widget.ValueName);
+      QuerySnapshot querySnapshott = await db.collection('qq_pesquisa')
+          .where('nome', isEqualTo: "${widget.ValueEndereco}").get().then(
+              (querySnapshot){
+            for (var docSnapshot in querySnapshot.docs){
+              print('${docSnapshot.data()}');
+              //servidores1.add(docSnapshot.data());
+              Servidor servidor = Servidor();
+              servidor.id = docSnapshot.data()['id'];
+              servidor.nome = docSnapshot.data()['nome'];
+              servidor.setor = docSnapshot.data()['setor'];
+              servidor.telefone = docSnapshot.data()['telefone'];
+              servidor.endereco = docSnapshot.data()['endereco'];
+              setState(() {
+                servidores.add(servidor);
+              });
+            }
+            print(servidores);
+            snapshot = querySnapshot;
+            return querySnapshot;
+          },
+          onError: (e) => print("Error completing: $e")
+      );
+    } else if(widget.ValueName == '' && widget.ValueSetor != '' && widget.ValueEndereco == ''){
+      //pesquisa apenas setor - S
+      print('Recuperação com filtragem');
+      print('setor');
+      QuerySnapshot querySnapshott = await db.collection('qq_pesquisa')
+          .where('setor', isEqualTo: widget.ValueEndereco).get().then(
+              (querySnapshot){
+            for (var docSnapshot in querySnapshot.docs){
+              print('${docSnapshot.data()}');
+              //servidores1.add(docSnapshot.data());
+              Servidor servidor = Servidor();
+              servidor.id = docSnapshot.data()['id'];
+              servidor.nome = docSnapshot.data()['nome'];
+              servidor.setor = docSnapshot.data()['setor'];
+              servidor.telefone = docSnapshot.data()['telefone'];
+              servidor.endereco = docSnapshot.data()['endereco'];
+              setState(() {
+                servidores.add(servidor);
+              });
+            }
+            print(servidores);
+            snapshot = querySnapshot;
+            return querySnapshot;
+          },
+          onError: (e) => print("Error completing: $e")
+      );
+    } else if(widget.ValueName == '' && widget.ValueSetor == '' && widget.ValueEndereco != ''){
+      //pesquisa apenas com endereço - S
+      print('Recuperação com filtragem');
+      print('endereço');
+      QuerySnapshot querySnapshott = await db.collection('qq_pesquisa')
           .where('endereco', isEqualTo: widget.ValueEndereco).get().then(
               (querySnapshot){
             for (var docSnapshot in querySnapshot.docs){
@@ -98,8 +259,8 @@ class _PesquisaQuemState extends State<PesquisaQuem> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Container(
-            height: 180,
+          SizedBox(
+            height: MediaQuery.of(context).size.height*1.8,
             child: ListView.builder(
               itemCount: servidores.length,
               padding: const EdgeInsets.all(10),
@@ -113,8 +274,10 @@ class _PesquisaQuemState extends State<PesquisaQuem> {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
                   },
                   child: Container(
-                    margin: EdgeInsets.only(right: 20),
+                    margin: const EdgeInsets.only(bottom: 20),
+                    height: 120,
                     width: 280,
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
@@ -128,8 +291,10 @@ class _PesquisaQuemState extends State<PesquisaQuem> {
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(servidor.nome)
+                        Text(servidor.nome,
+                            style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
                       ],
                     ),
                   ),

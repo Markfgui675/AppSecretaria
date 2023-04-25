@@ -24,39 +24,9 @@ class _QuemState extends State<Quem> {
 
   final dropValueEndereco = ValueNotifier('');
   final dropOpcoesEndereco = [''];
-  
-  listaT(String endereco){
-    
-    int i = 0;
-    int c = 0;
-    dynamic x;
-    
-    while (true){
-      
-      if (c==0){
-        x = endereco;
-        dropOpcoesEndereco.add(x);
-      } else {
-        x = endereco;
-        for(int l = 0; l < dropOpcoesNome.length; l++){
-          if(x != dropOpcoesEndereco[l]){
-            i++;
-          }
-          if(i == dropOpcoesEndereco.length){
-            dropOpcoesEndereco.add(x);
-          }
-        }
-      }
 
-      if(dropOpcoesEndereco.length == 1){
-        break;
-      }
-      c++;
-      i = 0;
-      
-    }
-    
-  }
+  bool c = true;
+  bool s = false;
 
   recuperaDados() async {
     FirebaseFirestore db = FirebaseFirestore.instance;
@@ -64,24 +34,49 @@ class _QuemState extends State<Quem> {
     dropOpcoesNome.clear();
     dropOpcoesSetor.clear();
     dropOpcoesEndereco.clear();
-    int c = 0;
+    int i = 0;
+    dynamic x;
     await db.collection('qq_pesquisa').get().then(
             (querySnapshot){
           for (var docSnapshot in querySnapshot.docs){
-            print('${docSnapshot.data()}');
-            setState(() {
+            //print('${docSnapshot.data()}');
+            if(true){
+              setState(() {
                 dropOpcoesNome.add(docSnapshot.data()['nome']);
-            });
-            setState(() {
+              });
+            }
+            if(true){
+              setState(() {
                 dropOpcoesSetor.add(docSnapshot.data()['setor']);
-            });
-            /*setState(() {
+              });
+            }
+            if(c){
+              setState(() {
                 dropOpcoesEndereco.add(docSnapshot.data()['endereco']);
-            });
-            
-             */
-            listaT(docSnapshot.data()['endereco']);
-            c++;
+                c = !c;
+              });
+            }
+            if(c==false){
+              print("Condição C false executada");
+              for (int l = 0; l < dropOpcoesEndereco.length; l++){
+                if (docSnapshot.data()['endereco'] != dropOpcoesEndereco[l]){
+                  setState(() {
+                    i++;
+                  });
+                  print('i: $i');
+                }
+                if (i == (dropOpcoesEndereco.length)){
+                  setState(() {
+                    dropOpcoesEndereco.add(docSnapshot.data()['endereco']);
+                  });
+                }
+              }
+              setState(() {
+                i = 0;
+              });
+            }
+
+
           }
           return querySnapshot;
         },
@@ -93,7 +88,7 @@ class _QuemState extends State<Quem> {
 
   Widget filtroNome() {
     return SizedBox(
-        width: 150,
+        width: 240,
         child: Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
@@ -130,7 +125,7 @@ class _QuemState extends State<Quem> {
 
   Widget filtroSetor() {
     return SizedBox(
-        width: 150,
+        width: 240,
         child: Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
@@ -167,7 +162,7 @@ class _QuemState extends State<Quem> {
 
   Widget filtroEndereco() {
     return SizedBox(
-        width: 150,
+        width: 290,
         child: Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
@@ -191,7 +186,7 @@ class _QuemState extends State<Quem> {
                     items: dropOpcoesEndereco
                         .map((opcao) => DropdownMenuItem(
                       value: opcao,
-                      child: Text(opcao),
+                      child: Text(opcao)
                     ))
                         .toList(),
                     onChanged: (escolha) {
@@ -277,7 +272,6 @@ class _QuemState extends State<Quem> {
                           setState(() {
                             telaCorpo = false;
                           });
-                          recuperaDados();
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor:  Color(0xff2E6EA7),
@@ -312,6 +306,7 @@ class _QuemState extends State<Quem> {
                           dropValueNome.value = '';
                           dropValueSetor.value = '';
                           dropValueEndereco.value = '';
+                          recuperaDados();
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xfff2ab11),
