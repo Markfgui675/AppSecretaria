@@ -25,9 +25,6 @@ class _QuemState extends State<Quem> {
   final dropValueEndereco = ValueNotifier('');
   final dropOpcoesEndereco = [''];
 
-  bool c = true;
-  bool s = false;
-
   recuperaDados() async {
     FirebaseFirestore db = FirebaseFirestore.instance;
 
@@ -35,7 +32,7 @@ class _QuemState extends State<Quem> {
     dropOpcoesSetor.clear();
     dropOpcoesEndereco.clear();
     int i = 0;
-    dynamic x;
+    bool c = true;
     await db.collection('qq_pesquisa').get().then(
             (querySnapshot){
           for (var docSnapshot in querySnapshot.docs){

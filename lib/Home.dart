@@ -44,17 +44,17 @@ class _HomeState extends State<Home> {
     }
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xff2E6EA7),
-        elevation: 0,
-        centerTitle: true,
-        title: Text(atualPage,
-          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: Colors.white),
-      )),
+          backgroundColor: const Color(0xff2E6EA7),
+          elevation: 0,
+          centerTitle: true,
+          title: Text(atualPage,
+            style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: Colors.white),
+          )),
       body: container,
       drawer: Drawer(
-        backgroundColor: Color(0xff2E6EA7),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(bottomRight: Radius.circular(70))
+        backgroundColor: const Color(0xff2E6EA7),
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(bottomRight: Radius.circular(70))
         ),
         child: SingleChildScrollView(
           child: Container(
@@ -78,17 +78,17 @@ class _HomeState extends State<Home> {
       child: Column(
         // shows the list of menu drawer
         children: [
-          menuItem(1, "Início", 'icons/home.png',
+          menuItem(1, "Inicio", 'icons/home.png',
               currentPage == DrawerSections.inicio ? true : false),
-          menuItem(2, "Quem é quem", 'icons/customer.png',
+          menuItem(2, "Quem", 'icons/customer.png',
               currentPage == DrawerSections.quem ? true : false),
-          menuItem(3, "Prestação de contas", 'icons/ita_icone.png',
+          menuItem(3, "Prestação de contas", 'icons/prestacao_contas.png',
               currentPage == DrawerSections.prestacao_de_contas ? true : false),
-          menuItem(4, "Transparência", 'icons/logout.png',
+          menuItem(4, "Transparência", 'icons/transparencia.png',
               currentPage == DrawerSections.transparencia ? true : false),
           menuItem(5, "Quizes", 'icons/quiz.png',
               currentPage == DrawerSections.quizes ? true : false),
-          SizedBox(height: 280),
+          const SizedBox(height: 280),
           menuItem(6, "Configurações", 'icons/setting.png',
               currentPage == DrawerSections.configuracoes ? true : false),
         ],
@@ -112,8 +112,8 @@ class _HomeState extends State<Home> {
                 currentPage = DrawerSections.quem;
               } else if (id == 3) {
                 currentPage = DrawerSections.prestacao_de_contas;
-              } else if (id == 4){
-                currentPage == DrawerSections.transparencia;
+              } else if (id == 4) {
+                currentPage = DrawerSections.transparencia;
               } else if (id == 5) {
                 currentPage = DrawerSections.quizes;
               } else if (id == 6) {
@@ -126,13 +126,22 @@ class _HomeState extends State<Home> {
             child: Row(
               children: [
                 Expanded(
-                    child: Image.asset(urlIcon, width: 30, height: 30, color: Colors.white,)
+                  child: Image.asset(
+                    urlIcon,
+                    width: 30,
+                    height: 30,
+                    color: Colors.white,
+                  )
                 ),
                 Expanded(
                   flex: 3,
                   child: Text(
                     title,
-                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: const Color(0xfff2ab11)),
+                    style: GoogleFonts.kanit().copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: const Color(0xfff2ab11
+                    )),
                   ),
                 ),
               ],
@@ -142,7 +151,6 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
 }
 
 enum DrawerSections {
