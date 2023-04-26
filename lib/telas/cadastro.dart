@@ -77,7 +77,7 @@ class _CadastroState extends State<Cadastro> {
           'id':user.uid,
           'nome':usuario.nome,
           'email':usuario.email,
-          'profilepic':null
+          'profilepic':''
         }
       );
 
@@ -86,7 +86,7 @@ class _CadastroState extends State<Cadastro> {
       _emailController.text = '';
       _senhaController.text = '';
     }).catchError((error){
-      print(error.toString());
+      print('Erro de cadastro: ${error.toString()}');
       _mensagemSnackBar(false);
     });
   }
@@ -163,7 +163,7 @@ class _CadastroState extends State<Cadastro> {
                           },
                         ),
                       ),
-                      SizedBox(height: 15,),
+                      const SizedBox(height: 15,),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 25),
                         child: TextFormField(
@@ -185,9 +185,9 @@ class _CadastroState extends State<Cadastro> {
                           },
                         ),
                       ),
-                      SizedBox(height: 30,),
+                      const SizedBox(height: 30,),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 25),
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
                         child: ElevatedButton(
                             autofocus: true,
                             onPressed: (){
@@ -199,7 +199,7 @@ class _CadastroState extends State<Cadastro> {
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xfff2ab11),
+                              backgroundColor: const Color(0xfff2ab11),
                               elevation: 0,
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
                             ),
@@ -234,7 +234,7 @@ class _CadastroState extends State<Cadastro> {
                   ),
                 ),
               ),
-              SizedBox(height: 50,),
+              const SizedBox(height: 50,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -253,9 +253,9 @@ class _CadastroState extends State<Cadastro> {
                   ),
                 ],
               ),
-              SizedBox(height: 50,),
+              const SizedBox(height: 50,),
               Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25),
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: GestureDetector(
                   onTap: (){
                     Navigator.pushAndRemoveUntil(
@@ -275,7 +275,7 @@ class _CadastroState extends State<Cadastro> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Image.asset('imagens/google.png', width: 35, height: 35,),
-                        SizedBox(width: 12,),
+                        const SizedBox(width: 12,),
                         Text('Entrar com o Google',
                           style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 14, color: Colors.black),
                         ),

@@ -80,7 +80,7 @@ class _HomeState extends State<Home> {
         children: [
           menuItem(1, "Inicio", 'icons/home.png',
               currentPage == DrawerSections.inicio ? true : false),
-          menuItem(2, "Quem", 'icons/customer.png',
+          menuItem(2, "Quem é quem", 'icons/customer.png',
               currentPage == DrawerSections.quem ? true : false),
           menuItem(3, "Prestação de contas", 'icons/prestacao_contas.png',
               currentPage == DrawerSections.prestacao_de_contas ? true : false),
@@ -140,8 +140,8 @@ class _HomeState extends State<Home> {
                     style: GoogleFonts.kanit().copyWith(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
-                        color: const Color(0xfff2ab11
-                    )),
+                        color: const Color(0xfff2ab11)
+                    ),
                   ),
                 ),
               ],

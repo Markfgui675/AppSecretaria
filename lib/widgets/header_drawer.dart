@@ -39,7 +39,9 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
             _nomeUsuarioLogado = info[0];
             _emailUsuarioLogado = info[1];
             _profilepic = info[2];
-            
+            if (_profilepic == null){
+              _profilepic = '';
+            }
           });
           print(info);
           return info;
@@ -59,7 +61,7 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 50, right: 12, left: 12),
-      color: Color(0xff2E6EA7),
+      color: const Color(0xff2E6EA7),
       width: double.infinity,
       height: 150,
       child: Row(
@@ -86,7 +88,7 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
             children: [
               CircleAvatar(
                   radius: 40,
-                  backgroundColor: Colors.grey,
+                  backgroundColor: const Color(0xfff2ab11),
                   backgroundImage:
                   _profilepic != ''
                       ?  null
