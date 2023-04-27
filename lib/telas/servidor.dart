@@ -7,7 +7,7 @@ import '../Model/Servidor.dart';
 
 class ServidorScreen extends StatefulWidget {
   Servidor servidor;
-  ServidorScreen(this.servidor);
+  ServidorScreen(this.servidor, {super.key});
 
   @override
   State<ServidorScreen> createState() => _ServidorScreenState();
@@ -45,7 +45,7 @@ class _ServidorScreenState extends State<ServidorScreen> {
           )),
       body: Container(
         width: double.infinity,
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

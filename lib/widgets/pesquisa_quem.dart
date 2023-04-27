@@ -163,7 +163,7 @@ class _PesquisaQuemState extends State<PesquisaQuem> {
       print('Recuperação com filtragem');
       print('setor');
       await db.collection('qq_pesquisa')
-          .where('setor', isEqualTo: endereco).get().then(
+          .where('setor', isEqualTo: setor).get().then(
               (querySnapshot){
             for (var docSnapshot in querySnapshot.docs){
               print('${docSnapshot.data()}');

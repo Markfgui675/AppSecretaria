@@ -90,14 +90,14 @@ class _LoginState extends State<Login> {
             style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white
             )),
         centerTitle: true,
-        backgroundColor: Color(0xff2E6EA7),
+        backgroundColor: const Color(0xff2E6EA7),
         elevation: 0,
       ),
 
 
 
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Container(
           width: double.infinity,
           height: MediaQuery.of(context).size.height*0.85,
@@ -111,7 +111,7 @@ class _LoginState extends State<Login> {
                   child: Column(
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 25),
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
                         child: TextFormField(
                           keyboardType: TextInputType.emailAddress,
                           controller: _emailController,
@@ -132,7 +132,7 @@ class _LoginState extends State<Login> {
                           },
                         ),
                       ),
-                      SizedBox(height: 15,),
+                      const SizedBox(height: 15,),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 25),
                         child: TextFormField(
@@ -154,9 +154,9 @@ class _LoginState extends State<Login> {
                           },
                         ),
                       ),
-                      SizedBox(height: 5,),
+                      const SizedBox(height: 5,),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 25),
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
                         child: Container(
                           width: double.infinity,
                           height: 20,
@@ -176,7 +176,7 @@ class _LoginState extends State<Login> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 30,),
+                      const SizedBox(height: 30,),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 25),
                         child: ElevatedButton(
@@ -187,7 +187,7 @@ class _LoginState extends State<Login> {
                             }
                           },
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xfff2ab11),
+                              backgroundColor: const Color(0xfff2ab11),
                               elevation: 0,
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
                           ),
@@ -222,7 +222,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              SizedBox(height: 50,),
+              const SizedBox(height: 50,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -241,9 +241,9 @@ class _LoginState extends State<Login> {
                   ),
                 ],
               ),
-              SizedBox(height: 50,),
+              const SizedBox(height: 50,),
               Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25),
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: GestureDetector(
                     onTap: (){
                       authController.login();
@@ -261,7 +261,7 @@ class _LoginState extends State<Login> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Image.asset('imagens/google.png', width: 35, height: 35,),
-                          SizedBox(width: 12,),
+                          const SizedBox(width: 12,),
                           Text('Entrar com o Google',
                             style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 14, color: Colors.black),
                           ),

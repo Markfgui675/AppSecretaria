@@ -255,12 +255,14 @@ class _QuemState extends State<Quem> {
                       ],
                 )
               ),
+
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.only(top: 12,left: 12),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    //Botão pesquisar
                     ElevatedButton(
                         onPressed: (){
                           print(dropValueNome.value.toString());
@@ -283,8 +285,8 @@ class _QuemState extends State<Quem> {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.search),
-                                  SizedBox(width: 5,),
+                                  const Icon(Icons.search),
+                                  const SizedBox(width: 5,),
                                   Text('Pesquisar',
                                     style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 16, color: Colors.white),
                                   )
@@ -295,6 +297,7 @@ class _QuemState extends State<Quem> {
                         )
                     ),
                     const SizedBox(width: 15,),
+                    //Botão remover filtros
                     ElevatedButton(
                         onPressed: (){
                           setState(() {
