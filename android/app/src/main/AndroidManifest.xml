@@ -2,7 +2,7 @@
     package="com.example.ditran.app_secretaria_flutter">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="Secretaria"
+        android:label="Transparência da Saúde"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
