@@ -1,5 +1,15 @@
+import 'package:app_secretaria_flutter/telas/telas_prestacao_contas/auditorias.dart';
+import 'package:app_secretaria_flutter/telas/telas_prestacao_contas/contratos.dart';
+import 'package:app_secretaria_flutter/telas/telas_prestacao_contas/despesas_publicas.dart';
+import 'package:app_secretaria_flutter/telas/telas_prestacao_contas/diarias.dart';
+import 'package:app_secretaria_flutter/telas/telas_prestacao_contas/fundos_publicos.dart';
+import 'package:app_secretaria_flutter/telas/telas_prestacao_contas/licitacoes.dart';
+import 'package:app_secretaria_flutter/telas/telas_prestacao_contas/passagens.dart';
 import 'package:app_secretaria_flutter/telas/telas_prestacao_contas/plano_plurianual.dart';
+import 'package:app_secretaria_flutter/telas/telas_prestacao_contas/presta_contas_icipe.dart';
+import 'package:app_secretaria_flutter/telas/telas_prestacao_contas/presta_contas_iges.dart';
 import 'package:app_secretaria_flutter/telas/telas_prestacao_contas/resultados_alcancados.dart';
+import 'package:app_secretaria_flutter/telas/telas_prestacao_contas/servidores_presta.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -42,7 +52,6 @@ class _PrestacaoState extends State<Prestacao> {
                         scrollDirection: Axis.horizontal,
                         padding: const EdgeInsets.all(10),
                         children: [
-                          //PPA
                           InkWell(
                             onTap: (){
                               Navigator.push(context, MaterialPageRoute(builder: (context) => PlanoPluri()));
@@ -133,32 +142,37 @@ class _PrestacaoState extends State<Prestacao> {
                           scrollDirection: Axis.horizontal,
                           padding: const EdgeInsets.all(10),
                           children: [
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              margin: const EdgeInsets.only(right: 20),
-                              width: width_containers,
-                              decoration: BoxDecoration(
+                            InkWell(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => Auditorias()));
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(10),
+                                margin: const EdgeInsets.only(right: 20),
+                                width: width_containers,
+                                decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
                                   boxShadow: [
                                     BoxShadow(
-                                        color: Colors.grey.withOpacity(0.2),
-                                        blurRadius: 12,
-                                        offset: const Offset(0, 0)
+                                      color: Colors.grey.withOpacity(0.2),
+                                      blurRadius: 12,
+                                      offset: const Offset(0, 0)
                                     )
                                   ]
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text('Teste',
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text('Auditorias',
                                       style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                                  const SizedBox(height: 8,),
-                                  Container(width: 180, height: 5, color: Colors.orange,),
+                                    const SizedBox(height: 8,),
+                                    Container(width: 180, height: 5, color: Colors.orange,),
 
-                                ],
-                              ),
+                                  ],
+                                ),
+                              )
                             )
                           ],
                         )
@@ -184,53 +198,71 @@ class _PrestacaoState extends State<Prestacao> {
                           scrollDirection: Axis.horizontal,
                           padding: const EdgeInsets.all(10),
                           children: [
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              margin: const EdgeInsets.only(right: 20),
-                              width: width_containers,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.grey.withOpacity(0.2),
-                                        blurRadius: 12,
-                                        offset: const Offset(0, 0)
-                                    )
-                                  ]
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text('Teste',
-                                      style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                                  const SizedBox(height: 8,),
-                                  Container(width: 180, height: 5, color: Colors.orange,),
-                                  const SizedBox(height: 8,),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                                      const SizedBox(width: 5,),
-                                      Text('Teste',
-                                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                                    ],
-                                  ),
-                                  const SizedBox(height: 5,),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                                      const SizedBox(width: 5,),
-                                      Text('Teste',
-                                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                                    ],
-                                  )
+                            InkWell(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => PrestaIges()));
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(10),
+                                margin: const EdgeInsets.only(right: 20),
+                                width: 180,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey.withOpacity(0.2),
+                                          blurRadius: 12,
+                                          offset: const Offset(0, 0)
+                                      )
+                                    ]
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text('Prestação de Contas - IGES',
+                                        style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                                    const SizedBox(height: 8,),
+                                    Container(width: 180, height: 5, color: Colors.orange,),
 
-                                ],
+                                  ],
+                                ),
                               ),
-                            )
+                            ),
+
+                            InkWell(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => PrestaIcipe()));
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(10),
+                                margin: const EdgeInsets.only(right: 20),
+                                width: 180,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey.withOpacity(0.2),
+                                          blurRadius: 12,
+                                          offset: const Offset(0, 0)
+                                      )
+                                    ]
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text('Prestação de Contas - ICIPE',
+                                        style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                                    const SizedBox(height: 8,),
+                                    Container(width: 180, height: 5, color: Colors.orange,),
+
+                                  ],
+                                ),
+                              ),
+                            ),
                           ],
                         )
                     )
@@ -255,52 +287,37 @@ class _PrestacaoState extends State<Prestacao> {
                           scrollDirection: Axis.horizontal,
                           padding: const EdgeInsets.all(10),
                           children: [
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              margin: const EdgeInsets.only(right: 20),
-                              width: width_containers,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.grey.withOpacity(0.2),
-                                        blurRadius: 12,
-                                        offset: const Offset(0, 0)
-                                    )
-                                  ]
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text('Teste',
-                                      style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                                  const SizedBox(height: 8,),
-                                  Container(width: 180, height: 5, color: Colors.orange,),
-                                  const SizedBox(height: 8,),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                            InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Licitacoes()));
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  margin: const EdgeInsets.only(right: 20),
+                                  width: width_containers,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey.withOpacity(0.2),
+                                            blurRadius: 12,
+                                            offset: const Offset(0, 0)
+                                        )
+                                      ]
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                                      const SizedBox(width: 5,),
-                                      Text('Teste',
-                                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                                      Text('Licitações',
+                                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                                      const SizedBox(height: 8,),
+                                      Container(width: 180, height: 5, color: Colors.orange,),
+
                                     ],
                                   ),
-                                  const SizedBox(height: 5,),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                                      const SizedBox(width: 5,),
-                                      Text('Teste',
-                                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                                    ],
-                                  )
-
-                                ],
-                              ),
+                                )
                             )
                           ],
                         )
@@ -326,52 +343,37 @@ class _PrestacaoState extends State<Prestacao> {
                           scrollDirection: Axis.horizontal,
                           padding: const EdgeInsets.all(10),
                           children: [
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              margin: const EdgeInsets.only(right: 20),
-                              width: width_containers,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.grey.withOpacity(0.2),
-                                        blurRadius: 12,
-                                        offset: const Offset(0, 0)
-                                    )
-                                  ]
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text('Teste',
-                                      style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                                  const SizedBox(height: 8,),
-                                  Container(width: 180, height: 5, color: Colors.orange,),
-                                  const SizedBox(height: 8,),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                            InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Contratos()));
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  margin: const EdgeInsets.only(right: 20),
+                                  width: width_containers,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey.withOpacity(0.2),
+                                            blurRadius: 12,
+                                            offset: const Offset(0, 0)
+                                        )
+                                      ]
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                                      const SizedBox(width: 5,),
-                                      Text('Teste',
-                                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                                      Text('Contratos',
+                                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                                      const SizedBox(height: 8,),
+                                      Container(width: 180, height: 5, color: Colors.orange,),
+
                                     ],
                                   ),
-                                  const SizedBox(height: 5,),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                                      const SizedBox(width: 5,),
-                                      Text('Teste',
-                                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                                    ],
-                                  )
-
-                                ],
-                              ),
+                                )
                             )
                           ],
                         )
@@ -397,53 +399,134 @@ class _PrestacaoState extends State<Prestacao> {
                           scrollDirection: Axis.horizontal,
                           padding: const EdgeInsets.all(10),
                           children: [
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              margin: const EdgeInsets.only(right: 20),
-                              width: width_containers,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.grey.withOpacity(0.2),
-                                        blurRadius: 12,
-                                        offset: const Offset(0, 0)
-                                    )
-                                  ]
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text('Teste',
-                                      style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                                  const SizedBox(height: 8,),
-                                  Container(width: 180, height: 5, color: Colors.orange,),
-                                  const SizedBox(height: 8,),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                            InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => DespesasPublicas()));
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  margin: const EdgeInsets.only(right: 20),
+                                  width: width_containers,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey.withOpacity(0.2),
+                                            blurRadius: 12,
+                                            offset: const Offset(0, 0)
+                                        )
+                                      ]
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                                      const SizedBox(width: 5,),
-                                      Text('Teste',
-                                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                                      Text('Despesas públicas',
+                                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                                      const SizedBox(height: 8,),
+                                      Container(width: 180, height: 5, color: Colors.orange,),
+
                                     ],
                                   ),
-                                  const SizedBox(height: 5,),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                )
+                            ),
+                            InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Diarias()));
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  margin: const EdgeInsets.only(right: 20),
+                                  width: width_containers,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey.withOpacity(0.2),
+                                            blurRadius: 12,
+                                            offset: const Offset(0, 0)
+                                        )
+                                      ]
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                                      const SizedBox(width: 5,),
-                                      Text('Teste',
-                                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                                    ],
-                                  )
+                                      Text('Diárias',
+                                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                                      const SizedBox(height: 8,),
+                                      Container(width: 180, height: 5, color: Colors.orange,),
 
-                                ],
-                              ),
-                            )
+                                    ],
+                                  ),
+                                )
+                            ),
+                            InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Passagens()));
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  margin: const EdgeInsets.only(right: 20),
+                                  width: width_containers,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey.withOpacity(0.2),
+                                            blurRadius: 12,
+                                            offset: const Offset(0, 0)
+                                        )
+                                      ]
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text('Passagens',
+                                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                                      const SizedBox(height: 8,),
+                                      Container(width: 180, height: 5, color: Colors.orange,),
+
+                                    ],
+                                  ),
+                                )
+                            ),
+                            InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => FundosPublicos()));
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  margin: const EdgeInsets.only(right: 20),
+                                  width: width_containers,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey.withOpacity(0.2),
+                                            blurRadius: 12,
+                                            offset: const Offset(0, 0)
+                                        )
+                                      ]
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text('Fundos Públicos',
+                                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                                      const SizedBox(height: 8,),
+                                      Container(width: 180, height: 5, color: Colors.orange,),
+
+                                    ],
+                                  ),
+                                )
+                            ),
                           ],
                         )
                     )
@@ -468,53 +551,39 @@ class _PrestacaoState extends State<Prestacao> {
                           scrollDirection: Axis.horizontal,
                           padding: const EdgeInsets.all(10),
                           children: [
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              margin: const EdgeInsets.only(right: 20),
-                              width: width_containers,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.grey.withOpacity(0.2),
-                                        blurRadius: 12,
-                                        offset: const Offset(0, 0)
-                                    )
-                                  ]
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text('Teste',
-                                      style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                                  const SizedBox(height: 8,),
-                                  Container(width: 180, height: 5, color: Colors.orange,),
-                                  const SizedBox(height: 8,),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                            InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ServidoresPresta()));
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  margin: const EdgeInsets.only(right: 20),
+                                  width: width_containers,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey.withOpacity(0.2),
+                                            blurRadius: 12,
+                                            offset: const Offset(0, 0)
+                                        )
+                                      ]
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                                      const SizedBox(width: 5,),
-                                      Text('Teste',
-                                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                                      Text('Servidores',
+                                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                                      const SizedBox(height: 8,),
+                                      Container(width: 180, height: 5, color: Colors.orange,),
+
                                     ],
                                   ),
-                                  const SizedBox(height: 5,),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                                      const SizedBox(width: 5,),
-                                      Text('Teste',
-                                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                                    ],
-                                  )
+                                )
+                            ),
 
-                                ],
-                              ),
-                            )
                           ],
                         )
                     )
