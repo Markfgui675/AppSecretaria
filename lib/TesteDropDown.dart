@@ -1,5 +1,35 @@
 import 'package:flutter/material.dart';
 
+
+class ResponsividadeWeb extends StatefulWidget {
+  const ResponsividadeWeb({Key? key}) : super(key: key);
+
+  @override
+  State<ResponsividadeWeb> createState() => _ResponsividadeWebState();
+}
+
+class _ResponsividadeWebState extends State<ResponsividadeWeb> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Responsividade'),
+        centerTitle: true,
+      ),
+      body: Column(
+        children: [
+          Container(
+            height: 120,
+            width: 120,
+            color: Colors.blue,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+
 class Drop extends StatelessWidget {
   final dropValue = ValueNotifier('');
   final dropOpcoes = ['Audi', 'BMW', 'Ferrari', 'Lamborghini', 'Tesla'];
