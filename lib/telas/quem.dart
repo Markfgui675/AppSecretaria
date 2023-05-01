@@ -159,7 +159,7 @@ class _QuemState extends State<Quem> {
 
   Widget filtroEndereco() {
     return SizedBox(
-        width: 290,
+        width: 330,
         child: Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(

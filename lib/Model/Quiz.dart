@@ -1,19 +1,14 @@
 class Quiz{
-  String? _idQuiz;
+  String? _id_quiz;
   String? _titulo;
-  String? _pergunta;
-  String? _q1;
-  String? _q2;
-  String? _q3;
-  String? _q4;
-
+  List? _info;
 
   Quiz();
 
-  String get idQuiz => _idQuiz!;
+  List get info => _info!;
 
-  set idQuiz(String value) {
-    _idQuiz = value;
+  set info(List value) {
+    _info = value;
   }
 
   String get titulo => _titulo!;
@@ -22,35 +17,9 @@ class Quiz{
     _titulo = value;
   }
 
-  String get pergunta => _pergunta!;
+  String get id_quiz => _id_quiz!;
 
-  String get q4 => _q4!;
-
-  set q4(String value) {
-    _q4 = value;
+  set id_quiz(String value) {
+    _id_quiz = value;
   }
-
-  String get q3 => _q3!;
-
-  set q3(String value) {
-    _q3 = value;
-  }
-
-  String get q2 => _q2!;
-
-  set q2(String value) {
-    _q2 = value;
-  }
-
-  String get q1 => _q1!;
-
-  set q1(String value) {
-    _q1 = value;
-  }
-
-  set pergunta(String value) {
-    _pergunta = value;
-  }
-
-
 }
