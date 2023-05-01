@@ -15,9 +15,38 @@ class QuizOption extends StatefulWidget {
 
 class _QuizOptionState extends State<QuizOption> {
 
-  List options = [];
+  List<dynamic> info_options = [];
+  List<int> length_options = [];
+  int length = 0;
+  // 0 - question
+  // 1 - answer_index
+  // 2 - options
+  // 3 - lenght_options
   _recuperaOptions(List info){
-    options.add(info);
+
+    for(int i = 0; i < info.length; i++){
+      print('_recuperaOptions');
+      print(info);
+
+      for(var l in info[i]['options']){
+        length++;
+        setState(() {
+          length_options = length;
+        });
+        length = 0;
+      }
+
+      setState(() {
+        info_options.add([
+          info[i]['question'],
+          info[i]['answer_index'],
+          info[i]['options'],
+          length_options
+        ]);
+      });
+      print('info options: $info_options');
+    }
+
   }
 
   @override
@@ -51,7 +80,7 @@ class _QuizOptionState extends State<QuizOption> {
                   itemBuilder: (_, index){
                     return Container(
                       margin: const EdgeInsets.only(bottom: 20),
-                      height: 550,
+                      height: 350,
                       width: MediaQuery.of(context).size.width,
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
@@ -68,22 +97,22 @@ class _QuizOptionState extends State<QuizOption> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(widget.quiz.info[index]['options'].toString(),
-                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                          Text(widget.quiz.info[index]['question'].toString(),
+                          Text(info_options[index][0],
                               style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
                           SizedBox(
-                            height: 200,
+                            height: 220,
                             child: ListView.builder(
-                              itemCount:widget.quiz.info[index]['options'].length,
-                                itemBuilder: (_, index){
-                                  return Container(
-                                    color: Colors.red,
-                                    child: Center(
-                                      child: Text(widget.quiz.info[index]['options'].toString()),
-                                    ),
-                                  );
-                                }
+                              itemCount: info_options[3],
+                              itemBuilder: (_, index_2){
+                                return Container(
+                                  child: Column(
+                                    children: [
+                                      Text(info_options[index][2][index_2],
+                                          style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                                    ],
+                                  ),
+                                );
+                            }
                             ),
                           )
                         ],
