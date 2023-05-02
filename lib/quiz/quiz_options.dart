@@ -31,7 +31,7 @@ class _QuizOptionState extends State<QuizOption> {
       for(var l in info[i]['options']){
         length++;
         setState(() {
-          length_options = length;
+          length_options.add(length);
         });
         length = 0;
       }

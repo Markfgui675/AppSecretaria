@@ -83,7 +83,7 @@ class _EntradaState extends State<Entrada> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
                         GestureDetector(
                           onTap: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
@@ -92,9 +92,9 @@ class _EntradaState extends State<Entrada> {
                             width: double.infinity,
                             height: 60,
                             decoration: BoxDecoration(
-                              border: Border(),
+                              border: const Border(),
                               borderRadius: BorderRadius.circular(20),
-                              color: Color(0xfff2ab11),
+                              color: const Color(0xfff2ab11),
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -107,7 +107,7 @@ class _EntradaState extends State<Entrada> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
                         GestureDetector(
                           onTap: (){
                             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Home()));
@@ -116,7 +116,7 @@ class _EntradaState extends State<Entrada> {
                             width: double.infinity,
                             height: 60,
                             decoration: BoxDecoration(
-                              border: Border(),
+                              border: const Border(),
                               borderRadius: BorderRadius.circular(20),
                               color: Colors.white,
                             ),
