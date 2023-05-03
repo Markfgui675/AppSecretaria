@@ -94,6 +94,9 @@ flutter:
     - icons/logout.png
     - imagens/hospital.jpg
     - imagens/google.png
+    - imagens/participadf.png
+    - imagens/instancias.png
+    - imagens/prazos.png
     - icons/prestacao_contas.png
     - icons/transparencia.png
     - icons/profile.png
