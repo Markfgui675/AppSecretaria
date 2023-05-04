@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:math';
+import 'package:exists_in/exists_in.dart';
 
 class Quem extends StatefulWidget {
   const Quem({Key? key}) : super(key: key);
@@ -53,23 +54,11 @@ class _QuemState extends State<Quem> {
                 c = !c;
               });
             }
-            if(c==false){
-              print("Condição C false executada");
-              for (int l = 0; l < dropOpcoesEndereco.length; l++){
-                if (docSnapshot.data()['endereco'] != dropOpcoesEndereco[l]){
-                  setState(() {
-                    i++;
-                  });
-                  print('i: $i');
-                }
-                if (i == (dropOpcoesEndereco.length)){
-                  setState(() {
-                    dropOpcoesEndereco.add(docSnapshot.data()['endereco']);
-                  });
-                }
-              }
+            if(existsIn(docSnapshot.data()['endereco'], dropOpcoesEndereco)){
+              //elemento existe na lista, portanto, não adiciona
+            } else {
               setState(() {
-                i = 0;
+                dropOpcoesEndereco.add(docSnapshot.data()['endereco']);
               });
             }
 

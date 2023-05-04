@@ -47,6 +47,7 @@ dependencies:
   get: 4.2.0
   url_launcher: ^6.1.6 #para links externos
   font_awesome_flutter: ^10.4.0
+  exists_in: ^0.0.1
 
 
 dev_dependencies:
