@@ -261,6 +261,7 @@ class _QuemState extends State<Quem> {
                               setState(() {
                                 telaCorpo = false;
                               });
+                              PesquisaQuem(dropValueNome.value.toString(), dropValueSetor.value.toString(), dropValueEndereco.value.toString());
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor:  Color(0xff2E6EA7),

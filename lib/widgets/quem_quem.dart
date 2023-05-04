@@ -363,53 +363,57 @@ class _QuemQuemState extends State<QuemQuem> {
                   itemCount: secretaria.length,
                   padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
-                    return Container(
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.only(right: 20),
-                      width: width_containers,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                blurRadius: 12,
-                                offset: const Offset(0, 0)
+                    if(!loading){
+                      return Center(child: CircularProgressIndicator(),);
+                    } else {
+                      return Container(
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.only(right: 20),
+                        width: width_containers,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  blurRadius: 12,
+                                  offset: const Offset(0, 0)
+                              )
+                            ]
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(secretaria[index]['nome'],
+                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                            const SizedBox(height: 8,),
+                            Container(width: 180, height: 5, color: Colors.orange,),
+                            const SizedBox(height: 8,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(secretaria[index]['telefone'],
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            ),
+                            const SizedBox(height: 5,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(secretaria[index]['endereco'],
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
                             )
-                          ]
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(secretaria[index]['nome'],
-                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                          const SizedBox(height: 8,),
-                          Container(width: 180, height: 5, color: Colors.orange,),
-                          const SizedBox(height: 8,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(secretaria[index]['telefone'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          ),
-                          const SizedBox(height: 5,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(secretaria[index]['endereco'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          )
 
-                        ],
-                      ),
-                    );
+                          ],
+                        ),
+                      );
+                    }
                   },
                 ),
               )

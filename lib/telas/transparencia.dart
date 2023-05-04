@@ -32,7 +32,7 @@ class _TransparenciaState extends State<Transparencia> {
       'de Estado de Saúde do Distrito Federal não possui informações classificadas neste sentido.';
 
   String texto2 = 'Existem informações consideradas imprescindíveis à segurança da sociedade '
-      'ou do Estado e, portanto, passíveis de classificação...';
+      'ou do Estado...';
 
 
   //textos da transparência passiva

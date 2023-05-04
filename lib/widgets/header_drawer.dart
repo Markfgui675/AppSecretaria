@@ -72,10 +72,10 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _nomeUsuarioLogado.length > 15 ? Text(_nomeUsuarioLogado,
-                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
+              _nomeUsuarioLogado.length > 20 ? Text(_nomeUsuarioLogado,
+                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.white),
               ) : Text(_nomeUsuarioLogado,
-                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 26, color: Colors.white),
+                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
               ),
               _emailUsuarioLogado.length > 20 ? Text(_emailUsuarioLogado,
                 style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.white),

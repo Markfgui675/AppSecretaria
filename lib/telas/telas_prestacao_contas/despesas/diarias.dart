@@ -24,19 +24,7 @@ class Diarias extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Uri link1 = Uri.parse(
-        'https://info.saude.df.gov.br/wp-content/uploads/2023/01/Relatorio_87696545_DIARIAS_2022__ate_maio_.pdf'
-    );
-
-    final Uri link2 = Uri.parse(
-        'https://info.saude.df.gov.br/wp-content/uploads/2023/01/Relatorio_87696545_DIARIAS_2022__ate_maio_.pdf'
-    );
-
-    final Uri link3 = Uri.parse(
-        'https://info.saude.df.gov.br/wp-content/uploads/2023/01/Relatorio_87696545_DIARIAS_2022__ate_maio_.pdf'
-    );
-
-    final Uri link4 = Uri.parse(
-        'https://info.saude.df.gov.br/wp-content/uploads/2023/01/Relatorio_87696545_DIARIAS_2022__ate_maio_.pdf'
+        'https://info.saude.df.gov.br/diariasepassagens/'
     );
 
     return Scaffold(
@@ -77,42 +65,6 @@ class Diarias extends StatelessWidget {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
                     ),
                     child: const Text('Demonstrativo de Despesas com diárias de 2022')
-                ),
-                SizedBox(height: sizedBox,),
-                ElevatedButton(
-                    onPressed: (){
-                      _launched = _launchInBrowser(link2);
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xfff2ab11),
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                    ),
-                    child: const Text('Demonstrativo de Despesas com diárias de 2020')
-                ),
-                SizedBox(height: sizedBox,),
-                ElevatedButton(
-                    onPressed: (){
-                      _launched = _launchInBrowser(link3);
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xfff2ab11),
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                    ),
-                    child: const Text('Demonstrativo de Despesas com diárias de 2019')
-                ),
-                SizedBox(height: sizedBox,),
-                ElevatedButton(
-                    onPressed: (){
-                      _launched = _launchInBrowser(link4);
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xfff2ab11),
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                    ),
-                    child: const Text('Demonstrativo de Despesas com diárias de 2018')
                 ),
 
               ],
