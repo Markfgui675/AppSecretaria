@@ -256,7 +256,7 @@ class _PesquisaQuemState extends State<PesquisaQuem> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           SizedBox(
-            height: MediaQuery.of(context).size.height*2,
+            height: MediaQuery.of(context).size.height*0.7,
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 itemCount: servidores.length,
