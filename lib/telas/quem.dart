@@ -34,7 +34,9 @@ class _QuemState extends State<Quem> {
     dropOpcoesEndereco.clear();
     int i = 0;
     bool c = true;
-    await db.collection('qq_pesquisa').get().then(
+
+    //Recuperação dos nomes
+    await db.collection('qq_pesquisa').orderBy("nome", descending: false).get().then(
             (querySnapshot){
           for (var docSnapshot in querySnapshot.docs){
             //print('${docSnapshot.data()}');
@@ -43,30 +45,42 @@ class _QuemState extends State<Quem> {
                 dropOpcoesNome.add(docSnapshot.data()['nome']);
               });
             }
-            if(true){
-              setState(() {
-                dropOpcoesSetor.add(docSnapshot.data()['setor']);
-              });
-            }
-            if(c){
-              setState(() {
-                dropOpcoesEndereco.add(docSnapshot.data()['endereco']);
-                c = !c;
-              });
-            }
-            if(existsIn(docSnapshot.data()['endereco'], dropOpcoesEndereco)){
-              //elemento existe na lista, portanto, não adiciona
-            } else {
-              setState(() {
-                dropOpcoesEndereco.add(docSnapshot.data()['endereco']);
-              });
-            }
-
 
           }
           return querySnapshot;
         },
         onError: (e) => print("Error completing: $e")
+    );
+
+    // Recuperação dos setores
+    await db.collection('qq_pesquisa').orderBy("setor", descending: false).get().then(
+        (querySnapshot){
+          for(var docSnapshot in querySnapshot.docs){
+            if(true){
+              setState(() {
+                dropOpcoesSetor.add(docSnapshot.data()['setor']);
+              });
+            }
+          }
+        }
+    );
+
+    //Recuperação dos endereços
+    await db.collection('qq_pesquisa').orderBy("endereco", descending: false).get().then(
+            (querySnapshot){
+          for(var docSnapshot in querySnapshot.docs){
+
+            if(existsIn(docSnapshot.data()['endereco'], dropOpcoesEndereco)){
+              //elemento existe na lista, portanto, não adiciona
+            } else {
+              //elemento não existe na lista, portanto, adiciona
+              setState(() {
+                dropOpcoesEndereco.add(docSnapshot.data()['endereco']);
+              });
+            }
+
+          }
+        }
     );
 
   }
