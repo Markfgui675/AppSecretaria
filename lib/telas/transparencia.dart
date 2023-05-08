@@ -43,9 +43,6 @@ class _TransparenciaState extends State<Transparencia> {
   String texto4 = 'A Transparência Ativa é a divulgação espontânea de informações pelo órgão público, enquanto a '
       'Transparência Passiva ocorre após uma solicitação de informação.';
 
-  String texto5 = 'O Participa DF é um canal que reúne os sistemas de Ouvidoria e de Informação ao Cidadão eletrônico, permitindo '
-      'a solicitação de acesso à informação e contato com a Ouvidoria/SES/DF.';
-
   Future<void>? _launched;
 
   Future<void> _launchInBrowser(Uri url) async {
@@ -732,11 +729,75 @@ class _TransparenciaState extends State<Transparencia> {
                 ),
               ),
 
-              //Transparencia Passiva
+              //Teste - serviço de informação ao cidadão
               Container(
                 padding: const EdgeInsets.all(10),
                 width: double.infinity,
                 height: 620,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          blurRadius: 12,
+                          offset: const Offset(0, 0)
+                      )
+                    ]
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+
+                    //SIC
+                    Text('Serviço de Informação ao Cidadão',
+                        style: GoogleFonts.kanit().copyWith(
+                            fontWeight: FontWeight.bold, fontSize: 22, color: Colors.black)),
+                    const SizedBox(height: 8,),
+                    Container(width: 180, height: 5, color: const Color(0xff2E6EA7),),
+                    const SizedBox(height: 25,),
+                    Text(texto3,
+                        style: GoogleFonts.kanit().copyWith(
+                            fontWeight: FontWeight.normal, fontSize: 16, color: Colors.black)),
+                    const SizedBox(height: 25,),
+                    Text(texto4,
+                        style: GoogleFonts.kanit().copyWith(
+                            fontWeight: FontWeight.normal, fontSize: 16, color: Colors.black)),
+                    const SizedBox(height: 25,),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => TransparenciaPassiva()));
+                      },
+                      child: Container(
+                        width: 150,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          border: const Border(),
+                          borderRadius: BorderRadius.circular(20),
+                          color: const Color(0xfff2ab11),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Text('Saiba Mais',
+                              style: GoogleFonts.kanit().copyWith(
+                                  fontWeight: FontWeight.bold, fontSize: 18, color: const Color(0xff2E6EA7)),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              //Transparencia Passiva
+              Container(
+                padding: const EdgeInsets.all(10),
+                width: double.infinity,
+                height: 520,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
@@ -765,10 +826,6 @@ class _TransparenciaState extends State<Transparencia> {
                             fontWeight: FontWeight.normal, fontSize: 16, color: Colors.black)),
                     const SizedBox(height: 25,),
                     Text(texto4,
-                        style: GoogleFonts.kanit().copyWith(
-                            fontWeight: FontWeight.normal, fontSize: 16, color: Colors.black)),
-                    const SizedBox(height: 25,),
-                    Text(texto5,
                         style: GoogleFonts.kanit().copyWith(
                             fontWeight: FontWeight.normal, fontSize: 16, color: Colors.black)),
                     const SizedBox(height: 25,),
