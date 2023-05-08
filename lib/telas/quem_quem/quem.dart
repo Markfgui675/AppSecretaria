@@ -1,12 +1,12 @@
+import 'package:app_secretaria_flutter/telas/quem_quem/filtra_quem.dart';
 import 'package:app_secretaria_flutter/widgets/pesquisa_quem.dart';
 import 'package:app_secretaria_flutter/widgets/quem_quem.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'dart:math';
 import 'package:exists_in/exists_in.dart';
+import 'package:speed_dial_fab/speed_dial_fab.dart';
 
 class Quem extends StatefulWidget {
   const Quem({Key? key}) : super(key: key);
@@ -32,8 +32,6 @@ class _QuemState extends State<Quem> {
     dropOpcoesNome.clear();
     dropOpcoesSetor.clear();
     dropOpcoesEndereco.clear();
-    int i = 0;
-    bool c = true;
 
     //Recuperação dos nomes
     await db.collection('qq_pesquisa').orderBy("nome", descending: false).get().then(
@@ -117,7 +115,6 @@ class _QuemState extends State<Quem> {
                         .toList(),
                     onChanged: (escolha) {
                       dropValueNome.value = escolha.toString();
-                      print(dropValueNome.value);
                     });
               }),
         ));
@@ -154,7 +151,6 @@ class _QuemState extends State<Quem> {
                         .toList(),
                     onChanged: (escolha) {
                       dropValueSetor.value = escolha.toString();
-                      print(dropValueSetor.value);
                     });
               }),
         ));
@@ -191,7 +187,6 @@ class _QuemState extends State<Quem> {
                         .toList(),
                     onChanged: (escolha) {
                       dropValueEndereco.value = escolha.toString();
-                      print(dropValueEndereco.value);
                     });
               }),
         ));
@@ -321,7 +316,7 @@ class _QuemState extends State<Quem> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(
+                                SizedBox(
                                   height: 50,
                                   child: Row(
                                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -362,15 +357,26 @@ class _QuemState extends State<Quem> {
 
 
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          floatingActionButton: FloatingActionButton(
-            backgroundColor: const Color(0xfff2ab11),
-            foregroundColor: Colors.white,
-            elevation: 6,
-            child: const FaIcon(FontAwesomeIcons.arrowUpRightFromSquare, color: Color(0xff2E6EA7), size: 15,),
-            onPressed: (){
-              _launched = _launchInBrowser(toLaunch);
-            },
-          ),
+          floatingActionButton: SpeedDialFabWidget(
+
+            secondaryIconsList: const [
+              Icons.filter_alt_rounded,
+              Icons.link,
+            ],
+            secondaryIconsText: const [
+              "Filtrar pesquisa",
+              "Info Saúde"
+            ],
+            secondaryIconsOnPress: [
+              () => Navigator.push(context, MaterialPageRoute(builder: (context) => FiltraQuem())),
+              () => _launched = _launchInBrowser(toLaunch)
+            ],
+            secondaryBackgroundColor: const Color(0xff2E6EA7),
+            secondaryForegroundColor: Colors.white,
+            primaryBackgroundColor: const Color(0xfff2ab11),
+            primaryForegroundColor: const Color(0xff2E6EA7),
+
+          )
 
 
         )

@@ -178,7 +178,7 @@ class _LoginState extends State<Login> {
                       ),
                       const SizedBox(height: 30,),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 25),
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
                         child: ElevatedButton(
                           autofocus: true,
                           onPressed: (){

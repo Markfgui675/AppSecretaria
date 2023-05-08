@@ -1,4 +1,4 @@
-import 'package:app_secretaria_flutter/telas/quem.dart';
+import 'package:app_secretaria_flutter/telas/quem_quem/quem.dart';
 import 'package:app_secretaria_flutter/telas/telas_transparencia/institucional/base_juridica.dart';
 import 'package:app_secretaria_flutter/telas/telas_transparencia/institucional/competencias.dart';
 import 'package:app_secretaria_flutter/telas/telas_transparencia/institucional/estrutura.dart';

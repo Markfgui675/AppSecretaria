@@ -46,8 +46,9 @@ dependencies:
   google_sign_in: ^6.0.2 #login com o google
   get: 4.2.0
   url_launcher: ^6.1.6 #para links externos
-  font_awesome_flutter: ^10.4.0
-  exists_in: ^0.0.1
+  font_awesome_flutter: ^10.4.0 #icons
+  exists_in: ^0.0.1 #verifica se um elemento existe ou não em uma lista
+  speed_dial_fab: ^2.3.0 #speed dial
 
 
 dev_dependencies:

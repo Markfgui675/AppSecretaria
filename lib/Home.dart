@@ -1,6 +1,6 @@
 import 'package:app_secretaria_flutter/telas/configuracoes.dart';
 import 'package:app_secretaria_flutter/telas/prestacao_contas.dart';
-import 'package:app_secretaria_flutter/telas/quem.dart';
+import 'package:app_secretaria_flutter/telas/quem_quem/quem.dart';
 import 'package:app_secretaria_flutter/telas/quizes.dart';
 import 'package:app_secretaria_flutter/telas/inicio.dart';
 import 'package:app_secretaria_flutter/telas/transparencia.dart';

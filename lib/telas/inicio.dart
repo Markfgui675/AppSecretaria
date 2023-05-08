@@ -1,4 +1,4 @@
-import 'package:app_secretaria_flutter/telas/quem.dart';
+import 'package:app_secretaria_flutter/telas/quem_quem/quem.dart';
 import 'package:app_secretaria_flutter/telas/quizes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
