@@ -8,7 +8,6 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'Home.dart';
-import 'TesteDropDown.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
