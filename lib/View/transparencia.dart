@@ -1,4 +1,5 @@
 import 'package:app_secretaria_flutter/View/quem_quem/quem.dart';
+import 'package:app_secretaria_flutter/View/sic/sic.dart';
 import 'package:app_secretaria_flutter/View/telas_transparencia/institucional/base_juridica.dart';
 import 'package:app_secretaria_flutter/View/telas_transparencia/institucional/competencias.dart';
 import 'package:app_secretaria_flutter/View/telas_transparencia/institucional/estrutura.dart';
@@ -731,9 +732,10 @@ class _TransparenciaState extends State<Transparencia> {
 
               //Teste - serviço de informação ao cidadão
               Container(
+                margin: const EdgeInsets.only(bottom: 70),
                 padding: const EdgeInsets.all(10),
                 width: double.infinity,
-                height: 620,
+                height: 560,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
@@ -767,7 +769,7 @@ class _TransparenciaState extends State<Transparencia> {
                     const SizedBox(height: 25,),
                     GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => TransparenciaPassiva()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => SiC()));
                       },
                       child: Container(
                         width: 150,

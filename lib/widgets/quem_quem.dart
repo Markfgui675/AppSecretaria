@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../Model/Servidor.dart';
+import '../View/servidor.dart';
+
 class QuemQuem extends StatefulWidget {
   const QuemQuem({Key? key}) : super(key: key);
 
@@ -15,23 +18,19 @@ class _QuemQuemState extends State<QuemQuem> {
 
   bool loading = false;
 
-  List secretaria = [];
-  List gabinete = [];
-  List secretarias_adjuntas = [];
-  List assessoria_juridico_lesgislativa = [];
-  List diretoria_executiva = [];
-  List controladoria_setorial = [];
-  List subsecretarias = [];
-  List superintendencias = [];
-  List unidades_referencia = [];
-  List orgaos_vinculados = [];
+  List<Servidor> secretaria = [];
+  List<Servidor> gabinete = [];
+  List<Servidor> secretarias_adjuntas = [];
+  List<Servidor> assessoria_juridico_lesgislativa = [];
+  List<Servidor> diretoria_executiva = [];
+  List<Servidor> controladoria_setorial = [];
+  List<Servidor> subsecretarias = [];
+  List<Servidor> superintendencias = [];
+  List<Servidor> unidades_referencia = [];
+  List<Servidor> orgaos_vinculados = [];
 
   _recuperaSecretaria() async {
 
-    setState(() {
-      loading = true;
-    });
-    List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
         await db.collection('qq_motra').doc('secretaria').collection('servidores').get().then(
@@ -39,28 +38,25 @@ class _QuemQuemState extends State<QuemQuem> {
           print("Successfully completed");
           for (var docSnapshot in querySnapshot.docs){
             print('${docSnapshot.data()}');
-            servidores1.add(docSnapshot.data());
+            Servidor servidor = Servidor();
+            servidor.id = docSnapshot.data()['id'];
+            servidor.nome = docSnapshot.data()['nome'];
+            servidor.setor = docSnapshot.data()['setor'];
+            servidor.telefone = docSnapshot.data()['telefone'];
+            servidor.endereco = docSnapshot.data()['endereco'];
+            setState(() {
+              secretaria.add(servidor);
+            });
           }
-          //print(servidores1);
-          setState(() {
-            secretaria = servidores1;
-          });
           print(secretaria);
           return querySnapshot;
         },
         onError: (e) => print("Error completing: $e")
     );
-    setState(() {
-      loading = false;
-    });
 
   }
   _recuperaGabinete() async {
 
-    setState(() {
-      loading = true;
-    });
-    List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
         await db.collection('qq_motra').doc('gabinete').collection('servidores').get().then(
@@ -68,28 +64,25 @@ class _QuemQuemState extends State<QuemQuem> {
           print("Successfully completed");
           for (var docSnapshot in querySnapshot.docs){
             print('${docSnapshot.data()}');
-            servidores1.add(docSnapshot.data());
+            Servidor servidor = Servidor();
+            servidor.id = docSnapshot.data()['id'];
+            servidor.nome = docSnapshot.data()['nome'];
+            servidor.setor = docSnapshot.data()['setor'];
+            servidor.telefone = docSnapshot.data()['telefone'];
+            servidor.endereco = docSnapshot.data()['endereco'];
+            setState(() {
+              gabinete.add(servidor);
+            });
           }
-          //print(servidores1);
-          setState(() {
-            gabinete = servidores1;
-          });
           print(gabinete);
           return querySnapshot;
         },
         onError: (e) => print("Error completing: $e")
     );
-    setState(() {
-      loading = true;
-    });
 
   }
   _recuperaSecretariaAdjuntas() async {
 
-    setState(() {
-      loading = true;
-    });
-    List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
         await db.collection('qq_motra').doc('secretarias_adjuntas').collection('servidores').get().then(
@@ -97,28 +90,25 @@ class _QuemQuemState extends State<QuemQuem> {
           print("Successfully completed");
           for (var docSnapshot in querySnapshot.docs){
             print('${docSnapshot.data()}');
-            servidores1.add(docSnapshot.data());
+            Servidor servidor = Servidor();
+            servidor.id = docSnapshot.data()['id'];
+            servidor.nome = docSnapshot.data()['nome'];
+            servidor.setor = docSnapshot.data()['setor'];
+            servidor.telefone = docSnapshot.data()['telefone'];
+            servidor.endereco = docSnapshot.data()['endereco'];
+            setState(() {
+              secretarias_adjuntas.add(servidor);
+            });
           }
-          //print(servidores1);
-          setState(() {
-            secretarias_adjuntas = servidores1;
-          });
           print(secretarias_adjuntas);
           return querySnapshot;
         },
         onError: (e) => print("Error completing: $e")
     );
-    setState(() {
-      loading = true;
-    });
 
   }
   _recuperaAssesorias() async {
 
-    setState(() {
-      loading = true;
-    });
-    List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
     await db.collection('qq_motra').doc('assessoria_juridico_lesgislativa').collection('servidores').get().then(
@@ -126,28 +116,25 @@ class _QuemQuemState extends State<QuemQuem> {
           print("Successfully completed");
           for (var docSnapshot in querySnapshot.docs){
             print('${docSnapshot.data()}');
-            servidores1.add(docSnapshot.data());
+            Servidor servidor = Servidor();
+            servidor.id = docSnapshot.data()['id'];
+            servidor.nome = docSnapshot.data()['nome'];
+            servidor.setor = docSnapshot.data()['setor'];
+            servidor.telefone = docSnapshot.data()['telefone'];
+            servidor.endereco = docSnapshot.data()['endereco'];
+            setState(() {
+              assessoria_juridico_lesgislativa.add(servidor);
+            });
           }
-          //print(servidores1);
-          setState(() {
-            assessoria_juridico_lesgislativa = servidores1;
-          });
           print(assessoria_juridico_lesgislativa);
           return querySnapshot;
         },
         onError: (e) => print("Error completing: $e")
     );
-    setState(() {
-      loading = true;
-    });
 
   }
   _recuperaDiretoriaExecutiva() async {
 
-    setState(() {
-      loading = true;
-    });
-    List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
     await db.collection('qq_motra').doc('diretoria_executiva').collection('servidores').get().then(
@@ -155,28 +142,25 @@ class _QuemQuemState extends State<QuemQuem> {
           print("Successfully completed");
           for (var docSnapshot in querySnapshot.docs){
             print('${docSnapshot.data()}');
-            servidores1.add(docSnapshot.data());
+            Servidor servidor = Servidor();
+            servidor.id = docSnapshot.data()['id'];
+            servidor.nome = docSnapshot.data()['nome'];
+            servidor.setor = docSnapshot.data()['setor'];
+            servidor.telefone = docSnapshot.data()['telefone'];
+            servidor.endereco = docSnapshot.data()['endereco'];
+            setState(() {
+              diretoria_executiva.add(servidor);
+            });
           }
-          //print(servidores1);
-          setState(() {
-            diretoria_executiva = servidores1;
-          });
           print(diretoria_executiva);
           return querySnapshot;
         },
         onError: (e) => print("Error completing: $e")
     );
-    setState(() {
-      loading = true;
-    });
 
   }
   _recuperaControladoria() async {
 
-    setState(() {
-      loading = true;
-    });
-    List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
     await db.collection('qq_motra').doc('controladoria_setorial').collection('servidores').get().then(
@@ -184,28 +168,25 @@ class _QuemQuemState extends State<QuemQuem> {
           print("Successfully completed");
           for (var docSnapshot in querySnapshot.docs){
             print('${docSnapshot.data()}');
-            servidores1.add(docSnapshot.data());
+            Servidor servidor = Servidor();
+            servidor.id = docSnapshot.data()['id'];
+            servidor.nome = docSnapshot.data()['nome'];
+            servidor.setor = docSnapshot.data()['setor'];
+            servidor.telefone = docSnapshot.data()['telefone'];
+            servidor.endereco = docSnapshot.data()['endereco'];
+            setState(() {
+              controladoria_setorial.add(servidor);
+            });
           }
-          //print(servidores1);
-          setState(() {
-            controladoria_setorial = servidores1;
-          });
           print(controladoria_setorial);
           return querySnapshot;
         },
         onError: (e) => print("Error completing: $e")
     );
-    setState(() {
-      loading = true;
-    });
 
   }
   _recuperaSubsecretarias() async {
 
-    setState(() {
-      loading = true;
-    });
-    List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
     await db.collection('qq_motra').doc('subsecretarias').collection('servidores').get().then(
@@ -213,28 +194,25 @@ class _QuemQuemState extends State<QuemQuem> {
           print("Successfully completed");
           for (var docSnapshot in querySnapshot.docs){
             print('${docSnapshot.data()}');
-            servidores1.add(docSnapshot.data());
+            Servidor servidor = Servidor();
+            servidor.id = docSnapshot.data()['id'];
+            servidor.nome = docSnapshot.data()['nome'];
+            servidor.setor = docSnapshot.data()['setor'];
+            servidor.telefone = docSnapshot.data()['telefone'];
+            servidor.endereco = docSnapshot.data()['endereco'];
+            setState(() {
+              subsecretarias.add(servidor);
+            });
           }
-          //print(servidores1);
-          setState(() {
-            subsecretarias = servidores1;
-          });
           print(subsecretarias);
           return querySnapshot;
         },
         onError: (e) => print("Error completing: $e")
     );
-    setState(() {
-      loading = true;
-    });
 
   }
   _recuperaSuperintendencias() async {
 
-    setState(() {
-      loading = true;
-    });
-    List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
         await db.collection('qq_motra').doc('superintendencias').collection('servidores').get().then(
@@ -242,28 +220,25 @@ class _QuemQuemState extends State<QuemQuem> {
           print("Successfully completed");
           for (var docSnapshot in querySnapshot.docs){
             print('${docSnapshot.data()}');
-            servidores1.add(docSnapshot.data());
+            Servidor servidor = Servidor();
+            servidor.id = docSnapshot.data()['id'];
+            servidor.nome = docSnapshot.data()['nome'];
+            servidor.setor = docSnapshot.data()['setor'];
+            servidor.telefone = docSnapshot.data()['telefone'];
+            servidor.endereco = docSnapshot.data()['endereco'];
+            setState(() {
+              superintendencias.add(servidor);
+            });
           }
-          //print(servidores1);
-          setState(() {
-            superintendencias = servidores1;
-          });
           print(superintendencias);
           return querySnapshot;
         },
         onError: (e) => print("Error completing: $e")
     );
-    setState(() {
-      loading = true;
-    });
 
   }
   _recuperaUnidadesReferenciais() async {
 
-    setState(() {
-      loading = true;
-    });
-    List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
     await db.collection('qq_motra').doc('unidades_referencia').collection('servidores').get().then(
@@ -271,28 +246,25 @@ class _QuemQuemState extends State<QuemQuem> {
           print("Successfully completed");
           for (var docSnapshot in querySnapshot.docs){
             print('${docSnapshot.data()}');
-            servidores1.add(docSnapshot.data());
+            Servidor servidor = Servidor();
+            servidor.id = docSnapshot.data()['id'];
+            servidor.nome = docSnapshot.data()['nome'];
+            servidor.setor = docSnapshot.data()['setor'];
+            servidor.telefone = docSnapshot.data()['telefone'];
+            servidor.endereco = docSnapshot.data()['endereco'];
+            setState(() {
+              unidades_referencia.add(servidor);
+            });
           }
-          //print(servidores1);
-          setState(() {
-            unidades_referencia = servidores1;
-          });
           print(unidades_referencia);
           return querySnapshot;
         },
         onError: (e) => print("Error completing: $e")
     );
-    setState(() {
-      loading = true;
-    });
 
   }
   _recuperaOrgaosVinculados() async {
 
-    setState(() {
-      loading = true;
-    });
-    List servidores1 = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot =
     await db.collection('qq_motra').doc('orgaos_vinculados').collection('servidores').get().then(
@@ -300,20 +272,21 @@ class _QuemQuemState extends State<QuemQuem> {
           print("Successfully completed");
           for (var docSnapshot in querySnapshot.docs){
             print('${docSnapshot.data()}');
-            servidores1.add(docSnapshot.data());
+            Servidor servidor = Servidor();
+            servidor.id = docSnapshot.data()['id'];
+            servidor.nome = docSnapshot.data()['nome'];
+            servidor.setor = docSnapshot.data()['setor'];
+            servidor.telefone = docSnapshot.data()['telefone'];
+            servidor.endereco = docSnapshot.data()['endereco'];
+            setState(() {
+              orgaos_vinculados.add(servidor);
+            });
           }
-          //print(servidores1);
-          setState(() {
-            orgaos_vinculados = servidores1;
-          });
           print(orgaos_vinculados);
           return querySnapshot;
         },
         onError: (e) => print("Error completing: $e")
     );
-    setState(() {
-      loading = true;
-    });
 
   }
 
@@ -363,10 +336,14 @@ class _QuemQuemState extends State<QuemQuem> {
                   itemCount: secretaria.length,
                   padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
-                    if(!loading){
-                      return Center(child: CircularProgressIndicator(),);
-                    } else {
-                      return Container(
+
+                    Servidor servidor = secretaria[index];
+
+                    return InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
+                      },
+                      child: Container(
                         padding: const EdgeInsets.all(10),
                         margin: const EdgeInsets.only(right: 20),
                         width: width_containers,
@@ -385,7 +362,7 @@ class _QuemQuemState extends State<QuemQuem> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(secretaria[index]['nome'],
+                            Text(servidor.nome,
                                 style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
                             const SizedBox(height: 8,),
                             Container(width: 180, height: 5, color: Colors.orange,),
@@ -395,7 +372,7 @@ class _QuemQuemState extends State<QuemQuem> {
                               children: [
                                 const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
                                 const SizedBox(width: 5,),
-                                Text(secretaria[index]['telefone'],
+                                Text(servidor.telefone,
                                     style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
                               ],
                             ),
@@ -405,15 +382,15 @@ class _QuemQuemState extends State<QuemQuem> {
                               children: [
                                 const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
                                 const SizedBox(width: 5,),
-                                Text(secretaria[index]['endereco'],
+                                Text(servidor.endereco,
                                     style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
                               ],
                             )
 
                           ],
                         ),
-                      );
-                    }
+                      ),
+                    );
                   },
                 ),
               )
@@ -437,55 +414,59 @@ class _QuemQuemState extends State<QuemQuem> {
                   itemCount: gabinete.length,
                   padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
-                    return Container(
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.only(right: 20),
-                      width: width_containers,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                blurRadius: 12,
-                                offset: Offset(0, 0)
-                            )
-                          ]
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(gabinete[index]['nome'],
-                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                          const SizedBox(height: 8,),
-                          Container(width: 180, height: 5, color: Colors.orange,),
-                          const SizedBox(height: 8,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Wrap(
-                                children: [
-                                  Text(gabinete[index]['telefone'],
-                                      style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                                ],
-                              )
-                            ],
-                          ),
-                          const SizedBox(height: 5,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(gabinete[index]['endereco'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          )
 
-                        ],
+                    Servidor servidor = gabinete[index];
+
+                    return InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.only(right: 20),
+                        width: 280,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  blurRadius: 12,
+                                  offset: Offset(0, 0)
+                              )
+                            ]
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(servidor.nome,
+                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                            const SizedBox(height: 8,),
+                            Container(width: 180, height: 5, color: Colors.orange,),
+                            const SizedBox(height: 8,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(servidor.telefone,
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            ),
+                            const SizedBox(height: 5,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(servidor.endereco,
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            )
+
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -511,51 +492,59 @@ class _QuemQuemState extends State<QuemQuem> {
                   itemCount: secretarias_adjuntas.length,
                   padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
-                    return Container(
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.only(right: 20),
-                      width: width_containers,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                blurRadius: 12,
-                                offset: Offset(0, 0)
-                            )
-                          ]
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(secretarias_adjuntas[index]['nome'],
-                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                          const SizedBox(height: 8,),
-                          Container(width: 180, height: 5, color: Colors.orange,),
-                          const SizedBox(height: 8,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(secretarias_adjuntas[index]['telefone'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          ),
-                          const SizedBox(height: 5,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(secretarias_adjuntas[index]['endereco'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          )
 
-                        ],
+                    Servidor servidor = secretarias_adjuntas[index];
+
+                    return InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.only(right: 20),
+                        width: 280,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  blurRadius: 12,
+                                  offset: Offset(0, 0)
+                              )
+                            ]
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(servidor.nome,
+                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                            const SizedBox(height: 8,),
+                            Container(width: 180, height: 5, color: Colors.orange,),
+                            const SizedBox(height: 8,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(servidor.telefone,
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            ),
+                            const SizedBox(height: 5,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(servidor.endereco,
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            )
+
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -582,51 +571,59 @@ class _QuemQuemState extends State<QuemQuem> {
                   itemCount: assessoria_juridico_lesgislativa.length,
                   padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
-                    return Container(
-                      padding: const EdgeInsets.all(10),
-                      margin: EdgeInsets.only(right: 20),
-                      width: width_containers,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                blurRadius: 12,
-                                offset: Offset(0, 0)
-                            )
-                          ]
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(assessoria_juridico_lesgislativa[index]['nome'],
-                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                          const SizedBox(height: 8,),
-                          Container(width: 180, height: 5, color: Colors.orange,),
-                          const SizedBox(height: 8,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(assessoria_juridico_lesgislativa[index]['telefone'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          ),
-                          const SizedBox(height: 5,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(assessoria_juridico_lesgislativa[index]['endereco'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          )
 
-                        ],
+                    Servidor servidor = assessoria_juridico_lesgislativa[index];
+
+                    return InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.only(right: 20),
+                        width: 280,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  blurRadius: 12,
+                                  offset: Offset(0, 0)
+                              )
+                            ]
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(servidor.nome,
+                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                            const SizedBox(height: 8,),
+                            Container(width: 180, height: 5, color: Colors.orange,),
+                            const SizedBox(height: 8,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(servidor.telefone,
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            ),
+                            const SizedBox(height: 5,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(servidor.endereco,
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            )
+
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -653,51 +650,59 @@ class _QuemQuemState extends State<QuemQuem> {
                   itemCount: diretoria_executiva.length,
                   padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
-                    return Container(
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.only(right: 20),
-                      width: 280,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                blurRadius: 12,
-                                offset: Offset(0, 0)
-                            )
-                          ]
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(diretoria_executiva[index]['nome'],
-                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                          const SizedBox(height: 8,),
-                          Container(width: 180, height: 5, color: Colors.orange,),
-                          const SizedBox(height: 8,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(diretoria_executiva[index]['telefone'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          ),
-                          const SizedBox(height: 5,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(diretoria_executiva[index]['endereco'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          )
 
-                        ],
+                    Servidor servidor = diretoria_executiva[index];
+
+                    return InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.only(right: 20),
+                        width: 280,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  blurRadius: 12,
+                                  offset: Offset(0, 0)
+                              )
+                            ]
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(servidor.nome,
+                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                            const SizedBox(height: 8,),
+                            Container(width: 180, height: 5, color: Colors.orange,),
+                            const SizedBox(height: 8,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(servidor.telefone,
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            ),
+                            const SizedBox(height: 5,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(servidor.endereco,
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            )
+
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -724,51 +729,59 @@ class _QuemQuemState extends State<QuemQuem> {
                   itemCount: controladoria_setorial.length,
                   padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
-                    return Container(
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.only(right: 20),
-                      width: 280,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                blurRadius: 12,
-                                offset: Offset(0, 0)
-                            )
-                          ]
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(controladoria_setorial[index]['nome'],
-                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                          const SizedBox(height: 8,),
-                          Container(width: 180, height: 5, color: Colors.orange,),
-                          const SizedBox(height: 8,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(controladoria_setorial[index]['telefone'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          ),
-                          const SizedBox(height: 5,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(controladoria_setorial[index]['endereco'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          )
 
-                        ],
+                    Servidor servidor = controladoria_setorial[index];
+
+                    return InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.only(right: 20),
+                        width: 280,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  blurRadius: 12,
+                                  offset: Offset(0, 0)
+                              )
+                            ]
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(servidor.nome,
+                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                            const SizedBox(height: 8,),
+                            Container(width: 180, height: 5, color: Colors.orange,),
+                            const SizedBox(height: 8,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(servidor.telefone,
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            ),
+                            const SizedBox(height: 5,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(servidor.endereco,
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            )
+
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -795,51 +808,59 @@ class _QuemQuemState extends State<QuemQuem> {
                   itemCount: subsecretarias.length,
                   padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
-                    return Container(
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.only(right: 20),
-                      width: 280,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                blurRadius: 12,
-                                offset: Offset(0, 0)
-                            )
-                          ]
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(subsecretarias[index]['nome'],
-                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                          const SizedBox(height: 8,),
-                          Container(width: 180, height: 5, color: Colors.orange,),
-                          const SizedBox(height: 8,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(subsecretarias[index]['telefone'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          ),
-                          const SizedBox(height: 5,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(subsecretarias[index]['endereco'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          )
 
-                        ],
+                    Servidor servidor = subsecretarias[index];
+
+                    return InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.only(right: 20),
+                        width: 280,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  blurRadius: 12,
+                                  offset: Offset(0, 0)
+                              )
+                            ]
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(servidor.nome,
+                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                            const SizedBox(height: 8,),
+                            Container(width: 180, height: 5, color: Colors.orange,),
+                            const SizedBox(height: 8,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(servidor.telefone,
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            ),
+                            const SizedBox(height: 5,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(servidor.endereco,
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            )
+
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -866,51 +887,59 @@ class _QuemQuemState extends State<QuemQuem> {
                   itemCount: superintendencias.length,
                   padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
-                    return Container(
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.only(right: 20),
-                      width: 280,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                blurRadius: 12,
-                                offset: Offset(0, 0)
-                            )
-                          ]
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(superintendencias[index]['nome'],
-                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                          const SizedBox(height: 8,),
-                          Container(width: 180, height: 5, color: Colors.orange,),
-                          const SizedBox(height: 8,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(superintendencias[index]['telefone'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          ),
-                          const SizedBox(height: 5,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(superintendencias[index]['endereco'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          )
 
-                        ],
+                    Servidor servidor = superintendencias[index];
+
+                    return InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.only(right: 20),
+                        width: 280,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  blurRadius: 12,
+                                  offset: Offset(0, 0)
+                              )
+                            ]
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(servidor.nome,
+                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                            const SizedBox(height: 8,),
+                            Container(width: 180, height: 5, color: Colors.orange,),
+                            const SizedBox(height: 8,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(servidor.telefone,
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            ),
+                            const SizedBox(height: 5,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(servidor.endereco,
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            )
+
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -937,51 +966,59 @@ class _QuemQuemState extends State<QuemQuem> {
                   itemCount: unidades_referencia.length,
                   padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
-                    return Container(
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.only(right: 20),
-                      width: 280,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                blurRadius: 12,
-                                offset: Offset(0, 0)
-                            )
-                          ]
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(unidades_referencia[index]['nome'],
-                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                          const SizedBox(height: 8,),
-                          Container(width: 180, height: 5, color: Colors.orange,),
-                          const SizedBox(height: 8,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(unidades_referencia[index]['telefone'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          ),
-                          const SizedBox(height: 5,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(unidades_referencia[index]['endereco'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          )
 
-                        ],
+                    Servidor servidor = unidades_referencia[index];
+
+                    return InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.only(right: 20),
+                        width: 280,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  blurRadius: 12,
+                                  offset: Offset(0, 0)
+                              )
+                            ]
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(servidor.nome,
+                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                            const SizedBox(height: 8,),
+                            Container(width: 180, height: 5, color: Colors.orange,),
+                            const SizedBox(height: 8,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(servidor.telefone,
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            ),
+                            const SizedBox(height: 5,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(servidor.endereco,
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            )
+
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -1008,51 +1045,59 @@ class _QuemQuemState extends State<QuemQuem> {
                   itemCount: orgaos_vinculados.length,
                   padding: const EdgeInsets.all(10),
                   itemBuilder: (_, index){
-                    return Container(
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.only(right: 20),
-                      width: 280,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                blurRadius: 12,
-                                offset: Offset(0, 0)
-                            )
-                          ]
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(orgaos_vinculados[index]['nome'],
-                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                          const SizedBox(height: 8,),
-                          Container(width: 180, height: 5, color: Colors.orange,),
-                          const SizedBox(height: 8,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(orgaos_vinculados[index]['telefone'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          ),
-                          const SizedBox(height: 5,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                              const SizedBox(width: 5,),
-                              Text(orgaos_vinculados[index]['endereco'],
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                            ],
-                          )
 
-                        ],
+                    Servidor servidor = orgaos_vinculados[index];
+
+                    return InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.only(right: 20),
+                        width: 280,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  blurRadius: 12,
+                                  offset: Offset(0, 0)
+                              )
+                            ]
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(servidor.nome,
+                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                            const SizedBox(height: 8,),
+                            Container(width: 180, height: 5, color: Colors.orange,),
+                            const SizedBox(height: 8,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(servidor.telefone,
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            ),
+                            const SizedBox(height: 5,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                                const SizedBox(width: 5,),
+                                Text(servidor.endereco,
+                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                              ],
+                            )
+
+                          ],
+                        ),
                       ),
                     );
                   },
