@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../Model/Servidor.dart';
-import '../telas/servidor.dart';
+import '../View/servidor.dart';
 
 class PesquisaQuem extends StatefulWidget {
   String valueName;

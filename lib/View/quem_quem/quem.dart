@@ -1,4 +1,3 @@
-import 'package:app_secretaria_flutter/telas/quem_quem/filtra_quem.dart';
 import 'package:app_secretaria_flutter/widgets/pesquisa_quem.dart';
 import 'package:app_secretaria_flutter/widgets/quem_quem.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:exists_in/exists_in.dart';
 import 'package:speed_dial_fab/speed_dial_fab.dart';
+
+import 'filtra_quem.dart';
 
 class Quem extends StatefulWidget {
   const Quem({Key? key}) : super(key: key);

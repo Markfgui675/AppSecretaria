@@ -1,10 +1,10 @@
 import 'package:app_secretaria_flutter/Model/Usuario.dart';
-import 'package:app_secretaria_flutter/telas/login.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../Home.dart';
 import 'cadastro.dart';
+import 'login.dart';
 
 class Entrada extends StatefulWidget {
   const Entrada({Key? key}) : super(key: key);

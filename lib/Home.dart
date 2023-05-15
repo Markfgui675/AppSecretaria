@@ -1,12 +1,13 @@
-import 'package:app_secretaria_flutter/telas/configuracoes.dart';
-import 'package:app_secretaria_flutter/telas/prestacao_contas.dart';
-import 'package:app_secretaria_flutter/telas/quem_quem/quem.dart';
-import 'package:app_secretaria_flutter/telas/quizes.dart';
-import 'package:app_secretaria_flutter/telas/inicio.dart';
-import 'package:app_secretaria_flutter/telas/transparencia.dart';
 import 'package:app_secretaria_flutter/widgets/header_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'View/configuracoes.dart';
+import 'View/inicio.dart';
+import 'View/prestacao_contas.dart';
+import 'View/quem_quem/quem.dart';
+import 'View/quizes.dart';
+import 'View/transparencia.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);

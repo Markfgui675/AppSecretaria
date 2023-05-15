@@ -1,4 +1,3 @@
-import 'package:app_secretaria_flutter/telas/entrada.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../Model/Usuario.dart';
+import 'entrada.dart';
 
 class Configuracoes extends StatefulWidget {
   const Configuracoes({Key? key}) : super(key: key);
