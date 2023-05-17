@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
       container = Inicio();
       atualPage = 'Início';
     } else if (currentPage == DrawerSections.quem) {
-      container = Quem();
+      container = Quem(false);
       atualPage = 'Quem é quem';
     } else if (currentPage == DrawerSections.prestacao_de_contas) {
       container = Prestacao();

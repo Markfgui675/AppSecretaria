@@ -10,7 +10,8 @@ import 'package:speed_dial_fab/speed_dial_fab.dart';
 import 'filtra_quem.dart';
 
 class Quem extends StatefulWidget {
-  const Quem({Key? key}) : super(key: key);
+  bool veioPelaTransparencia;
+  Quem(this.veioPelaTransparencia);
 
   @override
   State<Quem> createState() => _QuemState();
@@ -229,158 +230,164 @@ class _QuemState extends State<Quem> {
       fragment: '#'
     );
 
-    return SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          body: SingleChildScrollView(
-            child: Container(
-              width: double.infinity,
-              child: Column(
-                children: [
+    return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: widget.veioPelaTransparencia ? AppBar(
+            backgroundColor: const Color(0xff2E6EA7),
+            elevation: 0,
+            centerTitle: true,
+            title: Text('Quem é Quem',
+              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: Colors.white),
+            )) :
+        AppBar(backgroundColor: Colors.transparent, elevation: 0, toolbarHeight: 0),
+        body: SingleChildScrollView(
+          child: Container(
+            width: double.infinity,
+            child: Column(
+              children: [
 
-                  //Filtros e botão de pesquisar
-                  Container(
-                      width: double.infinity,
-                      height: 90,
-                      padding: const EdgeInsets.all(12),
-                      child:
-                      ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          filtroNome(),
-                          const SizedBox(width: 5,),
-                          filtroSetor(),
-                          const SizedBox(width: 5,),
-                          filtroEndereco(),
-                        ],
-                      )
-                  ),
-
-                  Container(
+                //Filtros e botão de pesquisar
+                Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.only(top: 12,left: 12),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                    height: 90,
+                    padding: const EdgeInsets.all(12),
+                    child:
+                    ListView(
+                      scrollDirection: Axis.horizontal,
                       children: [
-                        //Botão pesquisar
-                        ElevatedButton(
-                            onPressed: (){
-                              print(dropValueNome.value.toString());
-                              print(dropValueEndereco.value.toString());
-                              print(dropValueSetor.value.toString());
-                              setState(() {
-                                telaCorpo = false;
-                              });
-                              PesquisaQuem(dropValueNome.value.toString(), dropValueSetor.value.toString(), dropValueEndereco.value.toString());
-                            },
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor:  Color(0xff2E6EA7),
-                                elevation: 0,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  height: 50,
-                                  child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      const Icon(Icons.search),
-                                      const SizedBox(width: 5,),
-                                      Text('Pesquisar',
-                                        style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 16, color: Colors.white),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            )
-                        ),
-                        const SizedBox(width: 15,),
-                        //Botão remover filtros
-                        ElevatedButton(
-                            onPressed: (){
-                              setState(() {
-                                telaCorpo = true;
-                              });
-                              dropValueNome.value = '';
-                              dropValueSetor.value = '';
-                              dropValueEndereco.value = '';
-                              recuperaDados();
-                            },
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xfff2ab11),
-                                elevation: 0,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  height: 50,
-                                  child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      const Icon(Icons.cancel_outlined, color: Color(0xff2E6EA7),),
-                                      const SizedBox(width: 5,),
-                                      Text('Remover filtros',
-                                        style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 16, color: const Color(0xff2E6EA7)),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            )
-                        )
+                        filtroNome(),
+                        const SizedBox(width: 5,),
+                        filtroSetor(),
+                        const SizedBox(width: 5,),
+                        filtroEndereco(),
                       ],
-                    ),
+                    )
+                ),
+
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.only(top: 12,left: 12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      //Botão pesquisar
+                      ElevatedButton(
+                          onPressed: (){
+                            print(dropValueNome.value.toString());
+                            print(dropValueEndereco.value.toString());
+                            print(dropValueSetor.value.toString());
+                            setState(() {
+                              telaCorpo = false;
+                            });
+                            PesquisaQuem(dropValueNome.value.toString(), dropValueSetor.value.toString(), dropValueEndereco.value.toString());
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor:  Color(0xff2E6EA7),
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 50,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    const Icon(Icons.search),
+                                    const SizedBox(width: 5,),
+                                    Text('Pesquisar',
+                                      style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 16, color: Colors.white),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          )
+                      ),
+                      const SizedBox(width: 15,),
+                      //Botão remover filtros
+                      ElevatedButton(
+                          onPressed: (){
+                            setState(() {
+                              telaCorpo = true;
+                            });
+                            dropValueNome.value = '';
+                            dropValueSetor.value = '';
+                            dropValueEndereco.value = '';
+                            recuperaDados();
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xfff2ab11),
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: 50,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    const Icon(Icons.cancel_outlined, color: Color(0xff2E6EA7),),
+                                    const SizedBox(width: 5,),
+                                    Text('Remover filtros',
+                                      style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 16, color: const Color(0xff2E6EA7)),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          )
+                      )
+                    ],
                   ),
+                ),
 
 
-                  //corpo do quem é quem
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.only(top: 24, left: 16, right: 16, bottom: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: telaCorpo == false ? [
-                        PesquisaQuem(dropValueNome.value.toString(), dropValueSetor.value.toString(), dropValueEndereco.value.toString())
-                      ] : [
-                        QuemQuem()
-                      ],
-                    ),
+                //corpo do quem é quem
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.only(top: 24, left: 16, right: 16, bottom: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: telaCorpo == false ? [
+                      PesquisaQuem(dropValueNome.value.toString(), dropValueSetor.value.toString(), dropValueEndereco.value.toString())
+                    ] : [
+                      QuemQuem()
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
+        ),
 
 
-          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          floatingActionButton: SpeedDialFabWidget(
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: SpeedDialFabWidget(
 
-            secondaryIconsList: const [
-              Icons.filter_alt_rounded,
-              Icons.link,
-            ],
-            secondaryIconsText: const [
-              "Filtrar pesquisa",
-              "Info Saúde"
-            ],
-            secondaryIconsOnPress: [
-              () => Navigator.push(context, MaterialPageRoute(builder: (context) => FiltraQuem())),
-              () => _launched = _launchInBrowser(toLaunch)
-            ],
-            secondaryBackgroundColor: const Color(0xff2E6EA7),
-            secondaryForegroundColor: Colors.white,
-            primaryBackgroundColor: const Color(0xfff2ab11),
-            primaryForegroundColor: const Color(0xff2E6EA7),
-
-          )
-
+          secondaryIconsList: const [
+            Icons.filter_alt_rounded,
+            Icons.link,
+          ],
+          secondaryIconsText: const [
+            "Filtrar pesquisa",
+            "Info Saúde"
+          ],
+          secondaryIconsOnPress: [
+                () => Navigator.push(context, MaterialPageRoute(builder: (context) => FiltraQuem())),
+                () => _launched = _launchInBrowser(toLaunch)
+          ],
+          secondaryBackgroundColor: const Color(0xff2E6EA7),
+          secondaryForegroundColor: Colors.white,
+          primaryBackgroundColor: const Color(0xfff2ab11),
+          primaryForegroundColor: const Color(0xff2E6EA7),
 
         )
+
+
     );
   }
 }

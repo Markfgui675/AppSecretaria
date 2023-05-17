@@ -35,7 +35,6 @@ class _TransparenciaState extends State<Transparencia> {
   String texto2 = 'Existem informações consideradas imprescindíveis à segurança da sociedade '
       'ou do Estado...';
 
-
   //textos da transparência passiva
   String texto3 = 'A Lei de Acesso à Informação garante o direito de acesso '
       'às informações públicas, e as leis federais e distritais obrigam '
@@ -43,6 +42,15 @@ class _TransparenciaState extends State<Transparencia> {
 
   String texto4 = 'A Transparência Ativa é a divulgação espontânea de informações pelo órgão público, enquanto a '
       'Transparência Passiva ocorre após uma solicitação de informação.';
+
+  //textos do sic
+  String texto5 = 'A Lei de Acesso instituiu como um dever do Estado a criação de um ponto de contato entre '
+      'a sociedade e o setor público, que é o Serviço de Informações ao Cidadão - SIC.';
+
+  String texto6 = 'O Sistema Eletrônico do Serviço de Informações ao Cidadão - e-SIC é o canal '
+      'para registro de pedidos de acesso à informação, pela internet, '
+      'aos órgãos e entidades do Governo do Distrito Federal. No e-SIC é possível registrar o pedido, '
+      'consultar as respostas recebidas, entrar com recursos, entre outras ações.';
 
   Future<void>? _launched;
 
@@ -262,7 +270,7 @@ class _TransparenciaState extends State<Transparencia> {
                             //Quem é quem
                             InkWell(
                                 onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Quem()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Quem(true)));
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.all(10),
@@ -463,11 +471,11 @@ class _TransparenciaState extends State<Transparencia> {
                     const SizedBox(height: 8,),
                     Container(width: 180, height: 5, color: const Color(0xff2E6EA7),),
                     const SizedBox(height: 25,),
-                    Text(texto3,
+                    Text(texto5,
                         style: GoogleFonts.kanit().copyWith(
                             fontWeight: FontWeight.normal, fontSize: 16, color: Colors.black)),
                     const SizedBox(height: 25,),
-                    Text(texto4,
+                    Text(texto6,
                         style: GoogleFonts.kanit().copyWith(
                             fontWeight: FontWeight.normal, fontSize: 16, color: Colors.black)),
                     const SizedBox(height: 25,),
