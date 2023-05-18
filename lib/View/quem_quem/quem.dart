@@ -373,7 +373,7 @@ class _QuemState extends State<Quem> {
             Icons.link,
           ],
           secondaryIconsText: const [
-            "Filtrar pesquisa",
+            "Pesquisa com Filtros",
             "Info Saúde"
           ],
           secondaryIconsOnPress: [
