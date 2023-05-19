@@ -16,51 +16,41 @@ class _MobState extends State<Mob> {
 
   Controller controller = Controller();
 
+  _textField({String? labelText, onChanged, required String Function() errorText}){
+
+    return TextField(
+      onChanged: onChanged,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(),
+        labelText: labelText,
+        errorText: errorText == null ? null : errorText()
+      ),
+    );
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Formulário'),
+        centerTitle: true,
+      ),
       body: Container(
         padding: EdgeInsets.all(16),
         child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.all(16),
-              child: Observer(
-                builder: (_){
-                  return Text('');
-                },
-              ),
-            ),
-            Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(16),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Nome'
-                    ),
-                    onChanged: controller.changeName,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(16),
-                  child: TextField(
-                    decoration: InputDecoration(
-                        labelText: 'Sobrenome'
-                    ),
-                    onChanged: controller.changeLastname,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Observer(
-                    builder: (_){
-                      return Text('${controller.nomecompleto}');
-                    },
-                  ),
-                ),
-              ],
-            )
+
+              Observer(
+                  builder: (_){
+                    return _textField(
+                      labelText: 'name',
+                      onChanged: controller.cliente.changeName,
+                      errorText: controller.validateName
+                    );
+                  }
+              )
+
           ],
         ),
       ),
