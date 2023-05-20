@@ -8,7 +8,6 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'Home.dart';
 import 'View/entrada.dart';
-import 'mob.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Mob(),
+      home: Root(),
     );
   }
 }
