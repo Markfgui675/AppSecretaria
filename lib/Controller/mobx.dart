@@ -1,3 +1,4 @@
+import 'package:app_secretaria_flutter/widgets/pesquisa_semResultado.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobx/mobx.dart';
 
@@ -23,6 +24,8 @@ abstract class ControllerBase with Store {
   recuperarServidorFiltrados(String nome, String setor, String endereco) async {
 
     FirebaseFirestore db = FirebaseFirestore.instance;
+
+    servidores.clear();
 
     if(nome != '' && setor != '' && endereco != ''){
       await db.collection('qq_pesquisa')
@@ -180,6 +183,8 @@ abstract class ControllerBase with Store {
           },
           onError: (e) => print("Error completing: $e")
       );
+    } else if ((nome != '' || setor != '' || endereco != '') && servidores.length == 0) {
+      return servidores;
     } else {
       recuperarServidores();
     }
@@ -209,6 +214,14 @@ abstract class ControllerBase with Store {
         onError: (e) => print("Error completing: $e")
     );
 
+  }
+
+  @action
+  setLimparFiltro(){
+    nome = '';
+    setor = '';
+    endereco = '';
+    recuperarServidorFiltrados(nome, setor, endereco);
   }
 
   @observable

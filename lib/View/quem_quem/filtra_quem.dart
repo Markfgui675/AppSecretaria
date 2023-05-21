@@ -1,3 +1,4 @@
+import 'package:app_secretaria_flutter/widgets/pesquisa_semResultado.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:exists_in/exists_in.dart';
 import 'package:flutter/material.dart';
@@ -263,6 +264,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
         child: SizedBox(
           width: double.infinity,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                   width: double.infinity,
@@ -279,58 +281,104 @@ class _FiltraQuemState extends State<FiltraQuem> {
                       filtroEndereco(),
                     ],
                   )),
+              const SizedBox(height: 4,),
+
+              //Botão remover filtros
+              Padding(
+                padding: EdgeInsets.only(left: 12),
+                child: ElevatedButton(
+                    onPressed: (){
+                      dropValueNome.value = '';
+                      dropValueSetor.value = '';
+                      dropValueEndereco.value = '';
+                      controller.setLimparFiltro();
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xff2E6EA7),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                        fixedSize: Size(180, 50)
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 50,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Icon(Icons.cancel_outlined, color: Color(0xfff2ab11),),
+                              const SizedBox(width: 5,),
+                              Text('Remover filtros',
+                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 16, color: const Color(0xfff2ab11)),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    )
+                ),
+
+              ),
               const SizedBox(height: 24,),
+
+              // Resultado da pesquisa
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(
                     height: MediaQuery.of(context).size.height*0.75,
+                    width: double.infinity,
                     child: Observer(
                       builder: (_){
                         return Observer(
                             builder: (_){
-                              return ListView.builder(
-                                scrollDirection: Axis.vertical,
-                                itemCount: controller.listaFiltrada.length,
-                                shrinkWrap: true,
-                                padding: const EdgeInsets.all(10),
-                                itemBuilder: (_, index){
+                              if(controller.listaFiltrada.length == 0){
+                                return PesquisaSemResultado();
+                              } else {
+                                return ListView.builder(
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: controller.listaFiltrada.length,
+                                  shrinkWrap: true,
+                                  padding: const EdgeInsets.all(10),
+                                  itemBuilder: (_, index){
 
-                                  Servidor servidor = controller.listaFiltrada[index];
-                                  print('$servidor no index $index');
+                                    Servidor servidor = controller.listaFiltrada[index];
+                                    print('$servidor no index $index');
 
-                                  return InkWell(
-                                    onTap: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
-                                    },
-                                    child: Container(
-                                      margin: const EdgeInsets.only(bottom: 20),
-                                      height: 120,
-                                      width: 280,
-                                      padding: const EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(20),
-                                          boxShadow: [
-                                            BoxShadow(
-                                                color: Colors.grey.withOpacity(0.2),
-                                                blurRadius: 12,
-                                                offset: const Offset(0, 0)
-                                            )
-                                          ]
+                                    return InkWell(
+                                      onTap: (){
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
+                                      },
+                                      child: Container(
+                                        margin: const EdgeInsets.only(bottom: 20),
+                                        height: 120,
+                                        width: 280,
+                                        padding: const EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.circular(20),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  color: Colors.grey.withOpacity(0.2),
+                                                  blurRadius: 12,
+                                                  offset: const Offset(0, 0)
+                                              )
+                                            ]
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text(servidor.nome,
+                                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                                          ],
+                                        ),
                                       ),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Text(servidor.nome,
-                                              style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
-                              );
+                                    );
+                                  },
+                                );
+                              }
                             }
                         );
                       },
