@@ -44,7 +44,7 @@ app.*.map.json
 /android/app/release
 
 #arquivos a serem ignorados
-google-services.json
+/android/app/google-services.json
 client.dart
 client.g.dart
 mobx.g.dart

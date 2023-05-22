@@ -8,8 +8,12 @@ class PesquisaSemResultado extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      child: Text('Sem resultados para esses filtros.',
-        style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
+      child: Column(
+        children: <Widget>[
+          Text('Sem resultados para esses filtros.',
+            style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
+          )
+        ]
       ),
     );
   }

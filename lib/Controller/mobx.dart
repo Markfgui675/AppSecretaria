@@ -16,88 +16,18 @@ abstract class ControllerBase with Store {
 
   @computed
   List<dynamic> get listaFiltrada {
-    recuperarServidorFiltrados(nome, setor, endereco);
+    recuperarServidorFiltrados(nome, setor);
     return servidores;
   }
 
   @action
-  recuperarServidorFiltrados(String nome, String setor, String endereco) async {
+  recuperarServidorFiltrados(String nome, String setor) async {
 
     FirebaseFirestore db = FirebaseFirestore.instance;
 
     servidores.clear();
 
-    if(nome != '' && setor != '' && endereco != ''){
-      await db.collection('qq_pesquisa')
-          .where('nome', isEqualTo: nome)
-          .where('setor', isEqualTo: setor)
-          .where('endereco', isEqualTo: endereco).get().then(
-              (querySnapshot){
-            for (var docSnapshot in querySnapshot.docs){
-              print('${docSnapshot.data()}');
-              //servidores1.add(docSnapshot.data());
-              Servidor servidor = Servidor();
-              servidor.id = docSnapshot.data()['id'];
-              servidor.nome = docSnapshot.data()['nome'];
-              servidor.setor = docSnapshot.data()['setor'];
-              servidor.telefone = docSnapshot.data()['telefone'];
-              servidor.endereco = docSnapshot.data()['endereco'];
-              servidores.add(servidor);
-            }
-            return servidores;
-          },
-          onError: (e) => print("Error completing: $e")
-      );
-    } else if(nome == '' && setor != '' && endereco != ''){
-      //Pesquisa com setor e endereço - SE
-      print('Recuperação com filtragem');
-      print('setor e endereço');
-      await db.collection('qq_pesquisa')
-          .where('setor', isEqualTo: setor)
-          .where('endereco', isEqualTo: endereco).get().then(
-              (querySnapshot){
-            for (var docSnapshot in querySnapshot.docs){
-              print('${docSnapshot.data()}');
-              //servidores1.add(docSnapshot.data());
-              Servidor servidor = Servidor();
-              servidor.id = docSnapshot.data()['id'];
-              servidor.nome = docSnapshot.data()['nome'];
-              servidor.setor = docSnapshot.data()['setor'];
-              servidor.telefone = docSnapshot.data()['telefone'];
-              servidor.endereco = docSnapshot.data()['endereco'];
-              servidores.add(servidor);
-            }
-            return servidores;
-          },
-          onError: (e) => print("Error completing: $e")
-      );
-    } else if(nome != '' && setor == '' && endereco != ''){
-      //pesquisa com nome e endereço - NE
-      print('Recuperação com filtragem');
-      print('nome e endereço');
-      await db.collection('qq_pesquisa')
-          .where('nome', isEqualTo: nome)
-          .where('endereco', isEqualTo: endereco).get().then(
-              (querySnapshot){
-            for (var docSnapshot in querySnapshot.docs){
-              print('${docSnapshot.data()}');
-              //servidores1.add(docSnapshot.data());
-              Servidor servidor = Servidor();
-              servidor.id = docSnapshot.data()['id'];
-              servidor.nome = docSnapshot.data()['nome'];
-              servidor.setor = docSnapshot.data()['setor'];
-              servidor.telefone = docSnapshot.data()['telefone'];
-              servidor.endereco = docSnapshot.data()['endereco'];
-              servidores.add(servidor);
-            }
-            return servidores;
-          },
-          onError: (e) => print("Error completing: $e")
-      );
-    } else if(nome != '' && setor != '' && endereco == ''){
-      //pesquisa com nome e setor - NS
-      print('Recuperação com filtragem');
-      print('nome e setor');
+    if(nome != '' && setor != ''){
       await db.collection('qq_pesquisa')
           .where('nome', isEqualTo: nome)
           .where('setor', isEqualTo: setor).get().then(
@@ -117,7 +47,7 @@ abstract class ControllerBase with Store {
           },
           onError: (e) => print("Error completing: $e")
       );
-    } else if(nome != '' && setor == '' && endereco == ''){
+    } else if(nome != '' && setor == ''){
       //pesquisa apenas nome - N
       print('Recuperação com filtragem');
       print('nome');
@@ -139,7 +69,7 @@ abstract class ControllerBase with Store {
           },
           onError: (e) => print("Error completing: $e")
       );
-    } else if(nome == '' && setor != '' && endereco == ''){
+    } else if(nome == '' && setor != ''){
       //pesquisa apenas setor - S
       print('Recuperação com filtragem');
       print('setor');
@@ -161,29 +91,7 @@ abstract class ControllerBase with Store {
           },
           onError: (e) => print("Error completing: $e")
       );
-    } else if(nome == '' && setor == '' && endereco != ''){
-      //pesquisa apenas com endereço - S
-      print('Recuperação com filtragem');
-      print('endereço');
-      await db.collection('qq_pesquisa')
-          .where('endereco', isEqualTo: endereco).get().then(
-              (querySnapshot){
-            for (var docSnapshot in querySnapshot.docs){
-              print('${docSnapshot.data()}');
-              //servidores1.add(docSnapshot.data());
-              Servidor servidor = Servidor();
-              servidor.id = docSnapshot.data()['id'];
-              servidor.nome = docSnapshot.data()['nome'];
-              servidor.setor = docSnapshot.data()['setor'];
-              servidor.telefone = docSnapshot.data()['telefone'];
-              servidor.endereco = docSnapshot.data()['endereco'];
-              servidores.add(servidor);
-            }
-            return servidores;
-          },
-          onError: (e) => print("Error completing: $e")
-      );
-    } else if ((nome != '' || setor != '' || endereco != '') && servidores.length == 0) {
+    } else if ((nome != '' || setor != '') && servidores.length == 0) {
       return servidores;
     } else {
       recuperarServidores();
@@ -220,8 +128,7 @@ abstract class ControllerBase with Store {
   setLimparFiltro(){
     nome = '';
     setor = '';
-    endereco = '';
-    recuperarServidorFiltrados(nome, setor, endereco);
+    recuperarServidorFiltrados(nome, setor);
   }
 
   @observable
@@ -229,7 +136,7 @@ abstract class ControllerBase with Store {
   @action
   setNome(String value) {
     nome = value;
-    recuperarServidorFiltrados(nome, setor, endereco);
+    recuperarServidorFiltrados(nome, setor);
   }
 
   @observable
@@ -237,15 +144,7 @@ abstract class ControllerBase with Store {
   @action
   setSetor(String value) {
     setor = value;
-    recuperarServidorFiltrados(nome, setor, endereco);
-  }
-
-  @observable
-  String endereco = '';
-  @action
-  setEndereco(String value){
-    endereco = value;
-    recuperarServidorFiltrados(nome, setor, endereco);
+    recuperarServidorFiltrados(nome, setor);
   }
 
 }

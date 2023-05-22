@@ -1,3 +1,4 @@
+import 'package:app_secretaria_flutter/View/quem_quem/filtra_quem.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -305,6 +306,87 @@ class _QuemQuemState extends State<QuemQuem> {
 
   }
 
+  Widget _estrutraPadraoCaixa(String titulo, List<Servidor> lista){
+
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(titulo,
+            style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
+          ),
+          const SizedBox(height: 5,),
+          SizedBox(
+            height: height_containers,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: lista.length,
+              padding: const EdgeInsets.all(10),
+              itemBuilder: (_, index){
+
+                Servidor servidor = lista[index];
+
+                return InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.only(right: 20),
+                    width: 280,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              blurRadius: 12,
+                              offset: const Offset(0, 0)
+                          )
+                        ]
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(servidor.nome,
+                            style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                        const SizedBox(height: 8,),
+                        Container(width: 180, height: 5, color: Colors.orange,),
+                        const SizedBox(height: 8,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
+                            const SizedBox(width: 5,),
+                            Text(servidor.telefone,
+                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                          ],
+                        ),
+                        const SizedBox(height: 5,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
+                            const SizedBox(width: 5,),
+                            Text(servidor.endereco,
+                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
+                          ],
+                        )
+
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          )
+        ],
+      ),
+    );
+
+  }
+
   double width_containers = 280;
   double height_containers = 210;
 
@@ -320,13 +402,44 @@ class _QuemQuemState extends State<QuemQuem> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
 
-
+        //Container Secretária de Saúde (ESPECIAL)
         Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text('Secretária de Saúde',
-                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Secretária de Saúde',
+                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => FiltraQuem()));
+                    },
+                    child: Container(
+                      width: 130,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        border: const Border(),
+                        borderRadius: BorderRadius.circular(20),
+                        color: const Color(0xfff2ab11),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Text('Pesquisar',
+                            style: GoogleFonts.kanit().copyWith(
+                                fontWeight: FontWeight.bold, fontSize: 16, color: const Color(0xff2E6EA7)),
+                          ),
+                          const SizedBox(width: 5,),
+                          const Icon(Icons.search, color: Color(0xff2E6EA7),)
+                        ],
+                      ),
+                    ),
+                  )
+                ],
               ),
               const SizedBox(height: 5,),
               SizedBox(
@@ -399,713 +512,39 @@ class _QuemQuemState extends State<QuemQuem> {
         ),
         const SizedBox(height: 50,),
 
-        Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text('Gabinete',
-                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
-              ),
-              const SizedBox(height: 5,),
-              Container(
-                height: height_containers,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: gabinete.length,
-                  padding: const EdgeInsets.all(10),
-                  itemBuilder: (_, index){
-
-                    Servidor servidor = gabinete[index];
-
-                    return InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        margin: const EdgeInsets.only(right: 20),
-                        width: 280,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  blurRadius: 12,
-                                  offset: Offset(0, 0)
-                              )
-                            ]
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(servidor.nome,
-                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                            const SizedBox(height: 8,),
-                            Container(width: 180, height: 5, color: Colors.orange,),
-                            const SizedBox(height: 8,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                                const SizedBox(width: 5,),
-                                Text(servidor.telefone,
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                              ],
-                            ),
-                            const SizedBox(height: 5,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                                const SizedBox(width: 5,),
-                                Text(servidor.endereco,
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                              ],
-                            )
-
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              )
-            ],
-          ),
-        ),
+        _estrutraPadraoCaixa('Gabinete', gabinete),
         const SizedBox(height: 50,),
 
-        Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text('Secretarias Adjuntas',
-                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
-              ),
-              const SizedBox(height: 5,),
-              Container(
-                height: height_containers,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: secretarias_adjuntas.length,
-                  padding: const EdgeInsets.all(10),
-                  itemBuilder: (_, index){
-
-                    Servidor servidor = secretarias_adjuntas[index];
-
-                    return InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        margin: const EdgeInsets.only(right: 20),
-                        width: 280,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  blurRadius: 12,
-                                  offset: Offset(0, 0)
-                              )
-                            ]
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(servidor.nome,
-                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                            const SizedBox(height: 8,),
-                            Container(width: 180, height: 5, color: Colors.orange,),
-                            const SizedBox(height: 8,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                                const SizedBox(width: 5,),
-                                Text(servidor.telefone,
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                              ],
-                            ),
-                            const SizedBox(height: 5,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                                const SizedBox(width: 5,),
-                                Text(servidor.endereco,
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                              ],
-                            )
-
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              )
-            ],
-          ),
-        ),
+        _estrutraPadraoCaixa('Secretarias Adjuntas', secretarias_adjuntas),
         const SizedBox(height: 50,),
 
 
-        Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text('Assessoria Jurídico-Legislativa',
-                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
-              ),
-              const SizedBox(height: 5,),
-              Container(
-                height: height_containers,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: assessoria_juridico_lesgislativa.length,
-                  padding: const EdgeInsets.all(10),
-                  itemBuilder: (_, index){
-
-                    Servidor servidor = assessoria_juridico_lesgislativa[index];
-
-                    return InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        margin: const EdgeInsets.only(right: 20),
-                        width: 280,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  blurRadius: 12,
-                                  offset: Offset(0, 0)
-                              )
-                            ]
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(servidor.nome,
-                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                            const SizedBox(height: 8,),
-                            Container(width: 180, height: 5, color: Colors.orange,),
-                            const SizedBox(height: 8,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                                const SizedBox(width: 5,),
-                                Text(servidor.telefone,
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                              ],
-                            ),
-                            const SizedBox(height: 5,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                                const SizedBox(width: 5,),
-                                Text(servidor.endereco,
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                              ],
-                            )
-
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              )
-            ],
-          ),
-        ),
+        _estrutraPadraoCaixa('Assesoria Jurídico-Legislativa', assessoria_juridico_lesgislativa),
         const SizedBox(height: 50,),
 
 
-        Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text('Diretoria Executiva do Fundo de Saúde do Distrito Federal',
-                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
-              ),
-              const SizedBox(height: 5,),
-              Container(
-                height: height_containers,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: diretoria_executiva.length,
-                  padding: const EdgeInsets.all(10),
-                  itemBuilder: (_, index){
-
-                    Servidor servidor = diretoria_executiva[index];
-
-                    return InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        margin: const EdgeInsets.only(right: 20),
-                        width: 280,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  blurRadius: 12,
-                                  offset: Offset(0, 0)
-                              )
-                            ]
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(servidor.nome,
-                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                            const SizedBox(height: 8,),
-                            Container(width: 180, height: 5, color: Colors.orange,),
-                            const SizedBox(height: 8,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                                const SizedBox(width: 5,),
-                                Text(servidor.telefone,
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                              ],
-                            ),
-                            const SizedBox(height: 5,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                                const SizedBox(width: 5,),
-                                Text(servidor.endereco,
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                              ],
-                            )
-
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              )
-            ],
-          ),
-        ),
+        _estrutraPadraoCaixa('Diretoria Executiva do Fundo de Saúde do Distrito Federal', diretoria_executiva),
         const SizedBox(height: 50,),
 
 
-        Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text('Controladoria Setorial da Saúde',
-                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
-              ),
-              const SizedBox(height: 5,),
-              Container(
-                height: height_containers,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: controladoria_setorial.length,
-                  padding: const EdgeInsets.all(10),
-                  itemBuilder: (_, index){
-
-                    Servidor servidor = controladoria_setorial[index];
-
-                    return InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        margin: const EdgeInsets.only(right: 20),
-                        width: 280,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  blurRadius: 12,
-                                  offset: Offset(0, 0)
-                              )
-                            ]
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(servidor.nome,
-                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                            const SizedBox(height: 8,),
-                            Container(width: 180, height: 5, color: Colors.orange,),
-                            const SizedBox(height: 8,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                                const SizedBox(width: 5,),
-                                Text(servidor.telefone,
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                              ],
-                            ),
-                            const SizedBox(height: 5,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                                const SizedBox(width: 5,),
-                                Text(servidor.endereco,
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                              ],
-                            )
-
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              )
-            ],
-          ),
-        ),
+        _estrutraPadraoCaixa('Controladoria Setorail da Saúde', controladoria_setorial),
         const SizedBox(height: 50,),
 
 
-        Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text('Subsecretarias',
-                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
-              ),
-              const SizedBox(height: 5,),
-              Container(
-                height: height_containers,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: subsecretarias.length,
-                  padding: const EdgeInsets.all(10),
-                  itemBuilder: (_, index){
-
-                    Servidor servidor = subsecretarias[index];
-
-                    return InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        margin: const EdgeInsets.only(right: 20),
-                        width: 280,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  blurRadius: 12,
-                                  offset: Offset(0, 0)
-                              )
-                            ]
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(servidor.nome,
-                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                            const SizedBox(height: 8,),
-                            Container(width: 180, height: 5, color: Colors.orange,),
-                            const SizedBox(height: 8,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                                const SizedBox(width: 5,),
-                                Text(servidor.telefone,
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                              ],
-                            ),
-                            const SizedBox(height: 5,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                                const SizedBox(width: 5,),
-                                Text(servidor.endereco,
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                              ],
-                            )
-
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              )
-            ],
-          ),
-        ),
+        _estrutraPadraoCaixa('Subsecretarias', subsecretarias),
         const SizedBox(height: 50,),
 
 
-        Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text('Superintendências',
-                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
-              ),
-              const SizedBox(height: 5,),
-              Container(
-                height: height_containers,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: superintendencias.length,
-                  padding: const EdgeInsets.all(10),
-                  itemBuilder: (_, index){
-
-                    Servidor servidor = superintendencias[index];
-
-                    return InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        margin: const EdgeInsets.only(right: 20),
-                        width: 280,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  blurRadius: 12,
-                                  offset: Offset(0, 0)
-                              )
-                            ]
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(servidor.nome,
-                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                            const SizedBox(height: 8,),
-                            Container(width: 180, height: 5, color: Colors.orange,),
-                            const SizedBox(height: 8,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                                const SizedBox(width: 5,),
-                                Text(servidor.telefone,
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                              ],
-                            ),
-                            const SizedBox(height: 5,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                                const SizedBox(width: 5,),
-                                Text(servidor.endereco,
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                              ],
-                            )
-
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              )
-            ],
-          ),
-        ),
+        _estrutraPadraoCaixa('Superintedências', superintendencias),
         const SizedBox(height: 50,),
 
 
-        Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text('Unidades de Referência Distrital ',
-                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
-              ),
-              const SizedBox(height: 5,),
-              Container(
-                height: height_containers,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: unidades_referencia.length,
-                  padding: const EdgeInsets.all(10),
-                  itemBuilder: (_, index){
-
-                    Servidor servidor = unidades_referencia[index];
-
-                    return InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        margin: const EdgeInsets.only(right: 20),
-                        width: 280,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  blurRadius: 12,
-                                  offset: Offset(0, 0)
-                              )
-                            ]
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(servidor.nome,
-                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                            const SizedBox(height: 8,),
-                            Container(width: 180, height: 5, color: Colors.orange,),
-                            const SizedBox(height: 8,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                                const SizedBox(width: 5,),
-                                Text(servidor.telefone,
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                              ],
-                            ),
-                            const SizedBox(height: 5,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                                const SizedBox(width: 5,),
-                                Text(servidor.endereco,
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                              ],
-                            )
-
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              )
-            ],
-          ),
-        ),
+        _estrutraPadraoCaixa('Unidades de Referência Distrital', unidades_referencia),
         const SizedBox(height: 50,),
 
 
-        Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text('Órgãos Vinculados',
-                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 22, color: const Color(0xff2E6EA7)),
-              ),
-              const SizedBox(height: 5,),
-              Container(
-                height: height_containers,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: orgaos_vinculados.length,
-                  padding: const EdgeInsets.all(10),
-                  itemBuilder: (_, index){
-
-                    Servidor servidor = orgaos_vinculados[index];
-
-                    return InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)));
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        margin: const EdgeInsets.only(right: 20),
-                        width: 280,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  blurRadius: 12,
-                                  offset: Offset(0, 0)
-                              )
-                            ]
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(servidor.nome,
-                                style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
-                            const SizedBox(height: 8,),
-                            Container(width: 180, height: 5, color: Colors.orange,),
-                            const SizedBox(height: 8,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const Icon(Icons.phone, size: 20, color: Color(0xff2E6EA7),),
-                                const SizedBox(width: 5,),
-                                Text(servidor.telefone,
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                              ],
-                            ),
-                            const SizedBox(height: 5,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const FaIcon(FontAwesomeIcons.mapLocationDot, size: 20, color: Color(0xff2E6EA7),),
-                                const SizedBox(width: 5,),
-                                Text(servidor.endereco,
-                                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black))
-                              ],
-                            )
-
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              )
-            ],
-          ),
-        ),
+        _estrutraPadraoCaixa('Órgãos Vinculados', orgaos_vinculados),
+        const SizedBox(height: 50,),
 
       ],
     );

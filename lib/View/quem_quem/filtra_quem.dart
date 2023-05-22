@@ -27,15 +27,11 @@ class _FiltraQuemState extends State<FiltraQuem> {
   final dropValueSetor = ValueNotifier('');
   final dropOpcoesSetor = [''];
 
-  final dropValueEndereco = ValueNotifier('');
-  final dropOpcoesEndereco = [''];
-
   recuperaDados() async {
     FirebaseFirestore db = FirebaseFirestore.instance;
 
     dropOpcoesNome.clear();
     dropOpcoesSetor.clear();
-    dropOpcoesEndereco.clear();
 
     //Recuperação dos nomes
     await db.collection('qq_pesquisa').orderBy("nome", descending: false).get().then(
@@ -67,24 +63,6 @@ class _FiltraQuemState extends State<FiltraQuem> {
         }
     );
 
-    //Recuperação dos endereços
-    await db.collection('qq_pesquisa').orderBy("endereco", descending: false).get().then(
-            (querySnapshot){
-          for(var docSnapshot in querySnapshot.docs){
-
-            if(existsIn(docSnapshot.data()['endereco'], dropOpcoesEndereco)){
-              //elemento existe na lista, portanto, não adiciona
-            } else {
-              //elemento não existe na lista, portanto, adiciona
-              setState(() {
-                dropOpcoesEndereco.add(docSnapshot.data()['endereco']);
-              });
-            }
-
-          }
-        }
-    );
-
   }
 
   Widget filtroNome() {
@@ -99,13 +77,13 @@ class _FiltraQuemState extends State<FiltraQuem> {
           ),
           child: ValueListenableBuilder(
               valueListenable: dropValueNome,
-              builder: (BuildContext context,
-                  String value, _) {
-                return DropdownButtonFormField<
-                        String>(
+              builder: (BuildContext context, String value, _) {
+                return DropdownButtonFormField<String>(
                     borderRadius:
                         BorderRadius.circular(20),
                     elevation: 3,
+                    menuMaxHeight: 500.0,
+                    iconEnabledColor: const Color(0xff2E6EA7),
                     dropdownColor: Colors.white,
                     isExpanded: true,
                     decoration:
@@ -150,13 +128,13 @@ class _FiltraQuemState extends State<FiltraQuem> {
           ),
           child: ValueListenableBuilder(
               valueListenable: dropValueSetor,
-              builder: (BuildContext context,
-                  String value, _) {
-                return DropdownButtonFormField<
-                        String>(
+              builder: (BuildContext context, String value, _) {
+                return DropdownButtonFormField<String>(
                     borderRadius:
                         BorderRadius.circular(20),
                     elevation: 3,
+                    menuMaxHeight: 500.0,
+                    iconEnabledColor: const Color(0xff2E6EA7),
                     dropdownColor: Colors.white,
                     isExpanded: true,
                     decoration:
@@ -169,8 +147,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                             fontWeight:
                                 FontWeight.normal,
                             fontSize: 15,
-                            color: const Color(
-                                0xff2E6EA7)),
+                            color: const Color(0xff2E6EA7)),
                     value: (value.isEmpty)
                         ? null
                         : value,
@@ -189,59 +166,8 @@ class _FiltraQuemState extends State<FiltraQuem> {
         ));
   }
 
-  Widget filtroEndereco() {
-    return SizedBox(
-        width: 330,
-        child: Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            borderRadius:
-                BorderRadius.circular(20),
-            color: const Color(0xfff2ab11),
-          ),
-          child: ValueListenableBuilder(
-              valueListenable: dropValueEndereco,
-              builder: (BuildContext context,
-                  String value, _) {
-                return DropdownButtonFormField<
-                        String>(
-                    borderRadius:
-                        BorderRadius.circular(20),
-                    elevation: 3,
-                    dropdownColor: Colors.white,
-                    isExpanded: true,
-                    decoration:
-                        const InputDecoration(
-                      border: InputBorder.none,
-                    ),
-                    hint: const Text("Endereço"),
-                    style: GoogleFonts.kanit()
-                        .copyWith(
-                            fontWeight:
-                                FontWeight.normal,
-                            fontSize: 15,
-                            color: const Color(
-                                0xff2E6EA7)),
-                    value: (value.isEmpty)
-                        ? null
-                        : value,
-                    items: dropOpcoesEndereco
-                        .map((opcao) =>
-                            DropdownMenuItem(
-                                value: opcao,
-                                child:
-                                    Text(opcao)))
-                        .toList(),
-                    onChanged: (escolha) {
-                      dropValueEndereco.value = escolha.toString();
-                      controller.setEndereco(dropValueEndereco.value.toString());
-                    });
-              }),
-        ));
-  }
-
   void initState() {
-    controller.recuperarServidorFiltrados('', '', '');
+    controller.recuperarServidorFiltrados('', '');
     recuperaDados();
     super.initState();
   }
@@ -274,11 +200,9 @@ class _FiltraQuemState extends State<FiltraQuem> {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-                      filtroNome(),
-                      const SizedBox(width: 5,),
                       filtroSetor(),
                       const SizedBox(width: 5,),
-                      filtroEndereco(),
+                      filtroNome(),
                     ],
                   )),
               const SizedBox(height: 4,),
@@ -290,7 +214,6 @@ class _FiltraQuemState extends State<FiltraQuem> {
                     onPressed: (){
                       dropValueNome.value = '';
                       dropValueSetor.value = '';
-                      dropValueEndereco.value = '';
                       controller.setLimparFiltro();
                     },
                     style: ElevatedButton.styleFrom(

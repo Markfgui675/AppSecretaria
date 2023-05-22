@@ -246,7 +246,7 @@ class _SicScreenState extends State<SicScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text('Normas e Regulamentação',
-                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                                  style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.bold, fontSize: 17, color: Colors.black)),
                               const SizedBox(height: 8,),
                               Container(width: 180, height: 5, color: Colors.orange,),
 

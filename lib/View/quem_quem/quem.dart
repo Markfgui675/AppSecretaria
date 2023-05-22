@@ -1,5 +1,6 @@
 import 'package:app_secretaria_flutter/widgets/quem_quem.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:speed_dial_fab/speed_dial_fab.dart';
@@ -70,25 +71,33 @@ class _QuemState extends State<Quem> {
 
 
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        floatingActionButton: SpeedDialFabWidget(
-
-          secondaryIconsList: const [
-            Icons.filter_alt_rounded,
-            Icons.link,
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 12, right: 12),
+              child: FloatingActionButton.extended(
+                onPressed: (){
+                  _launched = _launchInBrowser(toLaunch);
+                },
+                backgroundColor: const Color(0xfff2ab11),
+                label: Text('InfoSaúde - DF',
+                  style: GoogleFonts.kanit().copyWith(
+                      fontWeight: FontWeight.bold, fontSize: 16, color: const Color(0xff2E6EA7)),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 12, right: 12),
+              child: FloatingActionButton(
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => FiltraQuem()));
+                },
+                backgroundColor: const Color(0xfff2ab11),
+                child: const Icon(Icons.search, color: Color(0xff2E6EA7),),
+              ),
+            ),
           ],
-          secondaryIconsText: const [
-            "Pesquisa com Filtros",
-            "Info Saúde"
-          ],
-          secondaryIconsOnPress: [
-                () => Navigator.push(context, MaterialPageRoute(builder: (context) => FiltraQuem())),
-                () => _launched = _launchInBrowser(toLaunch)
-          ],
-          secondaryBackgroundColor: const Color(0xff2E6EA7),
-          secondaryForegroundColor: Colors.white,
-          primaryBackgroundColor: const Color(0xfff2ab11),
-          primaryForegroundColor: const Color(0xff2E6EA7),
-
         )
 
 
