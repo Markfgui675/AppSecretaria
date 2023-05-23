@@ -8,55 +8,62 @@ class Tests extends StatefulWidget {
 }
 
 class _TestsState extends State<Tests> {
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(child: Scaffold(
+      backgroundColor: Colors.green,
       body: Container(
         child: Stack(
           children: [
-            DraggableScrollableSheet(
-                initialChildSize: 0.3,
-                minChildSize: 0.3,
-                maxChildSize: 0.5,
-                builder: (_, scrollController){
-                  return Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(10))
-                    ),
-                    child: Column(
-                      children: [
-                        Padding(
-                            padding: EdgeInsets.all(16),
-                          child: Container(width: 50, height: 6, color: Colors.black,),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(12),
-                          child: SizedBox(
-                            height: MediaQuery.of(context).size.height*0.3,
-                            child: ListView.separated(
-                                controller: scrollController,
-                                itemBuilder: (context, index){
-                                  return ListTile(
-                                    title: Text('Item $index'),
-                                  );
-                                },
-                                separatorBuilder: (kl, lk){
-                                  return const Divider();
-                                },
-                                itemCount: 20
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 10),
+                child: InkWell(
+                  onTap: (){
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (context){
+                          return Container(
+                            height: 120,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                InkWell(
+                                  onTap: (){
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text('Teste'),
+                                ),
+                                InkWell(
+                                  onTap: (){},
+                                  child: Text('Teste'),
+                                )
+                              ],
                             ),
-                          ),
-                        )
-                      ],
+                          );
+                        }
+                    );
+                  },
+                  child: Container(
+                    width: 45,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      color: Colors.redAccent,
+                      borderRadius: BorderRadius.circular(10)
                     ),
-                  );
-                }
+                    child: Center(
+                      child: Icon(Icons.add, color: Colors.white, size: 32,),
+                    ),
+                  ),
+                ),
+              ),
             )
           ],
         ),
       ),
-    );
+    ));
   }
 }
 

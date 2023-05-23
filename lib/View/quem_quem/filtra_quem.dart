@@ -21,11 +21,22 @@ class _FiltraQuemState extends State<FiltraQuem> {
 
   Mobx controller = Mobx();
 
+  bool _selected = false;
+
+  String _valueFiltro = '';
+
   final dropValueNome = ValueNotifier('');
-  final dropOpcoesNome = [''];
+  List<Servidor> dropOpcoesNome = [];
 
   final dropValueSetor = ValueNotifier('');
   final dropOpcoesSetor = [''];
+
+  //Lista inicial para os setores
+  final dropOpcoesSetorInicial = [
+    'Secretaria Adjunta de Assistência à Saúde - SAA',
+    'Secretatira Adjunta de Gestão em Saúde - SAG',
+    'Secretário Adjunto Executivo em Saúde - SAE'
+  ];
 
   recuperaDados() async {
     FirebaseFirestore db = FirebaseFirestore.instance;
@@ -38,9 +49,15 @@ class _FiltraQuemState extends State<FiltraQuem> {
             (querySnapshot){
           for (var docSnapshot in querySnapshot.docs){
             //print('${docSnapshot.data()}');
+            Servidor servidor = Servidor();
             if(true){
+              servidor.id = docSnapshot.data()['id'];
+              servidor.nome = docSnapshot.data()['nome'];
+              servidor.setor = docSnapshot.data()['setor'];
+              servidor.telefone = docSnapshot.data()['telefone'];
+              servidor.endereco = docSnapshot.data()['endereco'];
               setState(() {
-                dropOpcoesNome.add(docSnapshot.data()['nome']);
+                dropOpcoesNome.add(servidor);
               });
             }
 
@@ -65,106 +82,161 @@ class _FiltraQuemState extends State<FiltraQuem> {
 
   }
 
-  Widget filtroNome() {
-    return SizedBox(
+  Widget buttonFiltro({required String text, required Function() onTap}){
+    return InkWell(
+      onTap: onTap,
+      child: Container(
         width: 240,
-        child: Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            borderRadius:
-                BorderRadius.circular(20),
-            color: const Color(0xfff2ab11),
-          ),
-          child: ValueListenableBuilder(
-              valueListenable: dropValueNome,
-              builder: (BuildContext context, String value, _) {
-                return DropdownButtonFormField<String>(
-                    borderRadius:
-                        BorderRadius.circular(20),
-                    elevation: 3,
-                    menuMaxHeight: 500.0,
-                    iconEnabledColor: const Color(0xff2E6EA7),
-                    dropdownColor: Colors.white,
-                    isExpanded: true,
-                    decoration:
-                        const InputDecoration(
-                      border: InputBorder.none,
-                    ),
-                    hint: const Text("Nome"),
-                    style: GoogleFonts.kanit()
-                        .copyWith(
-                            fontWeight:
-                                FontWeight.normal,
-                            fontSize: 15,
-                            color: const Color(
-                                0xff2E6EA7)),
-                    value: (value.isEmpty)
-                        ? null
-                        : value,
-                    items: dropOpcoesNome
-                        .map((opcao) =>
-                            DropdownMenuItem(
-                              value: opcao,
-                              child: Text(opcao),
-                            ))
-                        .toList(),
-                    onChanged: (escolha) {
-                      dropValueNome.value = escolha.toString();
-                      controller.setNome(dropValueNome.value.toString());
-                    });
-              }),
-        ));
+        height: 60,
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: const Color(0xfff2ab11)
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(text,
+                style: GoogleFonts.kanit()
+                    .copyWith(
+                    fontWeight:
+                    FontWeight.normal,
+                    fontSize: 15,
+                    color: Colors.black)
+            ),
+            const Icon(Icons.arrow_drop_down_outlined, color: Color(0xff2E6EA7),)
+          ],
+        ),
+      ),
+    );
   }
 
-  Widget filtroSetor() {
-    return SizedBox(
-        width: 240,
-        child: Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            borderRadius:
-                BorderRadius.circular(20),
-            color: const Color(0xfff2ab11),
-          ),
-          child: ValueListenableBuilder(
-              valueListenable: dropValueSetor,
-              builder: (BuildContext context, String value, _) {
-                return DropdownButtonFormField<String>(
-                    borderRadius:
-                        BorderRadius.circular(20),
-                    elevation: 3,
-                    menuMaxHeight: 500.0,
-                    iconEnabledColor: const Color(0xff2E6EA7),
-                    dropdownColor: Colors.white,
-                    isExpanded: true,
-                    decoration:
-                        const InputDecoration(
-                      border: InputBorder.none,
+  Future modalNome(){
+    return showModalBottomSheet(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(30),
+          topLeft: Radius.circular(30)
+        )
+      ),
+        context: context,
+        builder: (context){
+          return Container(
+            padding: const EdgeInsets.all(22),
+            height: 580,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+
+                    Text('Nome',
+                        style: GoogleFonts.kanit().copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.black)
                     ),
-                    hint: const Text("Setor"),
-                    style: GoogleFonts.kanit()
-                        .copyWith(
-                            fontWeight:
-                                FontWeight.normal,
-                            fontSize: 15,
-                            color: const Color(0xff2E6EA7)),
-                    value: (value.isEmpty)
-                        ? null
-                        : value,
-                    items: dropOpcoesSetor
-                        .map((opcao) =>
-                            DropdownMenuItem(
-                              value: opcao,
-                              child: Text(opcao),
-                            ))
-                        .toList(),
-                    onChanged: (escolha) {
-                      dropValueSetor.value = escolha.toString();
-                      controller.setSetor(dropValueSetor.value.toString());
-                    });
-              }),
-        ));
+                    InkWell(
+                      onTap: () => Navigator.pop(context),
+                      child: const Icon(Icons.cancel_outlined, color: Color(0xff2E6EA7), size: 32,),
+                    )
+                  ],
+                ),
+
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.42,
+                  child: ListView.builder(
+                    itemCount: dropOpcoesNome.length,
+                    itemBuilder: (_, index){
+
+                      Servidor servidor = dropOpcoesNome[index];
+
+                      return ListTile(
+                        title: Text(servidor.nome,
+                            style: GoogleFonts.kanit().copyWith(
+                                fontWeight: FontWeight.normal,
+                                fontSize: 18,
+                                color: Colors.black)
+                        ),
+                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)))
+                      );
+
+                    }
+                  ),
+                ),
+
+              ],
+            ),
+          );
+        }
+    );
   }
+
+  Future modalSetor(){
+    return showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30),
+                topLeft: Radius.circular(30)
+            )
+        ),
+        context: context,
+        builder: (context){
+          return Container(
+            padding: const EdgeInsets.all(22),
+            height: 580,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+
+                    Text('Setor',
+                        style: GoogleFonts.kanit().copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.black)
+                    ),
+                    InkWell(
+                      onTap: () => Navigator.pop(context),
+                      child: const Icon(Icons.cancel_outlined, color: Color(0xff2E6EA7), size: 32,),
+                    )
+                  ],
+                ),
+
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.42,
+                  child: ListView.builder(
+                      itemCount: dropOpcoesNome.length,
+                      itemBuilder: (_, index){
+
+                        Servidor servidor = dropOpcoesNome[index];
+
+                        return ListTile(
+                            title: Text(servidor.nome,
+                                style: GoogleFonts.kanit().copyWith(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 18,
+                                    color: Colors.black)
+                            ),
+                            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)))
+                        );
+
+                      }
+                  ),
+                ),
+
+              ],
+            ),
+          );
+        }
+    );
+  }
+
 
   void initState() {
     controller.recuperarServidorFiltrados('', '');
@@ -200,9 +272,15 @@ class _FiltraQuemState extends State<FiltraQuem> {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-                      filtroSetor(),
+                      buttonFiltro(
+                        onTap: () => modalSetor(),
+                        text: 'Setor'
+                      ),
                       const SizedBox(width: 5,),
-                      filtroNome(),
+                      buttonFiltro(
+                          text: 'Nome',
+                          onTap: () => modalNome()
+                      )
                     ],
                   )),
               const SizedBox(height: 4,),
