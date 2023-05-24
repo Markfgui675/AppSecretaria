@@ -31,13 +31,6 @@ class _FiltraQuemState extends State<FiltraQuem> {
   final dropValueSetor = ValueNotifier('');
   final dropOpcoesSetor = [''];
 
-  //Lista inicial para os setores
-  final dropOpcoesSetorInicial = [
-    'Secretaria Adjunta de Assistência à Saúde - SAA',
-    'Secretaria Adjunta de Gestão em Saúde - SAG',
-    'Secretário Adjunto Executivo em Saúde - SAE'
-  ];
-
   recuperaDados() async {
     FirebaseFirestore db = FirebaseFirestore.instance;
 
@@ -111,6 +104,823 @@ class _FiltraQuemState extends State<FiltraQuem> {
     );
   }
 
+  Future modalSetorAssesoria(){
+    return showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30),
+                topLeft: Radius.circular(30)
+            )
+        ),
+        context: context,
+        builder: (context){
+          return Container(
+            padding: const EdgeInsets.all(22),
+            height: 580,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+
+                    Text('Assessoria e Gabinete',
+                        style: GoogleFonts.kanit().copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.black)
+                    ),
+                    InkWell(
+                      onTap: () => Navigator.pop(context),
+                      child: const Icon(Icons.arrow_left_outlined, color: Color(0xff2E6EA7), size: 32,),
+                    )
+                  ],
+                ),
+
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.42,
+                  child: ListView(
+                    children: [
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            children: [
+                              Text('Secretaria Adjunta de Assitência à Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            children: [
+                              Text('Secretaria Adjunta de Gestão em Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Assesoria Jurído - Legislativa',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () => modalSetorGabinete(),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Gabinete',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Controladoria Setorial de Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Diretoria Executiva do Fundo de Saúde do Distrito Federal',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+
+              ],
+            ),
+          );
+        }
+    );
+  }
+
+  Future modalSetorGabinete(){
+    return showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30),
+                topLeft: Radius.circular(30)
+            )
+        ),
+        context: context,
+        builder: (context){
+          return Container(
+            padding: const EdgeInsets.all(22),
+            height: 580,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+
+                    Text('Gabinete',
+                        style: GoogleFonts.kanit().copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.black)
+                    ),
+                    InkWell(
+                      onTap: () => Navigator.pop(context),
+                      child: const Icon(Icons.arrow_left_outlined, color: Color(0xff2E6EA7), size: 32,),
+                    )
+                  ],
+                ),
+
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.42,
+                  child: ListView(
+                    children: [
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            children: [
+                              Text('Assessoria Especial',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            children: [
+                              Text('Assessoria de Apoio a Documentação Administrativa',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            children: [
+                              Text('Assessoria de Gestão Participativa e Relações Institucionais',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            children: [
+                              Text('Assessoria de Comunicação',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            children: [
+                              Text('Assessoria de Gestão Estratégica e Projetos',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            children: [
+                              Text('Coordenação Especial de Tecnologia da Infomação em Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            children: [
+                              Text('Coordenação Especial de Gestão de Contratos e Serviços de Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+
+              ],
+            ),
+          );
+        }
+    );
+  }
+
+  Future modalSetorSubsecretarias(){
+    return showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30),
+                topLeft: Radius.circular(30)
+            )
+        ),
+        context: context,
+        builder: (context){
+          return Container(
+            padding: const EdgeInsets.all(22),
+            height: 580,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+
+                    Text('Subsecretarias',
+                        style: GoogleFonts.kanit().copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.black)
+                    ),
+                    InkWell(
+                      onTap: () => Navigator.pop(context),
+                      child: const Icon(Icons.arrow_left_outlined, color: Color(0xff2E6EA7), size: 32,),
+                    )
+                  ],
+                ),
+
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.42,
+                  child: ListView(
+                    children: [
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Subsecretaria de Vigilância a Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Subsecretaria de Atenção Integral à Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Subsecretaria de Infraestrutura em Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Subsecretaria de Administração Geral',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Subsecretaria de Gestão de Pessoas',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Subsecretaria de Logística em Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            children: [
+                              Text('Subsecretaria de Planejamento em Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+
+              ],
+            ),
+          );
+        }
+    );
+  }
+
+  Future modalSetorSuperintendencias(){
+    return showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30),
+                topLeft: Radius.circular(30)
+            )
+        ),
+        context: context,
+        builder: (context){
+          return Container(
+            padding: const EdgeInsets.all(22),
+            height: 580,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+
+                    Text('Superintendências',
+                        style: GoogleFonts.kanit().copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.black)
+                    ),
+                    InkWell(
+                      onTap: () => Navigator.pop(context),
+                      child: const Icon(Icons.arrow_left_outlined, color: Color(0xff2E6EA7), size: 32,),
+                    )
+                  ],
+                ),
+
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.42,
+                  child: ListView(
+                    children: [
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Subsecretaria de Vigilância a Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Subsecretaria de Atenção Integral à Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Subsecretaria de Infraestrutura em Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Subsecretaria de Administração Geral',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Subsecretaria de Gestão de Pessoas',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Subsecretaria de Logística em Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            children: [
+                              Text('Subsecretaria de Planejamento em Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+
+              ],
+            ),
+          );
+        }
+    );
+  }
+
+  Future modalSetorUnidadereferenciais(){
+    return showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30),
+                topLeft: Radius.circular(30)
+            )
+        ),
+        context: context,
+        builder: (context){
+          return Container(
+            padding: const EdgeInsets.all(22),
+            height: 580,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+
+                    Text('Subsecretarias',
+                        style: GoogleFonts.kanit().copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.black)
+                    ),
+                    InkWell(
+                      onTap: () => Navigator.pop(context),
+                      child: const Icon(Icons.arrow_left_outlined, color: Color(0xff2E6EA7), size: 32,),
+                    )
+                  ],
+                ),
+
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.42,
+                  child: ListView(
+                    children: [
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Subsecretaria de Vigilância a Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Subsecretaria de Atenção Integral à Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Subsecretaria de Infraestrutura em Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Subsecretaria de Administração Geral',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Subsecretaria de Gestão de Pessoas',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Subsecretaria de Logística em Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            children: [
+                              Text('Subsecretaria de Planejamento em Saúde',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+
+              ],
+            ),
+          );
+        }
+    );
+  }
+
   Future modalNome(){
     return showModalBottomSheet(
       shape: const RoundedRectangleBorder(
@@ -174,6 +984,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
     );
   }
 
+  //primeiros
   Future modalSetor(){
     return showModalBottomSheet(
         shape: const RoundedRectangleBorder(
@@ -210,23 +1021,83 @@ class _FiltraQuemState extends State<FiltraQuem> {
 
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.42,
-                  child: ListView.builder(
-                      itemCount: dropOpcoesNome.length,
-                      itemBuilder: (_, index){
+                  child: ListView(
+                    children: [
 
-                        Servidor servidor = dropOpcoesNome[index];
+                      InkWell(
+                        onTap: () => modalSetorAssesoria(),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Assessoria e Gabinete',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 20,
+                                      color: Colors.black)
+                              ),
+                              const Icon(Icons.arrow_right_outlined)
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () => modalSetorSubsecretarias(),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Subsecretarias',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 20,
+                                      color: Colors.black)
+                              ),
+                              const Icon(Icons.arrow_right_outlined)
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () => modalSetorSuperintendencias(),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Superintendências',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 20,
+                                      color: const Color(0xff2E6EA7))
+                              ),
+                              const Icon(Icons.arrow_right_outlined)
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () => modalSetorUnidadereferenciais(),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Unidade de Refrência Distrital',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 20,
+                                      color: Colors.black)
+                              ),
+                              const Icon(Icons.arrow_right_outlined)
+                            ],
+                          ),
+                        ),
+                      ),
 
-                        return ListTile(
-                            title: Text(servidor.nome,
-                                style: GoogleFonts.kanit().copyWith(
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 18,
-                                    color: Colors.black)
-                            ),
-                            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ServidorScreen(servidor)))
-                        );
-
-                      }
+                    ],
                   ),
                 ),
 
