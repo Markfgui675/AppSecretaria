@@ -34,7 +34,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
   //Lista inicial para os setores
   final dropOpcoesSetorInicial = [
     'Secretaria Adjunta de Assistência à Saúde - SAA',
-    'Secretatira Adjunta de Gestão em Saúde - SAG',
+    'Secretaria Adjunta de Gestão em Saúde - SAG',
     'Secretário Adjunto Executivo em Saúde - SAE'
   ];
 
