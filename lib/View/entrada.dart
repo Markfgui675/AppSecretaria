@@ -177,7 +177,7 @@ class _EntradaState extends State<Entrada> {
                               User? user = firebaseUser.user;
                               dbUsers.collection('usuarios').doc(user!.uid).set(
                                   {
-                                    'id':nomeAleatorio,
+                                    'id':user.uid,
                                     'nome':nomeAleatorio,
                                     'email':'conta@anonima.com',
                                     'profilepic':''
