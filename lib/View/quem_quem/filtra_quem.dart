@@ -1,4 +1,3 @@
-import 'package:app_secretaria_flutter/widgets/pesquisa_semResultado.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:exists_in/exists_in.dart';
 import 'package:flutter/material.dart';
@@ -60,19 +59,6 @@ class _FiltraQuemState extends State<FiltraQuem> {
         onError: (e) => print("Error completing: $e")
     );
 
-    // Recuperação dos setores
-    await db.collection('qq_pesquisa').orderBy("setor", descending: false).get().then(
-            (querySnapshot){
-          for(var docSnapshot in querySnapshot.docs){
-            if(true){
-              setState(() {
-                dropOpcoesSetor.add(docSnapshot.data()['setor']);
-              });
-            }
-          }
-        }
-    );
-
   }
 
   Widget buttonFiltro({required String text, required Function() onTap}){
@@ -115,6 +101,13 @@ class _FiltraQuemState extends State<FiltraQuem> {
         context: context,
         builder: (context){
           return Container(
+            decoration: const BoxDecoration(
+                color: Color(0xff2E6EA7),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)
+                )
+            ),
             padding: const EdgeInsets.all(22),
             height: 580,
             child: Column(
@@ -129,12 +122,12 @@ class _FiltraQuemState extends State<FiltraQuem> {
                     Text('Assessoria e Gabinete',
                         style: GoogleFonts.kanit().copyWith(
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.black)
+                            fontSize: 24,
+                            color: Colors.white)
                     ),
                     InkWell(
                       onTap: () => Navigator.pop(context),
-                      child: const Icon(Icons.keyboard_double_arrow_left_outlined, color: Color(0xff2E6EA7), size: 42,),
+                      child: const Icon(Icons.keyboard_double_arrow_left_outlined, color: Color(0xfff2ab11), size: 42,),
                     )
                   ],
                 ),
@@ -154,9 +147,9 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
-                              const Icon(Icons.keyboard_arrow_right_outlined, size: 36,)
+                              const Icon(Icons.keyboard_arrow_right_outlined, size: 36, color: Color(0xfff2ab11),)
                             ],
                           ),
                         ),
@@ -175,7 +168,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -195,7 +188,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -216,7 +209,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -237,7 +230,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -258,7 +251,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -287,6 +280,13 @@ class _FiltraQuemState extends State<FiltraQuem> {
         context: context,
         builder: (context){
           return Container(
+            decoration: const BoxDecoration(
+                color: Color(0xff2E6EA7),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)
+                )
+            ),
             padding: const EdgeInsets.all(22),
             height: 580,
             child: Column(
@@ -300,12 +300,12 @@ class _FiltraQuemState extends State<FiltraQuem> {
                     Text('Gabinete',
                         style: GoogleFonts.kanit().copyWith(
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.black)
+                            fontSize: 24,
+                            color: Colors.white)
                     ),
                     InkWell(
                       onTap: () => Navigator.pop(context),
-                      child: const Icon(Icons.keyboard_double_arrow_left_outlined, color: Color(0xff2E6EA7), size: 42,),
+                      child: const Icon(Icons.keyboard_double_arrow_left_outlined, color: Color(0xfff2ab11), size: 42,),
                     )
                   ],
                 ),
@@ -330,7 +330,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -352,7 +352,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -374,7 +374,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -396,7 +396,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -418,7 +418,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -440,7 +440,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -462,7 +462,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -491,6 +491,13 @@ class _FiltraQuemState extends State<FiltraQuem> {
         context: context,
         builder: (context){
           return Container(
+            decoration: const BoxDecoration(
+                color: Color(0xff2E6EA7),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)
+                )
+            ),
             padding: const EdgeInsets.all(22),
             height: 580,
             child: Column(
@@ -504,12 +511,12 @@ class _FiltraQuemState extends State<FiltraQuem> {
                     Text('Subsecretarias',
                         style: GoogleFonts.kanit().copyWith(
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.black)
+                            fontSize: 24,
+                            color: Colors.white)
                     ),
                     InkWell(
                       onTap: () => Navigator.pop(context),
-                      child: const Icon(Icons.keyboard_double_arrow_left_outlined, color: Color(0xff2E6EA7), size: 42,),
+                      child: const Icon(Icons.keyboard_double_arrow_left_outlined, color: Color(0xfff2ab11), size: 42,),
                     )
                   ],
                 ),
@@ -533,7 +540,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -554,7 +561,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -575,7 +582,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -596,7 +603,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -617,7 +624,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -638,7 +645,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -658,7 +665,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -687,6 +694,13 @@ class _FiltraQuemState extends State<FiltraQuem> {
         context: context,
         builder: (context){
           return Container(
+            decoration: const BoxDecoration(
+                color: Color(0xff2E6EA7),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)
+                )
+            ),
             padding: const EdgeInsets.all(22),
             height: 580,
             child: Column(
@@ -700,12 +714,12 @@ class _FiltraQuemState extends State<FiltraQuem> {
                     Text('Superintendências',
                         style: GoogleFonts.kanit().copyWith(
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.black)
+                            fontSize: 24,
+                            color: Colors.white)
                     ),
                     InkWell(
                       onTap: () => Navigator.pop(context),
-                      child: const Icon(Icons.keyboard_double_arrow_left_outlined, color: Color(0xff2E6EA7), size: 42,),
+                      child: const Icon(Icons.keyboard_double_arrow_left_outlined, color: Color(0xfff2ab11), size: 42,),
                     )
                   ],
                 ),
@@ -729,7 +743,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -750,7 +764,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -771,7 +785,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -792,7 +806,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -813,7 +827,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -834,7 +848,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -854,7 +868,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -883,6 +897,13 @@ class _FiltraQuemState extends State<FiltraQuem> {
         context: context,
         builder: (context){
           return Container(
+            decoration: const BoxDecoration(
+                color: Color(0xff2E6EA7),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)
+                )
+            ),
             padding: const EdgeInsets.all(22),
             height: 580,
             child: Column(
@@ -896,12 +917,12 @@ class _FiltraQuemState extends State<FiltraQuem> {
                     Text('Unidades de Referência',
                         style: GoogleFonts.kanit().copyWith(
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.black)
+                            fontSize: 24,
+                            color: Colors.white)
                     ),
                     InkWell(
                       onTap: () => Navigator.pop(context),
-                      child: const Icon(Icons.keyboard_double_arrow_left_outlined, color: Color(0xff2E6EA7), size: 42,),
+                      child: const Icon(Icons.keyboard_double_arrow_left_outlined, color: Color(0xfff2ab11), size: 42,),
                     )
                   ],
                 ),
@@ -925,7 +946,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -946,7 +967,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -967,7 +988,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -988,7 +1009,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
                             ],
                           ),
@@ -1030,7 +1051,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                     Text('Nome',
                         style: GoogleFonts.kanit().copyWith(
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                            fontSize: 24,
                             color: Colors.black)
                     ),
                     InkWell(
@@ -1081,6 +1102,13 @@ class _FiltraQuemState extends State<FiltraQuem> {
         context: context,
         builder: (context){
           return Container(
+            decoration: const BoxDecoration(
+              color: Color(0xff2E6EA7),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30)
+              )
+            ),
             padding: const EdgeInsets.all(22),
             height: 580,
             child: Column(
@@ -1094,12 +1122,12 @@ class _FiltraQuemState extends State<FiltraQuem> {
                     Text('Setor',
                         style: GoogleFonts.kanit().copyWith(
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.black)
+                            fontSize: 24,
+                            color: Colors.white)
                     ),
                     InkWell(
                       onTap: () => Navigator.pop(context),
-                      child: const Icon(Icons.cancel_outlined, color: Color(0xff2E6EA7), size: 32,),
+                      child: const Icon(Icons.cancel_outlined, color: Color(0xfff2ab11), size: 32,),
                     )
                   ],
                 ),
@@ -1120,9 +1148,9 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 20,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
-                              const Icon(Icons.keyboard_arrow_right_outlined, size: 36,)
+                              const Icon(Icons.keyboard_arrow_right_outlined, color: Color(0xfff2ab11),size: 36,)
                             ],
                           ),
                         ),
@@ -1138,9 +1166,9 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 20,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
-                              const Icon(Icons.keyboard_arrow_right_outlined, size: 36,)
+                              const Icon(Icons.keyboard_arrow_right_outlined, color: Color(0xfff2ab11),size: 36,)
                             ],
                           ),
                         ),
@@ -1156,9 +1184,9 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 20,
-                                      color: const Color(0xff2E6EA7))
+                                      color: Colors.white)
                               ),
-                              const Icon(Icons.keyboard_arrow_right_outlined, size: 36,)
+                              const Icon(Icons.keyboard_arrow_right_outlined, color: Color(0xfff2ab11),size: 36,)
                             ],
                           ),
                         ),
@@ -1174,9 +1202,9 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 20,
-                                      color: Colors.black)
+                                      color: Colors.white)
                               ),
-                              const Icon(Icons.keyboard_arrow_right_outlined, size: 36,)
+                              const Icon(Icons.keyboard_arrow_right_outlined, color: Color(0xfff2ab11),size: 36,)
                             ],
                           ),
                         ),

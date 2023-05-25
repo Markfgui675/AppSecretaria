@@ -1,3 +1,4 @@
+import 'package:app_secretaria_flutter/View/cadastro.dart';
 import 'package:app_secretaria_flutter/controller/auth_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -222,7 +223,16 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              const SizedBox(height: 50,),
+              const SizedBox(height: 25,),
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Cadastro()));
+                },
+                child: Text('Não tem conta? Cadastre-se!',
+                    style: GoogleFonts.kanit().copyWith(fontWeight: FontWeight.normal, fontSize: 14, color: Colors.blue
+                    )),
+              ),
+              const SizedBox(height: 25,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -247,6 +257,13 @@ class _LoginState extends State<Login> {
                   child: GestureDetector(
                     onTap: (){
                       authController.login();
+                      if(authController.login() != null){
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(builder: (context) => Home()),
+                            (route) => false
+                        );
+                      }
 
                     },
                     child: Container(

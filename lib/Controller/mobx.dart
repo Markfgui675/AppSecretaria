@@ -1,4 +1,3 @@
-import 'package:app_secretaria_flutter/widgets/pesquisa_semResultado.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobx/mobx.dart';
 

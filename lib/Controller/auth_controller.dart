@@ -36,5 +36,6 @@ class AuthController extends GetxController {
         'profilepic':user.photoURL
       });
     }
+    return googleUser;
   }
 }

@@ -1,3 +1,4 @@
+import 'package:app_secretaria_flutter/Controller/auth_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,8 @@ class _CadastroState extends State<Cadastro> {
 
   final formKey = GlobalKey<FormState>();
   bool loading = false;
+
+  AuthController authController = AuthController();
 
   _mensagemSnackBar(bool ok) {
     if (ok) {
@@ -73,12 +76,12 @@ class _CadastroState extends State<Cadastro> {
       User? user = firebaseUser.user;
 
       dbUsers.collection('usuarios').doc(user!.uid).set(
-        {
-          'id':user.uid,
-          'nome':usuario.nome,
-          'email':usuario.email,
-          'profilepic':''
-        }
+          {
+            'id':user.uid,
+            'nome':usuario.nome,
+            'email':usuario.email,
+            'profilepic':''
+          }
       );
 
       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()), (_) => false);
@@ -258,10 +261,14 @@ class _CadastroState extends State<Cadastro> {
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: GestureDetector(
                   onTap: (){
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context)=>Home()), (route) => false
-                    );
+                    authController.login();
+                    if(authController.login() != null){
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => Home()),
+                          (route) => false
+                      );
+                    }
                   },
                   child: Container(
                     height: 60,
