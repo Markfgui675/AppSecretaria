@@ -174,7 +174,8 @@ class _EntradaState extends State<Entrada> {
                             });
                             String nomeAleatorio = _gerarNomeAleatorio();
                             auth.signInAnonymously().then((firebaseUser){
-                              dbUsers.collection('usuarios').doc(nomeAleatorio).set(
+                              User? user = firebaseUser.user;
+                              dbUsers.collection('usuarios').doc(user!.uid).set(
                                   {
                                     'id':nomeAleatorio,
                                     'nome':nomeAleatorio,
