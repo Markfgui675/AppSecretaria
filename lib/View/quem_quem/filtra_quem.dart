@@ -134,7 +134,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                     ),
                     InkWell(
                       onTap: () => Navigator.pop(context),
-                      child: const Icon(Icons.arrow_left_outlined, color: Color(0xff2E6EA7), size: 32,),
+                      child: const Icon(Icons.keyboard_double_arrow_left_outlined, color: Color(0xff2E6EA7), size: 42,),
                     )
                   ],
                 ),
@@ -144,7 +144,29 @@ class _FiltraQuemState extends State<FiltraQuem> {
                   child: ListView(
                     children: [
                       InkWell(
-                        onTap: (){},
+                        onTap: () => modalSetorGabinete(),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Gabinete',
+                                  style: GoogleFonts.kanit().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                      color: Colors.black)
+                              ),
+                              const Icon(Icons.keyboard_arrow_right_outlined, size: 36,)
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){
+                          controller.setSetor('Secretaria-Adjunta de Assistência à Saúde - SAA');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
@@ -160,7 +182,11 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Secretaria-Adjunta de Gestão em Saúde - SAG');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
@@ -176,7 +202,11 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Assessoria Jurídico-Legislativa');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
@@ -193,24 +223,11 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: () => modalSetorGabinete(),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Gabinete',
-                                  style: GoogleFonts.kanit().copyWith(
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 18,
-                                      color: Colors.black)
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Controladoria Setorial da Saúde - CONT');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
@@ -227,7 +244,11 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Fundo de Saúde do Distrito Federal - FSDF');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
@@ -284,7 +305,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                     ),
                     InkWell(
                       onTap: () => Navigator.pop(context),
-                      child: const Icon(Icons.arrow_left_outlined, color: Color(0xff2E6EA7), size: 32,),
+                      child: const Icon(Icons.keyboard_double_arrow_left_outlined, color: Color(0xff2E6EA7), size: 42,),
                     )
                   ],
                 ),
@@ -294,10 +315,16 @@ class _FiltraQuemState extends State<FiltraQuem> {
                   child: ListView(
                     children: [
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Assessoria Especial – ASSESP');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text('Assessoria Especial',
                                   style: GoogleFonts.kanit().copyWith(
@@ -310,10 +337,16 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Assessoria de Apoio à Documentação Administrativa – ASADM');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text('Assessoria de Apoio a Documentação Administrativa',
                                   style: GoogleFonts.kanit().copyWith(
@@ -326,10 +359,16 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Assessoria de Gestão Participativa e Relações Institucionais – ARINS');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text('Assessoria de Gestão Participativa e Relações Institucionais',
                                   style: GoogleFonts.kanit().copyWith(
@@ -342,10 +381,16 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Assessoria de Comunicação – ASCOM');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text('Assessoria de Comunicação',
                                   style: GoogleFonts.kanit().copyWith(
@@ -358,10 +403,16 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Assessoria de Gestão Estratégica e Projetos – AGEP');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text('Assessoria de Gestão Estratégica e Projetos',
                                   style: GoogleFonts.kanit().copyWith(
@@ -374,10 +425,16 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Coordenação Especial de Tecnologia de Informação em Saúde – CTINF');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text('Coordenação Especial de Tecnologia da Infomação em Saúde',
                                   style: GoogleFonts.kanit().copyWith(
@@ -390,10 +447,16 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Coordenação Especial de Gestão de Contratos de Serviços de Saúde – CGCSS');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text('Coordenação Especial de Gestão de Contratos e Serviços de Saúde',
                                   style: GoogleFonts.kanit().copyWith(
@@ -446,7 +509,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                     ),
                     InkWell(
                       onTap: () => Navigator.pop(context),
-                      child: const Icon(Icons.arrow_left_outlined, color: Color(0xff2E6EA7), size: 32,),
+                      child: const Icon(Icons.keyboard_double_arrow_left_outlined, color: Color(0xff2E6EA7), size: 42,),
                     )
                   ],
                 ),
@@ -456,7 +519,11 @@ class _FiltraQuemState extends State<FiltraQuem> {
                   child: ListView(
                     children: [
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Subsecretaria de Vigilância à Saúde - SVS');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
@@ -473,7 +540,11 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Subsecretaria de Atenção Integral à Saúde - SAIS');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
@@ -490,7 +561,11 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Subsecretaria de Infraestrutura em Saúde - SINFRA');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
@@ -507,7 +582,11 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Subsecretaria de Administração Geral - SUAG');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
@@ -524,7 +603,11 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Subsecretaria de Gestão de Pessoas - SUGEP');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
@@ -541,7 +624,11 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Subsecretaria de Logística em Saúde - SULOG');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
@@ -558,7 +645,11 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Subsecretaria de Planejamento em Saúde - SUPLANS');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
@@ -614,7 +705,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                     ),
                     InkWell(
                       onTap: () => Navigator.pop(context),
-                      child: const Icon(Icons.arrow_left_outlined, color: Color(0xff2E6EA7), size: 32,),
+                      child: const Icon(Icons.keyboard_double_arrow_left_outlined, color: Color(0xff2E6EA7), size: 42,),
                     )
                   ],
                 ),
@@ -624,13 +715,17 @@ class _FiltraQuemState extends State<FiltraQuem> {
                   child: ListView(
                     children: [
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Superintendência da Região de Saúde Central - SRSCE');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Subsecretaria de Vigilância a Saúde',
+                              Text('Superintendência da Região de Saúde Central',
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
@@ -641,13 +736,17 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Superintendência da Região de Saúde Centro-Sul - SRSCS');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Subsecretaria de Atenção Integral à Saúde',
+                              Text('Superintendência da Região de Saúde Centro-Sul',
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
@@ -658,13 +757,17 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Superintendência da Região de Saúde Oeste - SRSOE');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Subsecretaria de Infraestrutura em Saúde',
+                              Text('Superintendência da Região de Saúde Oeste',
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
@@ -675,13 +778,17 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Superintendência da Região de Saúde Sul - SRSSU');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Subsecretaria de Administração Geral',
+                              Text('Superintendência da Região de Saúde Sul',
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
@@ -692,13 +799,17 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Superintendência da Região de Saúde Sudoeste - SRSSO');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Subsecretaria de Gestão de Pessoas',
+                              Text('Superintendência da Região de Saúde Sudoeste',
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
@@ -709,13 +820,17 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Superintendência da Região de Saúde Norte - SRSNO');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Subsecretaria de Logística em Saúde',
+                              Text('Superintendência da Região de Saúde Norte',
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
@@ -726,12 +841,16 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Superintendência da Região de Saúde Leste - SRSLE');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
                             children: [
-                              Text('Subsecretaria de Planejamento em Saúde',
+                              Text('Superintendência da Região de Saúde Leste',
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
@@ -774,7 +893,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
 
-                    Text('Subsecretarias',
+                    Text('Unidades de Referência',
                         style: GoogleFonts.kanit().copyWith(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -782,7 +901,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                     ),
                     InkWell(
                       onTap: () => Navigator.pop(context),
-                      child: const Icon(Icons.arrow_left_outlined, color: Color(0xff2E6EA7), size: 32,),
+                      child: const Icon(Icons.keyboard_double_arrow_left_outlined, color: Color(0xff2E6EA7), size: 42,),
                     )
                   ],
                 ),
@@ -792,13 +911,17 @@ class _FiltraQuemState extends State<FiltraQuem> {
                   child: ListView(
                     children: [
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Hospital de Apoio de Brasília - HAB');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Subsecretaria de Vigilância a Saúde',
+                              Text('Hospital de Apoio de Brasília',
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
@@ -809,13 +932,17 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Hospital São Vicente de Paulo - HSVP');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Subsecretaria de Atenção Integral à Saúde',
+                              Text('Hospital São Vicente de Paulo',
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
@@ -826,13 +953,17 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Hospital Materno Infantil Dr. Antonio Lisboa - HMIB');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Subsecretaria de Infraestrutura em Saúde',
+                              Text('Hospital Materno Infantil Dr. Antonio Lisboa',
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
@@ -843,63 +974,17 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.setSetor('Complexo Regulador em Saúde do Distrito Federal - CRDF');
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Subsecretaria de Administração Geral',
-                                  style: GoogleFonts.kanit().copyWith(
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 18,
-                                      color: Colors.black)
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: (){},
-                        child: Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Subsecretaria de Gestão de Pessoas',
-                                  style: GoogleFonts.kanit().copyWith(
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 18,
-                                      color: Colors.black)
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: (){},
-                        child: Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Subsecretaria de Logística em Saúde',
-                                  style: GoogleFonts.kanit().copyWith(
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 18,
-                                      color: Colors.black)
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: (){},
-                        child: Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Column(
-                            children: [
-                              Text('Subsecretaria de Planejamento em Saúde',
+                              Text('Complexo Regulador em Saúde do Distrito Federal',
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
@@ -991,7 +1076,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
             borderRadius: BorderRadius.only(
                 topRight: Radius.circular(30),
                 topLeft: Radius.circular(30)
-            )
+            ),
         ),
         context: context,
         builder: (context){
@@ -1037,7 +1122,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                       fontSize: 20,
                                       color: Colors.black)
                               ),
-                              const Icon(Icons.arrow_right_outlined)
+                              const Icon(Icons.keyboard_arrow_right_outlined, size: 36,)
                             ],
                           ),
                         ),
@@ -1055,7 +1140,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                       fontSize: 20,
                                       color: Colors.black)
                               ),
-                              const Icon(Icons.arrow_right_outlined)
+                              const Icon(Icons.keyboard_arrow_right_outlined, size: 36,)
                             ],
                           ),
                         ),
@@ -1073,7 +1158,7 @@ class _FiltraQuemState extends State<FiltraQuem> {
                                       fontSize: 20,
                                       color: const Color(0xff2E6EA7))
                               ),
-                              const Icon(Icons.arrow_right_outlined)
+                              const Icon(Icons.keyboard_arrow_right_outlined, size: 36,)
                             ],
                           ),
                         ),
@@ -1085,13 +1170,13 @@ class _FiltraQuemState extends State<FiltraQuem> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Unidade de Refrência Distrital',
+                              Text('Unidade de Referência Distrital',
                                   style: GoogleFonts.kanit().copyWith(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 20,
                                       color: Colors.black)
                               ),
-                              const Icon(Icons.arrow_right_outlined)
+                              const Icon(Icons.keyboard_arrow_right_outlined, size: 36,)
                             ],
                           ),
                         ),
@@ -1206,7 +1291,9 @@ class _FiltraQuemState extends State<FiltraQuem> {
                         return Observer(
                             builder: (_){
                               if(controller.listaFiltrada.length == 0){
-                                return PesquisaSemResultado();
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
                               } else {
                                 return ListView.builder(
                                   scrollDirection: Axis.vertical,
