@@ -26,6 +26,7 @@ abstract class ControllerBase with Store {
 
     servidores.clear();
 
+    // pesquisa com nome e setor
     if(nome != '' && setor != ''){
       await db.collection('qq_pesquisa')
           .where('nome', isEqualTo: nome)
